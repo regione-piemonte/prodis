@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="prodisdb - Script creazione db" default="all-target">
+  <description>Build file del componente</description>
+
+  <property file="buildfiles/build.properties"/>
+
+  <target name="all-target" description="Lancia il build per le varie distribuzioni in sequenza">
+  
+    <antcall target="clean-all">
+    </antcall>
+    
+    <antcall target="distribution">
+      <param name="target" value="coll-${linea.cliente}-${istanza.cliente}"/>
+    </antcall>
+    <antcall target="distribution">
+      <param name="target" value="prod-${linea.cliente}-${istanza.cliente}"/>
+    </antcall>
+  </target>
+
+  <target name="init" description="Inizializza lo script Ant">
+    <tstamp/>
+    <mkdir dir="${build}/temp" />
+    <mkdir dir="${dist}" />
+    <echo message="target: ${target}" />
+  </target>
+  
+  <target name="environment-config" description="Predispone le configurazioni dipendenti dall'ambiente" depends="init">
+    <copy todir="${build}/temp">
+      <fileset file="${src}/plsql/scriptdb/**">
+        <exclude name="**/.svn/**/*.*"/>
+      </fileset>  
+    </copy>
+	<fixcrlf srcdir="${build}/temp" includes="**/*.sql" eol="unix" />
+    <antcall target="replace-token" />
+  </target>
+
+  <target name="replace-token" if="environment.config">
+    <loadproperties srcFile="buildfiles/${target}.properties"/>
+    <echo message="eseguo le parsificazioni necessarie sui file sorgenti se nel build.properties e' settata environment.config" />
+  </target>
+
+  <target name="distribution" depends="environment-config" description="crea la distribution per un dato target">
+    <mkdir dir="${build}/temp" />
+    <mkdir dir="${dist}/${target}" />
+    <zip destfile="${dist}/${target}/prodis-${version}.zip" basedir="${build}/temp" update="true" includes="**/${version}*.*" excludes="**/*_RW*.*"/>
+    <delete dir="${build}/temp" />
+  </target>
+
+  <target name="clean-all" description="Rimuove le cartelle temporanee." depends="clean-dist, clean-temp"/>
+
+  <target name="clean-temp" description="Rimuove la cartella dei files temporanei di build.">
+    <delete dir="${build}/temp" />
+  </target>
+
+  <target name="clean-dist" description="Rimuove la cartella delle distribuzioni.">
+    <delete dir="${dist}"/>
+  </target>
+
+</project>
