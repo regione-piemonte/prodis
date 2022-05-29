@@ -1,0 +1,66 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- Dati generali  IN SOLA LETTURA  -->
+<div *ngIf="prospetto" class="lettura">
+  <h3>Dati aziendali</h3>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">Codice fiscale <span class="valore">{{prospetto?.datiAzienda?.cfAzienda}}</span></div>
+    <div class="col-sm-12 col-md-4">Denominazione azienda <span class="valore">{{prospetto?.datiAzienda?.denominazioneDatoreLavoro}} </span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">Settore ATECO (cod, desc)
+    <span class="valore">
+      {{prospetto?.datiAzienda?.atecofin?.codAtecofinMin}},
+      {{prospetto?.datiAzienda?.atecofin?.dsProTAtecofin}}
+    </span></div>
+    <div class="col-sm-12 col-md-6">CCNL (cod, desc) <span class="valore">
+    {{prospetto?.datiAzienda?.ccnl?.codCcnlMin}}, {{prospetto?.datiAzienda?.ccnl?.dsCcnl}}
+    </span></div>
+    <div class="col-sm-12 col-md-3">Tipologia di dichiarante <span class="valore">{{prospetto?.datiAzienda?.dichiarante?.descDichiarante}}</span></div>
+  </div>
+
+  <h4>Sede legale</h4>
+  <div class="row">
+  <div class="col-sm-12 col-md-4">Comune (cod, desc) <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.comune?.codComuneMin +" - "+prospetto?.datiAzienda?.sedeLegale?.comune?.dsProTComune}}</span></div>
+  <div class="col-sm-12 col-md-4">Indirizzo <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.indirizzo}}</span></div>
+  <div class="col-sm-12 col-md-4">CAP <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.capSede}}</span></div>
+  </div>
+  <div class="row">
+  <div class="col-sm-12 col-md-4">Telefono <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.telefono}}</span></div>
+  <div class="col-sm-12 col-md-4">Fax <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.fax}}</span></div>
+  <div class="col-sm-12 col-md-4">PEC sede legale <span class="valore">{{prospetto?.datiAzienda?.sedeLegale?.email}}</span></div>
+  </div>
+  <h4>Dati referente</h4>
+  <div class="row">
+  <div class="col-sm-12 col-md-4">Codice fiscale <span class="valore">{{prospetto?.datiAzienda?.cfReferente}}</span></div>
+  <div class="col-sm-12 col-md-4">Cognome <span class="valore">{{prospetto?.datiAzienda?.cognomeReferente}}</span></div>
+  <div class="col-sm-12 col-md-4">Nome <span class="valore">{{prospetto?.datiAzienda?.nomeReferente}}</span></div>
+  </div>
+  <div class="row">
+  <div class="col-sm-12 col-md-4">Comune (cod, desc) <span class="valore">{{prospetto?.datiAzienda?.comune?.codComuneMin+" - "+prospetto?.datiAzienda?.comune?.dsProTComune}}</span></div>
+  <div class="col-sm-12 col-md-4">Indirizzo <span class="valore">{{prospetto?.datiAzienda?.indirizzoReferente}}</span></div>
+  <div class="col-sm-12 col-md-4">CAP <span class="valore">{{prospetto?.datiAzienda?.capReferente}}</span></div>
+  </div>
+  <div class="row">
+  <div class="col-sm-12 col-md-4">Telefono <span class="valore">{{prospetto?.datiAzienda?.telefonoReferente}}</span></div>
+  <div class="col-sm-12 col-md-4">Fax <span class="valore"> {{prospetto?.datiAzienda?.faxReferente}}</span></div>
+  <div class="col-sm-12 col-md-4">Email <span class="valore">{{prospetto?.datiAzienda?.emailReferente}}</span></div>
+  </div>
+
+  <h4>Gruppi di imprese - Azienda capogruppo</h4>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-4">Sigla internazionale
+      <span class="valore">
+        {{prospetto?.datiAzienda?.statiEsteri ?
+          prospetto?.datiAzienda?.statiEsteri?.siglaNazione+ "-" + prospetto?.datiAzienda?.statiEsteri?.dsStatiEsteri : 'N.D.'
+        }}
+      </span>
+    </div>
+    <!-- TO DO Da modificare -->
+    <div class="col-sm-12 col-md-4">Codice fiscale <span class="valore"> {{prospetto?.datiAzienda?.cfCapogruppo ? prospetto?.datiAzienda?.cfCapogruppo : 'N.D.'}} </span></div>
+    <div class="col-sm-12 col-md-4">Presenta il prospetto come capogruppo <span class="valore"> {{prospetto?.datiAzienda?.flgProspettoDaCapogruppo | siNo}}</span></div>
+  </div>
+</div>

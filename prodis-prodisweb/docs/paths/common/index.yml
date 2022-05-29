@@ -1,0 +1,96 @@
+/common/ruolo:
+  get:
+    operationId: getRuolo
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - common
+    parameters:
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Ruolo'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/common/getParametro/{nomeParametro}:
+  get:
+    operationId: getParametro
+    description: Restituisce il parametro.
+    produces:
+      - application/json
+    tags:
+      - common
+    parameters:
+      - in: path
+        name: nomeParametro
+        required: true
+        type: string
+        description: Nome del Parametro.
+    responses:
+      '200':
+        description: restituzione parametro in oggetto decodificagenerica.
+        schema:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/common/userAccessLog:
+  post:
+    operationId: insertUserAccessLog
+    description: Inserisce info su tabella di log per accesso.
+    produces:
+      - application/json
+    tags:
+      - common
+    parameters:
+      - in: body
+        name: loUserLog
+        required: true
+        schema:
+          $ref: '#/definitions/UserAccessLog'
+    responses:
+      '200':
+        description: oggetto UserAccessLog con id valorizzato se inserimento andato a buon fine.
+        schema:
+            $ref: '#/definitions/UserAccessLog'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'          
+/common/getDataCalcolataConGiorniLavorativi/{dataInput}/{numeroGiorniLavorativi}:
+  get:
+    operationId: getDataCalcolataConGiorniLavorativi
+    description: Restituisce la data calcolata.
+    produces:
+      - application/json
+    tags:
+      - common
+    parameters:
+      - in: path
+        name: dataInput
+        required: true
+        type: string
+        description: valore della data.
+      - in: path
+        name: numeroGiorniLavorativi
+        required: true
+        type: number
+        description: numero di giorni lavorativi da aggiungere
+    responses:
+      '200':
+        description: restituzione la data calcolcata sommata con il numero di giorni lavorativi.
+        schema:
+          type: string
+          format: date-time
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+          

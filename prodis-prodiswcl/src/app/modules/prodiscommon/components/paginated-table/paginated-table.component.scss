@@ -1,0 +1,25 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+.prodis-testata-lista {
+    background-color: white !important;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.prodis-table {
+    thead {
+        background-color: rgb(240, 240, 240) !important;
+    }
+    font-size: 13px;
+}
+
+.prodis-select-page {
+    width: 60px;
+}
+
+.prodis-pagination-footer {
+    margin-top: 30px;
+    font-size: 13px;
+}

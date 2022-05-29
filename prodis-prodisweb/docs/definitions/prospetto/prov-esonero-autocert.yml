@@ -1,0 +1,27 @@
+ProvEsoneroAutocert:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataAutocert:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    id:
+      type: integer
+    nLav60x1000:
+      type: number
+    nLavEsoneroAutocert:
+      type: number
+    percentualeEsAutocert:
+      type: number

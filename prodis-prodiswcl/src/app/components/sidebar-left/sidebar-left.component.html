@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- <a [routerLink]="['/']" class="btn w-100" [class.btn-secondary]="currentUrl && (currentUrl.indexOf('/home') === 0 || currentUrl==='/')">{{ 'SIDEBAR.HOME' | translate }}</a> -->
+<ng-container *ngFor="let pm of possibleModules">
+ <!--
+   <a
+    [routerLink]="pm.routerUrl"
+    class="btn w-100"
+    [class.btn-secondary]="inSubpath(pm)"
+    (click)="loadPermessi(pm)"
+    >
+   -->
+    <!-- *ngIf="hasModulo(pm)" -->
+   <!--- {{ pm.i18n | translate }}
+  </a>-->
+
+</ng-container>
+
+
+
+<div [ngClass]="{'show-sidebar-left': close,'sidebar-nav': true }">
+  <a (click)="setClass()" class="navbar-toggle btn btn-link" data-toggle="collapse" id="menu-toggle">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+
+    <ul class="nav-pills nav-stacked" id="menu">
+      <li><!-- class="active" -->
+        <a [routerLink]="['/home']"><i class="fas fa-home"></i> <span>Home</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/ricerca-prospetti']"><i class="fab fa-accessible-icon"></i> <span>Ricerca prospetti</span></a>
+      </li>
+      <li *ngIf="!ruoloCorrente?.operatoreProvinciale">
+        <a (click)="onClickInserisci()"><i class="fas fa-plus"></i> <span>Nuovo prospetto</span></a>
+      </li>
+      <li *ngIf="ruoloCorrente?.amministratore">
+        <a [routerLink]="['/recupero-codice-regionale']"><i class="fas fa-life-ring"></i> <span>Recupero codice</span></a>
+      </li>
+    </ul>
+
+</div>
+
+

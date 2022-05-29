@@ -1,0 +1,30 @@
+ProspettoGradualita:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataAtto:
+      type: string
+      format: date-time
+    dataTrasformazione:
+      type: string
+      format: date-time
+    estremiAtto:
+      type: string
+    id:
+      type: integer
+    nAssunzioniLavPreTrasf:
+      type: number
+    percentuale:
+      type: number
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'

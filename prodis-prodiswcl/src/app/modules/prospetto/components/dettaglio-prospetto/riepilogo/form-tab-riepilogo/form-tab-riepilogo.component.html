@@ -1,0 +1,234 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Riepilogo dati provinciali</h3>
+    <prodis-table-riepilogo-dati-provinciali [ilProspettoProvincia]="ilProspettoProvincia">
+    </prodis-table-riepilogo-dati-provinciali>
+
+    <h3>Riepilogo nazionale</h3>
+    <div *ngIf="newProspetto" class="lettura">
+      <prodis-sezione-riepilogo-nazionale-uno [prospetto]="prospetto">
+      </prodis-sezione-riepilogo-nazionale-uno>
+      <!-- </div> -->
+      <div class="row">
+        <label class="col-sm-12 col-md-3" for="dataPrimaAssun">Data prima assunzione (dpr. 333/2000)<span class="oblg" title="campo obbligatorio">*</span></label>
+        <div class="col-sm-12 col-md-3 col-lg-2">
+          <div class="form-group">
+            <div class="input-group">
+              <label class="sr-only" for="dataPrimaAssunzione">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.TITLE' |
+                translate}}</label>
+              <input [disabled]="flgFasciaAzienda" (change)="onClickChange()" (dateSelect)="datePickerChange($event)" type="text" class="form-control" name="dataPrimaAssunzione" id="dataPrimaAssunzione"
+                [(ngModel)]="newProspetto.dataPrimaAssunzione" #d1="ngModel" #d_dataPrimaAssunzione="ngModel" ngbDatepicker
+                 #d_dataPrimaAssunzioneDatePicker="ngbDatepicker" maxlength="10">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary calendar" (click)="d_dataPrimaAssunzioneDatePicker.toggle()"
+                  type="button">
+                  <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+              </div>
+              <!-- richiesto in prodis 256 -->
+              <!-- <div *ngIf="flgNessunaAssunzioneAggiun === false && !newProspetto.dataPrimaAssunzione" class="text-danger">
+                {{'ERROR.FIELD.REQUIRED' | translate}}
+              </div> -->
+            </div>
+            <div *ngIf="d1?.status === 'INVALID'" class="text-danger">
+              {{invalidDate(true)}}
+            </div>
+            <div *ngIf="d1?.status === 'VALID'" hidden>
+             {{invalidDate(false)}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="col-sm-12 col-md-3" for="dataPrimaAssun">Data seconda assunzione (dpr. 333/2000)<span class="oblg" title="campo obbligatorio">*</span></label>
+        <div class="col-sm-12 col-md-3 col-lg-2">
+          <div class="form-group">
+            <div class="input-group">
+              <label class="sr-only" for="dataSecondaAssunzione">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.TITLE' |
+                translate}}</label>
+              <input [disabled]="flgFasciaAzienda" (change)="onClickChange()" (dateSelect)="datePickerChange($event)" type="text" class="form-control" name="dataSecondaAssunzione" id="dataSecondaAssunzione"
+                [(ngModel)]="newProspetto.dataSecondaAssunzione"  #d2="ngModel" #d_dataSecondaAssunzione="ngModel" ngbDatepicker
+                 #d_dataSecondaAssunzioneDatePicker="ngbDatepicker" maxlength="10">
+              <div class="input-group-append">
+                <button class="btn btn-outline-primary calendar" (click)="d_dataSecondaAssunzioneDatePicker.toggle()"
+                  type="button">
+                  <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+              </div>
+            </div>
+            <div *ngIf="d2?.status === 'INVALID'" class="text-danger">
+              {{invalidDate(true)}}
+            </div>
+            <div *ngIf="d2?.status === 'VALID'" hidden>
+             {{invalidDate(false)}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <label class="form-group col-sm-12 col-md-3 ">
+          Nessuna assunzione aggiuntiva <span class="oblg"
+          title="campo obbligatorio">*</span>
+        </label>
+        <div class="form-group col-sm-12 col-md-7">
+          <div class="form-check form-check-inline">
+            <input [disabled]="flgFasciaAzienda" (change)="onClickChangeflgNessunaAssunzione()" type="radio" id="flgNessunaAssunzione_si" name="flgNessunaAssunzioneAggiun" [value]="'S'"
+              [(ngModel)]="flgNessunaAssunzioneAggiun">
+              <!-- div *ngIf="condizioniObblNessunaAss" class="text-danger">
+                {{'ERROR.FIELD.REQUIRED' | translate}}
+              </div -->
+            <label for="flgNessunaAssunzione_si">&nbsp;&nbsp;Si</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input [disabled]="flgFasciaAzienda" (change)="onClickChangeflgNessunaAssunzione()" type="radio" id="flgNessunaAssunzione_no" name="flgNessunaAssunzioneAggiun" [value]="'N'"
+              [(ngModel)]="flgNessunaAssunzioneAggiun">
+            <label for="flgNessunaAssunzione_no">&nbsp;&nbsp;No</label>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="lettura"> -->
+      <prodis-sezione-riepilogo-nazionale-due [prospetto]="prospetto">
+      </prodis-sezione-riepilogo-nazionale-due>
+      <div class="row">
+        <div class="form-group col-sm-12 col-md-12">
+          <label for="note">Note</label>
+          <textarea (change)="onClickChange()" [(ngModel)]="newProspetto.note" class="form-control" name="note" id="note" rows="3">{{newProspetto.note}}</textarea>
+        </div>
+      </div>
+
+
+      <form #altriDatiRiepilogo="ngForm">
+
+        <h3>Altri dati di riepilogo</h3>
+        <div class="row">
+          <label class="col-sm-12 col-md-3">
+            Comunicazione a seguito di provvedimento dell'ispettorato
+          </label>
+          <div class="form-group col-sm-12 col-md-7">
+            <div class="form-check form-check-inline">
+              <input (change)="onClickChangeflgVisitaIspettiva()" type="radio" id="comunicaASeguitoSi" name="flgVisitaIspettiva" [value]="'S'"
+                [(ngModel)]="flgVisitaIspettiva">
+              <label for="comunicaASeguitoSi">&nbsp;&nbsp;Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input (change)="onClickChangeflgVisitaIspettiva()" type="radio" id="comunicaASeguitoNo" name="flgVisitaIspettiva" [value]="'N'"
+                [(ngModel)]="flgVisitaIspettiva">
+              <label for="comunicaASeguitoNo">&nbsp;&nbsp;No</label>
+            </div>
+          </div>
+
+          <!-- Obbligatoria l'email della notifica  -->
+
+          <div class="col-sm-12 col-md-3">Email per la notifica dell'invio comunicazione <span class="oblg"
+              title="campo obbligatorio">*</span>
+            <input (change)="onClickChange()" type="text" id="email" name="emailNotifica" [(ngModel)]="newProspetto.emailNotifica" required
+              #emailNotifica="ngModel" />
+            <prodis-error-handler [model]="emailNotifica" [errors]="{required: 'Campo obbligatorio'}">
+            </prodis-error-handler>
+          </div>
+        </div>
+        <div class="row">
+          <!-- QUESTI DATI VENGONO VISUALIZZATI SOLAMENTE DA RUOLO AMMINISTRATORE E CPI  -->
+          <label *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3"> Si effettua la comunicazione per il datore di
+            lavoro?
+          </label>
+          <div *ngIf="SONO_AMMINISTRATORE" class="form-group col-sm-12 col-md-7">
+            <div class="form-check form-check-inline">
+              <input (change)="onClickChange()" type="radio" id="comunicazionePerDatore_si" (click)="svuotaCampi()" name="flgComunicazionePerDatore" [value]="true"
+                [(ngModel)]="flgComunicazionePerDatore">
+              <label for="comunicazionePerDatore_si">&nbsp;&nbsp;Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" id="comunicazionePerDatore_no" name="flgComunicazionePerDatore" [value]="false"
+                [(ngModel)]="flgComunicazionePerDatore">
+              <label for="comunicazionePerDatore_no">&nbsp;&nbsp;No</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <!-- si abilitano se seleziono il NO  e diventano obbligatori -->
+          <div *ngIf="SONO_AMMINISTRATORE" class="form-group col-sm-12 col-md-4">
+            <label for="altroSoggetto">Altro soggetto</label>
+            <select (change)="onClickChange()" [disabled]='flgComunicazionePerDatore' [(ngModel)]="newProspetto.soggetti.id" id="altroSoggetto" name="altroSoggetto" class="form-select">
+              <option [value]="null" disabled>Seleziona un tipo soggetto</option>
+              <option *ngFor="let altroSoggetto of elencoAltriSoggetti" [value]="altroSoggetto.id">
+                {{altroSoggetto.descSoggetti}}</option>
+            </select>
+            <div *ngIf="!flgComunicazionePerDatore && !newProspetto.soggetti" class="text-danger">
+              {{'ERROR.FIELD.REQUIRED' | translate}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Codice fiscale del soggetto
+            <input oninput="this.value = this.value.toUpperCase().trim()" (change)="onClickChange()" [disabled]='flgComunicazionePerDatore' type="text" id="email" name="codiceFiscaleSoggetto"
+              [(ngModel)]="newProspetto.cfStudioProfessionale" />
+              <div *ngIf="!flgComunicazionePerDatore && !newProspetto.cfStudioProfessionale" class="text-danger">
+                {{'ERROR.FIELD.REQUIRED' | translate}}
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Campo sempre obbligatorio e non dipende da si/no -->
+          <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Email del soggetto<span class="oblg"
+              title="campo obbligatorio">*</span>
+            <input (change)="onClickChange()" type="text" id="email" name="emailSoggetto" [(ngModel)]="newProspetto.emailSoggettoComunicazione" required
+            #emailSoggetto="ngModel"/>
+            <prodis-error-handler [model]="emailSoggetto" [errors]="{required: 'Campo obbligatorio'}">
+            </prodis-error-handler>
+          </div>
+        </div>
+        <div class="row">
+          <!-- data timbro postale sempre obbligatoria -->
+          <label *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3" for="dataPrimaAssun">Data timbro postale <span
+              class="oblg" title="campo obbligatorio">*</span></label>
+          <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3 col-lg-2">
+            <div class="form-group">
+              <div class="input-group">
+                <input (change)="onClickChange()" (dateSelect)="datePickerChange($event)" type="text" class="form-control" name="dataTimbroPostale" id="dataTimbroPostale"
+                  [(ngModel)]="newProspetto.dataTimbroPostale" #d3="ngModel" #d_dataTimbroPostale="ngModel" ngbDatepicker
+                   #d_dataTimbroPostaleDatePicker="ngbDatepicker" maxlength="10" required>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary calendar" (click)="d_dataTimbroPostaleDatePicker.toggle()"
+                    type="button">
+                    <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                </div>
+              </div>
+              <prodis-error-handler [model]="d_dataTimbroPostale" [errors]="{required: 'Campo obbligatorio'}">
+              </prodis-error-handler>
+              <div *ngIf="d3?.status === 'INVALID'" class="text-danger">
+                {{invalidDate(true)}}
+              </div>
+              <div *ngIf="d3?.status === 'VALID'" hidden>
+               {{invalidDate(false)}}
+              </div>
+            </div>
+          </div>
+          <!-- QUESTI DATI VENGONO VISUALIZZATI SOLAMENTE DA RUOLO AMMINISTRATORE -->
+        </div>
+      </form>
+
+
+
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <!-- <button type="button" (click)="resetFiltri()" class="btn btn-link">ANNULLA FILTRI</button>  -->
+    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickReset()">ANNULLA</button>
+  </div>
+  <div class="col-auto">
+    <!-- <button type="button"
+      [disabled]="(flgNessunaAssunzioneAggiun === false && !newProspetto.dataPrimaAssunzione) || (condizioniObblNessunaAss && flgNessunaAssunzioneAggiun === null)"
+      (click)="onClickConferma()" class="btn btn-outline-secondary btn-sm"
+      [disabled]="!altriDatiRiepilogo.valid">{{'APP.SAVE_DRAFT' | translate }}</button> -->
+    <button
+      [disabled]="flgInvalid"
+      type="button"
+      (click)="onClickConferma()" class="btn btn-outline-secondary btn-sm">{{'APP.SAVE_DRAFT' | translate }}</button>
+  </div>
+</div>

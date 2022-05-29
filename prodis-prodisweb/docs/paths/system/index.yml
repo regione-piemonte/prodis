@@ -1,0 +1,19 @@
+/system/test-error/{code}:
+  get:
+    operationId: testError
+    description: Test errore server.
+    produces:
+      - application/json
+    tags:
+      - system
+    parameters:
+      - in: path
+        name: code
+        required: true
+        type: number
+        description: Http status da restituire.
+    responses:
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'

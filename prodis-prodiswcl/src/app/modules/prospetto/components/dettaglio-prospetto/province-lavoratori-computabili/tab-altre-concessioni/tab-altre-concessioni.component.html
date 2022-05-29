@@ -1,0 +1,70 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- LETTURA -->
+<h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.CONV' | translate}}</h4>
+<div class="lettura">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.STATO' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.statoConcessione?.descStatoConcessione ? datiProvinciali?.provConvenzione?.statoConcessione?.descStatoConcessione : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_ACT' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.dataAtto ? (datiProvinciali?.provConvenzione?.dataAtto |date:"dd/MM/yyyy") : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXTR_ACT' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.estremiAtto ? datiProvinciali?.provConvenzione?.estremiAtto : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.TYPE' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.statoConcessione?.descStatoConcessione ? datiProvinciali?.provConvenzione?.assunzioneProtetta?.descAssunzioneProtetta : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXPECTED_WORKER' | translate}}<span class="valore">{{datiProvinciali?.provConvenzione?.numLavPrevConvQ2 ? datiProvinciali?.provConvenzione?.numLavPrevConvQ2 : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_STIPULATED' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.dataStipula ? (datiProvinciali?.provConvenzione?.dataStipula | date:'dd/MM/yyyy') : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXPIRY_DATE' | translate}} <span class="valore">{{datiProvinciali?.provConvenzione?.dataScadenza ? (datiProvinciali?.provConvenzione?.dataScadenza | date:'dd/MM/yyyy') : 'N.D.'}} </span>
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.EXEMPTION' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.STATO' | translate}}
+            <span class="valore">
+                {{datiProvinciali?.provEsonero?.statoConcessione ? datiProvinciali?.provEsonero?.statoConcessione?.descStatoConcessione  : 'N.D.'}}
+            </span>
+        </div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_ACT' | translate}} <span class="valore">{{datiProvinciali?.provEsonero?.dataAtto ? (datiProvinciali?.provEsonero?.dataAtto | date: 'dd/MM/yyyy')  : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXTR_ACT' | translate}} <span class="valore">{{datiProvinciali?.provEsonero?.estremiAtto ? datiProvinciali?.provEsonero?.estremiAtto  : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.UNTIL_THE' | translate}} <span class="valore">{{datiProvinciali?.provEsonero?.dataAttoFinoAl ? (datiProvinciali?.provEsonero?.dataAttoFinoAl | date: 'dd/MM/yyyy') : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.PERCENT' | translate}} <span class="valore">{{datiProvinciali?.provEsonero?.percentuale ? datiProvinciali?.provEsonero?.percentuale  : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP_ESO' | translate}} <span class="valore">{{datiProvinciali?.provEsonero?.nLavoratoriEsonero ? datiProvinciali?.provEsonero?.nLavoratoriEsonero : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.EXEMPTION_AUTO_CERT' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXEMPTION_AUTO_CERT_DATE' | translate}} <span class="valore">{{datiProvinciali?.provEsoneroAutocert?.dataAutocert ? (datiProvinciali?.provEsoneroAutocert?.dataAutocert | date: 'dd/MM/yyyy') : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXEMPTION_AUTO_CERT_NUM_LAV_60' | translate}} <span class="valore">{{datiProvinciali?.provEsoneroAutocert?.nLav60x1000 ? datiProvinciali?.provEsoneroAutocert?.nLav60x1000 : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.PERCENT' | translate}} <span class="valore">{{datiProvinciali?.provEsoneroAutocert?.percentualeEsAutocert ? datiProvinciali?.provEsoneroAutocert?.percentualeEsAutocert : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP_ESO' | translate}} <span class="valore">{{datiProvinciali?.provEsoneroAutocert?.nLavEsoneroAutocert ? datiProvinciali?.provEsoneroAutocert?.nLavEsoneroAutocert : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.SOSP' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.SOSP_STATUS' | translate}} <span class="valore">{{datiProvinciali?.provSospensione?.statoConcessione?.descStatoConcessione ? datiProvinciali?.provSospensione?.statoConcessione?.descStatoConcessione : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.SOSP_CAUSAL' | translate}}(codice - desc) <span class="valore">{{datiProvinciali?.provSospensione?.causaSospensione ? datiProvinciali?.provSospensione?.causaSospensione?.codCausaSospensione+" - "+datiProvinciali?.provSospensione?.causaSospensione?.desCausaSospensione : 'N.D.' }}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.SOSP_END_DATE' | translate}} <span class="valore">{{ datiProvinciali?.provSospensione?.dataFineSospensioneQ2 ? (datiProvinciali?.provSospensione?.dataFineSospensioneQ2 | date:'dd/MM/yyyy') : 'N.D.' }}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP' | translate}}<span class="valore">{{datiProvinciali?.provSospensione?.nLavoratori ? datiProvinciali?.provSospensione?.nLavoratori : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.GRADUALITY' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_HIRES_AFTER_TRANS' | translate}} <span class="valore">{{datiProvinciali?.provGradualita?.nAssunzioniEffDopoTrasf ? datiProvinciali?.provGradualita?.nAssunzioniEffDopoTrasf : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.NOTE' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <span class="valore">
+               {{datiProvinciali?.note ? datiProvinciali?.note : 'N.D.'}}
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<!-- SCRITTURA -->

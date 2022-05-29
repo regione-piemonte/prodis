@@ -1,0 +1,19 @@
+swagger: '2.0'
+info:
+  title: Prodis
+  description: API per il backend della suite di Prodis.
+  version: 1.0.0
+host: 'localhost:8080'
+schemes:
+  - http
+  - https
+basePath: /prodisweb/api/v1
+produces:
+  - application/json
+
+# PATHS
+$include: ./paths/index.yml
+# PARAMETERS
+$include: ./parameters/index.yml
+# DEFINITIONS
+$include: ./definitions/index.yml

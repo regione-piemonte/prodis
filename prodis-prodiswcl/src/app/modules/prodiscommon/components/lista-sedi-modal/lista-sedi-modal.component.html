@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="callback(modal)">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <prodis-paginated-array-table *ngIf="list && list.length > 0" [columnNumber]="3" [pagedResponse]="list" [limit]="8">
+        <ng-template prodisPaginationHead>
+          <tr>
+            <th></th>
+            <th>Comune</th>
+            <th>Indirizzo</th>
+          </tr>
+        </ng-template>
+        <ng-template prodisPaginationBody let-item>
+          <tr>
+            <td>
+              <input [value]="item" formControlName="sedeLegale" type="radio">
+            </td>
+            <td>{{item?.comune.dsProTComune}}</td>
+            <td>{{item?.indirizzo}}</td>
+          </tr>
+        </ng-template>
+        </prodis-paginated-array-table>
+        <div *ngIf="!list || (list && list.length <= 0)" class="alert alert-warning" role="alert">
+          {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+        </div>
+    </form>
+  </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="callback(modal)">{{ 'APP.FIND_CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onClickConferma()" [disabled]="!form?.controls?.sedeLegale?.value" class="btn btn-primary ml-auto">{{ 'APP.CONFIRM' | translate }}</button>
+</div>

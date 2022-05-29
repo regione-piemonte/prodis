@@ -1,0 +1,137 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="notifiche"></em>
+
+
+<div class="card mt-3 mb-3">
+  <div class="card-body">
+    <prodis-alert-msg
+    [typeMsg]="typeMsg"
+    [show]="hide"
+    [listMsg]="listMsg"
+  ></prodis-alert-msg>
+<div class="row">
+    <h3 class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROV.FIELD.PROV_LIST' | translate}}</h3>
+    <div class="col-sm-12 col-md-6 text-right">
+      <a class="btn btn-link" *ngIf="display" clickable (click)="display = idProspettoProvSelected = idProvinciaSelected = dsProvincia = null">{{ 'PROSPETTO.PROV.FIELD.PROV_LIST' | translate | uppercase}}</a>
+    </div>
+</div>
+
+<form *ngIf="!READ_MODE" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+      <div class="form-group col-sm-12 col-md-5">
+        <label for="provincia">{{ 'PROSPETTO.PROV.FIELD.SELECT_PROV' | translate}}</label>
+        <select id="provincia" name="provincia" formControlName="provincia" class="form-select">
+          <option [ngValue]="null"></option>
+          <option *ngFor="let prov of province" [ngValue]="prov">{{prov?.dsProTProvincia}}</option>
+        </select>
+      </div>
+      <div class="form-group col-sm-12 col-md-3">
+        <button type="submit" class="btn btn-link mt-lg-btn-form">{{ 'PROSPETTO.PROV.BUTTON.ADD_DATA_PROV' | translate}}</button>
+      </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <div class="scrollbar-table scrollbar-primary">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.CONFIRMED' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.PROV' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.NUMB_WORKER_EMPL' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.PT' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.FULL_T_DISABLED' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.TELEWORKIN_EX_CAT_DISABLE' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.PROTECTED_CAT' | translate}}</th>
+
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.PROTECTED_CAT_IN_FORCE_FROM' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.CAT_EXCLUDE_ART_18' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.CONVENTIONS' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.NUMB_WORKER_NO_EXEMPTION' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.SOSP_IN_PROGRESS' | translate }}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.NUMB_WORKER_GRADUALITY' | translate}}</th>
+          <th scope="col">{{ 'PROSPETTO.PROV.TABLE.FIELD.NUMB_PLACES_AVAIBLE' | translate}}</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of elencoProvQ2">
+            <td>
+              {{item?.flgConfermatoQ2}}
+            </td>
+            <td>
+              {{item?.dsProTProvincia}}
+            </td>
+            <td>
+              {{item?.numTotaleLavoratDipendenti ? item?.numTotaleLavoratDipendenti : 0}}
+            </td>
+            <td>
+              {{item?.ptIntermittenti ? item?.ptIntermittenti : 0}}
+            </td>
+            <td>
+              {{item?.disabiliTempoPienoFt ? item?.disabiliTempoPienoFt : 0}}
+            </td>
+            <td>
+              {{item?.teleLavCatEscluseDisab ? item?.teleLavCatEscluseDisab: 0}}
+            </td>
+            <td>
+              {{item?.numCateProtForza ? item?.numCateProtForza : 0}}
+            </td>
+            <td>
+              {{item?.numCateProtForzaA17012000 ? item?.numCateProtForzaA17012000 : 0}}
+            </td>
+            <td>
+              {{item?.numLavAppartartCategArt18 ? item?.numLavAppartartCategArt18 : 0}}
+            </td>
+            <td>
+              {{item?.convenzione | siNo}}
+            </td>
+            <td>
+              {{item?.numLavoratoriEsonero ? item?.numLavoratoriEsonero : 0}}
+            </td>
+            <td>
+              {{item?.sospInCorso | siNo}}
+            </td>
+            <td>
+              {{item?.numAssunzioniEffDopoTrasf ? item?.numAssunzioniEffDopoTrasf : 0}}
+            </td>
+            <td>{{item?.numPostiDisp ? item?.numPostiDisp : 0}}</td>
+            <td class="azioni">
+              <a *ngIf='!editMode' (click)="display = false; visualizzaTabDettaglioProvince(item?.id,item?.idTProvincia,item?.dsProTProvincia)" title="Visualizza"><i class="fas fa-eye"></i></a>
+              <a *ngIf='editMode' (click)="display = false; visualizzaTabDettaglioProvince(item?.id,item?.idTProvincia,item?.dsProTProvincia)" title="Modifica"><i class="fas fa-edit"></i></a>
+              <a *ngIf="!READ_MODE" (click)="eliminaProspettoProv(item?.id, item?.dsProTProvincia)" title="Elimina"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- /scrollbar-table-->
+  </div><!-- /col-->
+</div><!-- /row-->
+<em data-scroll-marker="dettaglioProvincia"></em>
+<div class="row">
+  <h4 *ngIf="display" class="col">
+    {{dsProvincia}}
+  </h4>
+  <div *ngIf="editMode" class="col button-nav txr">
+    <button type="button" (click)="downLoadLavoratori()" class="btn btn-outline-primary">{{ 'PROSPETTO.PROV.BUTTON.DOWNLOAD_WORKER' | translate}}</button>
+    <button type="button" (click)="openModalUploadLav()" class="btn btn-outline-primary">{{ 'PROSPETTO.PROV.BUTTON.UPLOAD_WORKER' | translate}}</button>
+  </div><!-- /col-->
+</div><!-- /row-->
+<div class="row">
+  <div class="col">
+    <prodis-tab-dettaglio-province *ngIf="display"
+    (display)="display"
+    (notifySalvataggio)="getElencoProvinceQ2()"
+    [inputIdProspettoProv]="idProspettoProvSelected"
+    [inputIdProvincia]="idProvinciaSelected"
+    [inputDsProvincia]="dsProvincia"
+    [inputProspetto]="prospetto"
+    ></prodis-tab-dettaglio-province>
+</div>
+</div>
+  </div>
+</div>

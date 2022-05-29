@@ -1,0 +1,7 @@
+EsitoStoreProcedure:
+  type: object
+  properties:
+    esito:
+      type: number
+    messaggio:
+      type: string

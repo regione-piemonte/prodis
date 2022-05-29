@@ -1,0 +1,34 @@
+Istat2001livello5:
+  type: object
+  properties:
+    codIstat2001livello5Min:
+      type: string
+    dsComIstat2001livello5:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    flgVldUd:
+      type: string
+    id:
+      type: integer
+    idNewIstat:
+      type: number
+    lavoratoriInForzas:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriInForza'
+    lavoratoriSilps:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriSilp'
+    postiLavoroDisps:
+      type: array
+      items:  
+        $ref: '#/definitions/PostiLavoroDisp'

@@ -1,0 +1,63 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event)" class="stepper">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink> <span>1</span> Dati - aziendali</a>
+      <ng-template ngbNavContent>
+        <prodis-dati-azienda ></prodis-dati-azienda>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" [disabled]="editMode && !resQ1">
+      <a ngbNavLink> <span>2</span> Province</a>
+      <ng-template ngbNavContent>
+        <prodis-province-lavoratori-computabili [inputEditMode]="editMode"></prodis-province-lavoratori-computabili>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3"  [disabled]="editMode && !resQ2">
+      <!-- <li [ngbNavItem]="3"  [disabled]="false"> -->
+      <a ngbNavLink> <span>3</span> Riepilogo</a>
+      <ng-template ngbNavContent>
+        <prodis-riepilogo
+        ></prodis-riepilogo>
+      </ng-template>
+    </li>
+  </ul>
+
+  <!-- <prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg> -->
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+<div *ngIf="visualizzaBottoneInUltimaPagina && hideButtonConfermaProsegui" class="mb-3 text-right">
+  <button class="btn btn-sm btn-primary" [disabled]="salvaProseguiDisabled || disabledQ3" (click)="nextNav(nav)">{{ nextButtonText }}</button> 
+</div>
+
+
+<!-- html modale -->
+<ng-template #modalConfermaInvio let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">Invio prospetto</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+  </div>
+  <div class="modal-body">
+
+    <div class="lettura">
+
+      <div class="row">
+        <div class="col-12">{{msgResCheckDatoreLavoro+" Si conferma l'invio del prospetto?"}} </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.dismiss()">ANNULLA </button>
+    <button type="button" class="btn btn-primary" (click)="inviaProspetto(modal)">INVIA </button>
+  </div>
+</ng-template>

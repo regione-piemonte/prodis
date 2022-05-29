@@ -1,0 +1,19 @@
+ReinviaProspetto:
+  type: object
+  properties:
+    maxNTrasmissioni:
+      type: number
+    dataInizio:
+      type: string
+      format: date-time
+    dataFine:
+      type: string
+      format: date-time
+    ruolo:
+      type: object
+      $ref: '#/definitions/Ruolo'
+    idsProspetti:
+      type: array
+      items:  
+        type: string
+      

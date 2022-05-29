@@ -1,0 +1,294 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>Lavoratori L. 68</h3>
+<form [formGroup]="form" *ngIf="form">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cfLav">Codice fiscale <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" oninput="this.value = this.value.toUpperCase().trim()" prodisHasValueClass formControlName="codiceFiscale" class="form-control" id="cfLav" maxlength="16">
+            <div *ngIf="f?.codiceFiscale?.touched && f?.codiceFiscale?.errors" class="text-danger">
+                <div *ngIf="f?.codiceFiscale?.errors?.pattern">Formato non valido</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+                [disabled]="f?.codiceFiscale?.errors?.pattern || f?.codiceFiscale.value?.length === 0 || f?.codiceFiscale?.value === null"
+              (click)="onClickFindCf()"
+              class="btn btn-outline-primary mt-lg-btn-form"
+              >Cerca</button>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+            [disabled]="f?.codiceFiscale?.errors?.pattern || f?.codiceFiscale.value?.length === 0 || f?.codiceFiscale?.value === null"
+                (click)="onClickPreCompila()"
+                class="btn btn-outline-primary mt-lg-btn-form"
+            >pre-compila</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cognome">Cognome&nbsp;<span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text"  formControlName="cognome" class="form-control" id="cognome">
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="nome">Nome&nbsp;<span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text"  formControlName="nome" class="form-control" id="nome">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3 ">
+            <label for="sesso">Sesso <span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" [value]="'M'" formControlName="sesso" type="radio" name="sesso" id="sesso_m">
+                <label class="form-check-label" for="sesso_m">
+                    M
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" [value]="'F'" type="radio" formControlName="sesso" name="sesso" id="sesso_f">
+                <label class="form-check-label" for="sesso_f">
+                    F
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label for="dataNascita">Data di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+            <div class="form-group">
+                <div class="input-group">
+                     <label class="sr-only" for="dataNascita">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.TRANSFORM_DATE' | translate}}</label>
+                     <input class="form-control"
+                            name="dataNascita" formControlName="dataNascita" ngbDatepicker #d_dataNascita="ngbDatepicker" id="dataNascita">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dataNascita.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.dataNascita?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+            <label for="codComune">Codice comune di nascita&nbsp;<span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text"  formControlName="codComuneMin" class="form-control" id="codComune">
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+            <label for="descrComune">Comune di nascita  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text"  formControlName="dsProTComune" class="form-control" id="descrComune" maxlength="100">
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+            [disabled]="!(f?.comune?.controls?.dsProTComune?.value?.length > 2
+                    || f?.comune?.controls?.codComuneMin?.value?.length > 2)"
+            (click)="onClickFindComune()"
+            class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="statiEsteri">
+            <label for="codStatoEst">Codice stato estero di nascita  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text"formControlName="codNazioneMin" class="form-control" id="codStatoEst">
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="statiEsteri">
+            <label for="descrStatoEstero">Stato estero di nascita  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" formControlName="dsStatiEsteri" class="form-control" id="descrStatoEstero" maxlength="100">
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+            [disabled]="!(f?.statiEsteri?.controls?.dsStatiEsteri?.value?.length > 2
+            || f?.statiEsteri?.controls?.codNazioneMin?.value?.length > 2)"
+                (click)="onClickFindStatoEstero()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="percentDisab">Percentuale disabilità  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" prodisPercDigitOnly formControlName="percentualeDisabilita" class="form-control" id="percentDisab" maxlength="3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label for="dataInizioRap">Data inizio rapporto<span class="oblg" title="campo obbligatorio">*</span></label>
+            <div class="form-group">
+                <div class="input-group">
+                     <label class="sr-only" for="dataInizioRap">Data fine rapporto</label>
+                     <input class="form-control"
+                            name="dataInizioRap" formControlName="dataInizioRapporto" ngbDatepicker #d_dataInizioRap="ngbDatepicker" id="dataInizioRap">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dataInizioRap.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.dataInizioRapporto?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" >
+            <label for="tipologiaDichiarante">Tipologia contrattuale<span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="contratti">
+            <select id="contratto" (change)="setForma()" class="form-select" formControlName="id">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let item of contrattis" [ngValue]="item?.id">{{item?.dsContratto}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="forma">Forma contratto <span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <div class="form-check form-check-inline" formGroupName="contratti">
+                <input class="form-check-input" [value]="'I'" formControlName="flgForma" type="radio" name="flgForma" id="forma_ind">
+                <label class="form-check-label" for="forma_ind">
+                    Indeterminato
+                </label>
+                <!-- <span class="oblg" title="campo obbligatorio">*</span> -->
+            </div>
+            <div class="form-check form-check-inline" formGroupName="contratti">
+                <input class="form-check-input" [value]="'D'" type="radio" formControlName="flgForma" name="flgForma" id="forma_det">
+                <label class="form-check-label" for="forma_det">
+                    Determinato
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label for="dataFineRap">Data fine rapporto</label>
+            <div class="form-group">
+                <div class="input-group">
+                     <label class="sr-only" for="dataFineRap">Data fine rapporto</label>
+                     <input class="form-control"
+                            name="dataFineRap" formControlName="dataFineRapporto" ngbDatepicker #d_dataFineRap="ngbDatepicker" id="dataFineRap">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dataFineRap.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.dataFineRapporto?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="istat2001livello5">
+            <label for="codIstat">Qualifica professionale istat codice  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" formControlName="codIstat2001livello5Min" class="form-control" id="codIstat">
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="istat2001livello5">
+            <label for="descrIstat">Qualifica professionale istat descrizione  <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" formControlName="dsComIstat2001livello5" class="form-control" id="descrIstat" maxlength="100">
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+               [disabled]="!(f?.istat2001livello5?.controls?.dsComIstat2001livello5?.value?.length > 2
+                || f?.istat2001livello5?.controls?.codIstat2001livello5Min?.value?.length > 2)"
+                (click)="onClickFindQualificaIstat()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" >
+            <label for="tipologiaDichiarante">Tipo assunzione protetta<span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-7">
+            <select id="assProt" name="assProt" class="form-select" formControlName="assunzioneProtetta">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let item of elencoTipoAssunzione" [ngValue]="item">{{item?.descAssunzioneProtetta}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cfLav">Orario settimanale (ore:minuti) <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" formControlName="orarioSettContrattualeMin" class="form-control" id="cfLav" maxlength="5">
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cfLav">Orario settimanale part-time (ore:minuti) <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" formControlName="orarioSettPartTimeMin" class="form-control" id="cfLav" maxlength="5">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" >
+            <label for="tipologiaDichiarante">Categoria soggetto<span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <select id="assProt" name="assProt" class="form-select" formControlName="categoriaSoggetto">
+                <option *ngFor="let item of elencoCatSogg" [ngValue]="item.val">{{item?.des}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" >
+            <label for="tipologiaDichiarante">Categoria Assunzione <span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <select id="assProt" name="assProt" class="form-select" formControlName="categoriaAssunzione">
+                <option *ngFor="let item of elencoCatAss" [ngValue]="item.val">{{item?.des}}</option>
+            </select>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col">
+      <!-- <button type="button" (click)="resetFiltri()" class="btn btn-link">ANNULLA FILTRI</button>  -->
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickReset()">ANNULLA</button>
+    </div>
+    <div class="col-auto">
+        <button type="button"
+        [disabled]="!currentItem"
+        (click)="deleteLav()"
+        class="btn btn-outline-secondary btn-sm">ELIMINA</button>
+    </div>
+    <div class="col-auto">
+        <button type="button"
+        [disabled]="form.invalid"
+        (click)="conferma()"
+        class="btn btn-outline-secondary btn-sm">CONFERMA</button>
+      </div>
+</div>
+<h3>Elenco Lavoratori computabili</h3>
+<form *ngIf="formElencoLav" [formGroup]="formElencoLav">
+    <prodis-paginated-array-table *ngIf="formElencoLav && elencoLavoratoriInForza && elencoLavoratoriInForza.length > 0" [columnNumber]="5" [pagedResponse]="elencoLavoratoriInForza" [limit]="8">
+        <ng-template prodisPaginationHead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Codice fiscale</th>
+            <th scope="col">Cognome</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Completato</th>
+          </tr>
+        </ng-template>
+        <ng-template prodisPaginationBody let-item>
+          <tr>
+            <td><input [value]="item" name="item" formControlName="item" (change)="setSelectedItem(item)" type="radio"></td>
+            <td>{{item?.codiceFiscale}}</td>
+            <td>{{item?.cognome}}</td>
+            <td>{{item?.nome}}</td>
+            <td>{{item?.flgCompletato}}</td>
+          </tr>
+        </ng-template>
+      </prodis-paginated-array-table>
+      <div *ngIf="!elencoLavoratoriInForza || (elencoLavoratoriInForza && elencoLavoratoriInForza.length <= 0)" class="alert alert-warning" role="alert">
+        {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+      </div>
+</form>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-auto">
+      <button type="button"
+        (click)="saveDatiProvincialiBozza.emit(newDatiProv)"
+        class="btn btn-primary ml-auto btn-lg"
+        >{{'APP.SAVE_DRAFT' | translate }}</button>
+    </div>
+</div>

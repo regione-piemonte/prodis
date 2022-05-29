@@ -1,0 +1,37 @@
+ProvConvenzione:
+  type: object
+  properties:
+    assunzioneProtetta:
+      type: object
+      $ref: '#/definitions/AssunzioneProtetta'
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataAtto:
+      type: string
+      format: date-time
+    dataScadenza:
+      type: string
+      format: date-time
+    dataStipula:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    estremiAtto:
+      type: string
+    id:
+      type: integer
+    numLavPrevConvQ2:
+      type: number
+    statoConcessione:
+      type: object
+      $ref: '#/definitions/StatoConcessione'

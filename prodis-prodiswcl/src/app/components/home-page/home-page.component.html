@@ -1,0 +1,35 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!--<h2>Legale rappresentante Comune di Beinasco</h2> -->
+
+
+<!-- <div class="alert alert-warning" role="alert">
+    warning alert
+  </div> -->
+
+<div class="row home">
+
+  <div class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickRicerca()">
+        <p class="icon-prospetti"> <span>Ricerca prospetti</span></p>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!ilRuolo.operatoreProvinciale" class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickInserisci()">
+        <p class="nuovo-prospetto"> <span>Nuovo prospetto</span></p>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="visibility: hidden;"  id="testErrore">
+  <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickTestError()">
+    <p class="nuovo-prospetto"> <span>Test error</span></p>
+    <!-- to enabled - document.getElementById("testErrore").style.visibility = 'visible' -->
+  </button>
+</div>

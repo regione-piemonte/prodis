@@ -1,0 +1,23 @@
+ProvIntermittenti:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    nIntermittenti:
+      type: number
+    orarioSettimanaleContrattual:
+      type: number
+    orarioSettimanaleSvolto:
+      type: number

@@ -1,0 +1,122 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div *ngIf="selectedItem !== undefined && selectedItem !== null && selectedItem.id > 0" class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Dettaglio</h3>
+    <div class="lettura">
+      <div class="row">
+        <div class="col-sm-12 col-md-3">Provincia per cui si compensa <span class="valore">
+            {{selectedItem?.dsProvinciaPerCuiSiCompensa}}</span></div>
+        <div class="col-sm-12 col-md-3">Provincia <span class="valore">
+            {{selectedItem?.dsProvincia}}</span></div>
+        <div class="col-sm-12 col-md-3">Categoria compensazione <span
+            class="valore">{{selectedItem?.categoriaCompensazione}}</span></div>
+        <div class="col-sm-12 col-md-3">Numero lavoratori <span class="valore">{{selectedItem?.numeroLavoratori}}</span>
+        </div>
+        <div class="col-sm-12 col-md-3">Categoria Soggetto<span
+            class="valore">{{selectedItem?.categoriaSoggetto}}</span></div>
+        <div class="col-sm-12 col-md-3">Codice fiscale Agenzia del gruppo <span
+            class="valore">{{selectedItem?.cfAziendaDelGruppo}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Elenco compensazioni territoriali</h3>
+    <prodis-paginated-array-table [columnNumber]="16" [pagedResponse]="elencoTab" [limit]="10">
+      <ng-template prodisPaginationHead>
+        <tr>
+          <th scope="col">Sel.</th>
+          <th scope="col">Stato concessione</th>
+          <th scope="col">Provincia per cui si compensa</th>
+          <th scope="col">Categoria soggetto</th>
+          <th scope="col">Eccedenza</th>
+          <th scope="col">Riduzione</th>
+          <th scope="col">Provincia compensazione</th>
+          <th scope="col">Cf azienda del gruppo</th>
+        </tr>
+      </ng-template>
+      <ng-template prodisPaginationBody let-item>
+        <tr>
+          <td>
+            <input (change)="onClickChange(item)" type="radio" name="ilRadio">
+          </td>
+          <td>{{item?.statoConcessione}}</td>
+          <td>{{item?.dsProvinciaPerCuiSiCompensa}}</td>
+          <td>{{item?.categoriaSoggetto}}</td>
+          <td>{{item?.eccedenza}}</td>
+          <td>{{item?.riduzione}}</td>
+          <td>{{item?.dsProvincia}}</td>
+          <td>{{item?.cfAziendaDelGruppo}}</td>
+        </tr>
+      </ng-template>
+    </prodis-paginated-array-table>
+
+  </div><!-- /card-body-->
+</div><!-- /card-->
+
+<div class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Riepilogo scoperture</h3>
+    <prodis-paginated-array-table [columnNumber]="16" [pagedResponse]="elencoProvScoperture" [limit]="10">
+      <ng-template prodisPaginationHead>
+        <tr>
+          <th scope="col">Prov.</th>
+          <th scope="col">N° Scoperture disabili</th>
+          <th scope="col">N° Esuberi disabili</th>
+          <th scope="col">N° Scoperture categorie protette</th>
+          <th scope="col">N° Esuberi categorie protette</th>
+          <th scope="col">Categoria compensazione disabili</th>
+          <th scope="col">N° compensazione disabili</th>
+          <th scope="col">Categoria compensazione Categorie protette</th>
+          <th scope="col">N° compensazione categorie protette</th>
+        </tr>
+      </ng-template>
+      <ng-template prodisPaginationBody let-item>
+        <tr>
+          <td>{{item.dsTarga}}</td>
+          <td>
+            <ng-container *ngIf="item.numScopertDisab > 0; else elseNotDone">
+              {{ getAbsoluteValue(item.numScopertDisab)}}
+            </ng-container>
+            <ng-template #elseNotDone>
+              0
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="item.numScopertDisab <= 0; else elseNotDone">
+              {{ getAbsoluteValue(item.numScopertDisab) }}
+            </ng-container>
+            <ng-template #elseNotDone>
+              0
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="item.numScopertCatprot > 0; else elseNotDone">
+              {{ getAbsoluteValue(item.numScopertCatprot) }}
+            </ng-container>
+            <ng-template #elseNotDone>
+              0
+            </ng-template>
+          </td>
+          <td>
+            <ng-container *ngIf="item.numScopertCatprot <= 0; else elseNotDone">
+              {{ getAbsoluteValue(item.numScopertCatprot)}}
+            </ng-container>
+            <ng-template #elseNotDone>
+              0
+            </ng-template>
+          </td>
+          <td>{{getAbsoluteValue(item.catCompensDisab)}}</td>
+          <td>{{getAbsoluteValue(item.numCompenDisab)}}</td>
+          <td>{{getAbsoluteValue(item.catCompensCatprot)}}</td>
+          <td>{{getAbsoluteValue(item.numCompenCatprot)}}</td>
+      </ng-template>
+    </prodis-paginated-array-table>
+
+  </div>
+</div>

@@ -1,0 +1,9 @@
+RitornoPassaggioQ3:
+  type: object
+  properties:
+    flagConferma:
+      type: boolean
+    esito:
+      type: number
+    messaggio:
+      type: string

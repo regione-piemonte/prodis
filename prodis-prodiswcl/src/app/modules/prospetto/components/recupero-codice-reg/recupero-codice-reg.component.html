@@ -1,0 +1,120 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>{{ 'RICERCA_COOD_REG.TITLE' | translate}}</h3>
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<div class="row">
+    <div class="col-8">{{ 'RICERCA_COOD_REG.INSTRUCTIONS' | translate}}</div>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="elencoId">{{ 'RICERCA_COOD_REG.FIELD.ID_LIST' | translate}}</label>
+            <input type="text"
+                class="form-control"
+                (keydown)="onKeyDown(f?.idList)"
+                (keyup)="onKeyUp()"
+                formControlName="idList"
+                id="elencoId">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label>{{ 'RICERCA_COOD_REG.FIELD.PROTOCOL' | translate}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <div class="form-group">
+                <div class="input-group">
+                  <label class="sr-only" for="dataDaP">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.TITLE' | translate}}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="dataDaP"
+                    formControlName="protocolloDataDa"
+                    placeholder="{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_FROM' | translate}}"
+                    ngbDatepicker
+                    (keydown)="onKeyDownData()"
+                    (keyup)="onKeyUp()"
+                    #d_protocolloDataDaDatePicker="ngbDatepicker"
+                    (dateSelect)="disableControlsExcepDates()"
+                    maxlength="10"
+                  >
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-outline-primary calendar"
+                      (click)="d_protocolloDataDaDatePicker.toggle()"
+                      type="button">
+                      <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <div class="form-group">
+              <div class="input-group">
+                <label class="sr-only" for="dataAP">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_TO' | translate}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="dataAP"
+                  formControlName="protocolloDataA"
+                  placeholder="{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_TO' | translate}}"
+                  ngbDatepicker
+                  (keydown)="onKeyDownData()"
+                  (keyup)="onKeyUp()"
+                  (dateSelect)="disableControlsExcepDates()"
+                  #d_protocolloDataADatePicker="ngbDatepicker"
+                  maxlength="10" 
+                >
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-primary calendar"
+                    (click)="d_protocolloDataADatePicker.toggle()"
+                    type="button">
+                    <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="elencoId">{{ 'RICERCA_COOD_REG.FIELD.MAX_NUMB' | translate}}</label>
+            <input type="text"
+                formControlName="numMax"
+                prodisDigitOnly
+                (keydown)="onKeyDown(f?.numMax)"
+                (keyup)="onKeyUp()"
+                class="form-control"
+                id="elencoId">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-outline-secondary btn-sm"
+              (click)="onClickReset()">{{ 'APP.FIND_CANCEL' | translate | uppercase}}</button>
+        </div>
+        <div class="col-auto">
+          <button type="button"
+          (click)="onClickStampa()"
+          class="btn btn-primary ml-auto btn-lg"
+          >STAMPA</button>
+      </div>
+        <div class="col-auto">
+            <button type="submit"
+            [disabled]="conditionControlsEnable"
+            class="btn btn-primary ml-auto btn-lg"
+            >{{ 'APP.CONFIRM' | translate }}</button>
+        </div>
+    </div>
+</form>
+<div *ngIf="esito" class="alert alert-info" role="alert" aria-atomic="true">
+    {{esito}}
+</div>

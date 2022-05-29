@@ -1,0 +1,27 @@
+Provincia:
+  type: object
+  properties:
+    codProvinciaMin:
+      type: string
+    comunes:
+      type: array
+      items:  
+        $ref: '#/definitions/Comune'
+    dsProTProvincia:
+      type: string
+    dsTarga:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    regione:
+      type: object
+      $ref: '#/definitions/Regione'

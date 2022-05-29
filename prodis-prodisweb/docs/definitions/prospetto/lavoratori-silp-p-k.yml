@@ -1,0 +1,9 @@
+LavoratoriSilpPK:
+  type: object
+  properties:
+    cfImpresa:
+      type: string
+    codiceFiscale:
+      type: string
+    id:
+      type: integer

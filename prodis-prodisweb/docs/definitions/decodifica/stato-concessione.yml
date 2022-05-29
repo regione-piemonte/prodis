@@ -1,0 +1,34 @@
+StatoConcessione:
+  type: object
+  properties:
+    codStatoConcessione:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    descStatoConcessione:
+      type: string
+    id:
+      type: integer
+    provCompensazionis:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvCompensazioni'
+    provConvenziones:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvConvenzione'
+    provEsoneros:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvEsonero'
+    provSospensiones:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvSospensione'

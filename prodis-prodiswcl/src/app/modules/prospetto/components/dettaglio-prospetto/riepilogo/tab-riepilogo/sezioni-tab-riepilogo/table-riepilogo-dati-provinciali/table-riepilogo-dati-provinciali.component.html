@@ -1,0 +1,44 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+    <prodis-paginated-array-table [columnNumber]="16" [pagedResponse]="ilProspettoProvincia" [limit]="10">
+      <ng-template prodisPaginationHead>
+        <tr>
+          <th scope="col">Provincia</th>
+          <th scope="col">N. lav. (base computo Art. 3)</th>
+          <th scope="col">N. lav. (base computo Art. 18)</th>
+          <th scope="col">Quota di riserva disabili</th>
+          <th scope="col">Quota di riserva categorie protette</th>
+          <th scope="col">N. scoperture disabili</th>
+          <th scope="col">N. scoperture categorie protette</th>
+          <th scope="col">Categoria compensazione disabili</th>
+          <th scope="col">N. comp. disabili</th>
+          <th scope="col">Categoria compensaz. categorie protette</th>
+          <th scope="col">N. comp. categorie protette</th>
+          <th scope="col">N. disabili in forza</th>
+          <th scope="col">N. cat. protette in forza</th>
+          <th scope="col">Sosp. in corso</th>
+          <th scope="col">N. posizioni esonerate</th>
+        </tr>
+      </ng-template>
+      <ng-template prodisPaginationBody let-item>
+        <tr>
+          <td>{{item?.provincia?.dsTarga}}</td>
+          <td>{{item?.riepilogoProvinciale?.baseComputoArt3}}</td>
+          <td>{{item?.riepilogoProvinciale?.baseComputoArt18}}</td>
+          <td>{{item?.riepilogoProvinciale?.quotaRiservaDisabili}}</td>
+          <td>{{item?.riepilogoProvinciale?.quotaRiservaArt18}}</td>
+          <td>{{item?.riepilogoProvinciale?.numScopertureDisabili}}</td>
+          <td>{{item?.riepilogoProvinciale?.numScopertureCatProt}}</td>
+          <td>{{item?.riepilogoProvinciale?.catCompensazioneDisabili}}</td>
+          <td>{{item?.riepilogoProvinciale?.numCompensazioneDisabili}}</td>
+          <td>{{item?.riepilogoProvinciale?.catCompensazioneCateProt}}</td>
+          <td>{{item?.riepilogoProvinciale?.numCompensazioniCateProt}}</td>
+          <td>{{item?.riepilogoProvinciale?.numDisabiliInForza}}</td>
+          <td>{{item?.riepilogoProvinciale?.numCatProtInForza}}</td>
+          <td>{{item?.riepilogoProvinciale?.flgSospensioniInCorso | siNo}}</td>
+          <td>{{item?.riepilogoProvinciale?.numPosizioniEsonerate}}</td>
+      </ng-template>
+    </prodis-paginated-array-table>

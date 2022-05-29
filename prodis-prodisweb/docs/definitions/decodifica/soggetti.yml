@@ -1,0 +1,22 @@
+Soggetti:
+  type: object
+  properties:
+    codSoggetti:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    descSoggetti:
+      type: string
+    id:
+      type: integer
+    prospettos:
+      type: array
+      items:  
+        $ref: '#/definitions/Prospetto'

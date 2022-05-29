@@ -1,0 +1,304 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- LETTURA -->
+<div class="lettura">
+  <h3>Lavoratori L. 68</h3>
+  <div class="row">
+      <div class="col-sm-12 col-md-3">Codice fiscale <span class="valore">{{currentItem?.codiceFiscale ? currentItem?.codiceFiscale : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Cognome <span class="valore">{{currentItem?.cognome ? currentItem?.cognome : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Nome <span class="valore">{{currentItem?.nome ? currentItem?.nome : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Sesso <span class="valore">{{currentItem?.sesso ? currentItem?.sesso : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-3">Data di nascita <span class="valore">{{currentItem?.dataNascita ? (currentItem?.dataNascita | date: 'dd/MM/yyyy') : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Comune di nascita (codice - descrizione) <span class="valore">{{currentItem?.comune ? (currentItem?.comune?.codComuneMin+" - "+currentItem?.comune?.dsProTComune) : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Stato estero di nascita (codice - descrizione) <span class="valore">{{ currentItem?.statiEsteri ? currentItem?.statiEsteri?.codNazioneMin+" - "+currentItem?.statiEsteri?.dsStatiEsteri : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-3">Percentuale di disabilità <span class="valore">{{currentItem?.percentualeDisabilita ? currentItem?.percentualeDisabilita : 'N.D.'}}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-3">Data inizio rapporto <span class="valore">{{currentItem?.dataInizioRapporto ? (currentItem?.dataInizioRapporto | date: 'dd/MM/yyyy') : 'N.D.'}}</span></div>
+    <div class="col-sm-12 col-md-3">Tipologia contrattuale <span class="valore">{{currentItem?.contratti ? currentItem?.contratti?.dsContratto : 'N.D.'}}</span></div>
+    <div class="col-sm-12 col-md-3">Forma contratto <span class="valore">{{currentItem?.contratti ? currentItem?.contratti?.flgForma : 'N.D.'}}</span></div>
+    <div class="col-sm-12 col-md-3">Data fine rapporto <span class="valore">{{currentItem?.dataFineRapporto ? (currentItem?.dataFineRapporto | date:'dd/MM/yyyy') : 'N.D.'}}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-3">Qualifica professionale ISTAT (codice - descrizione) <span class="valore">{{currentItem?.istat2001livello5 ? currentItem?.istat2001livello5?.codIstat2001livello5Min+" - "+currentItem?.istat2001livello5?.dsComIstat2001livello5 : 'N.D.'}}</span></div>
+    <div class="col-sm-12 col-md-3">Tipo assunzione protetta <span class="valore">{{currentItem?.assunzioneProtetta?.descAssunzioneProtetta}}</span></div>
+    <div class="col-sm-12 col-md-4">Orario settimanale (ore:minuti) <span class="valore">{{currentItem?.orarioSettContrattualeMin ? getTime(currentItem?.orarioSettContrattualeMin) : 'N.D.'}}</span></div>
+    <div class="col-sm-12 col-md-4">Orario settimanale part-time (ore:minuti) <span class="valore">{{currentItem?.orarioSettPartTimeMin ? getTime(currentItem?.orarioSettPartTimeMin) : 'N.D.'  }}</span></div>
+  </div>
+  <div class="row">
+      <div class="col-sm-12 col-md-4">Categoria Soggetto <span class="valore">{{currentItem?.categoriaSoggetto ?  getDescrCatSoggetto(currentItem?.categoriaSoggetto)  : 'N.D.'}}</span></div>
+      <div class="col-sm-12 col-md-4">Categoria Assunzione <span class="valore">{{currentItem?.categoriaAssunzione ? getDescrCatAssunz(currentItem?.categoriaAssunzione) : 'N.D.'}}</span></div>
+  </div>
+</div>
+<h3>Elenco Lavoratori computabili</h3>
+<prodis-paginated-array-table *ngIf="elencoLavoratoriInForza && elencoLavoratoriInForza.length > 0" [columnNumber]="5" [pagedResponse]="elencoLavoratoriInForza" [limit]="8">
+  <ng-template prodisPaginationHead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Codice fiscale</th>
+      <th scope="col">Cognome</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Completato</th>
+    </tr>
+  </ng-template>
+  <ng-template prodisPaginationBody let-item>
+    <tr>
+      <td><input name="r" [checked]="item?.id === elencoLavoratoriInForza[0]?.id" (change)="onChangeItem(item)" type="radio"></td>
+      <td>{{item?.codiceFiscale}}</td>
+      <td>{{item?.cognome}}</td>
+      <td>{{item?.nome}}</td>
+      <td>{{item?.flgCompletato}}</td>
+    </tr>
+  </ng-template>
+</prodis-paginated-array-table>
+<div *ngIf="!elencoLavoratoriInForza || (elencoLavoratoriInForza && elencoLavoratoriInForza.length <= 0)" class="alert alert-warning" role="alert">
+  {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+</div>
+
+
+
+
+<!-- SCRITTURA -->
+
+<!-- <div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="cf">Codice fiscale <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="cf">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <button class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <button class="btn btn-outline-primary mt-lg-btn-form">pre-compila</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="nome">Nome <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="nome">
+     </div>
+    <div class="form-group col-sm-12 col-md-3">
+      <label for="cognome">Cognome <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" class="form-control" id="cognome">
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        sesso
+      </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sesso" id="m">
+          <label class="form-check-label" for="m">
+            M
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="sesso" id="f" checked>
+          <label class="form-check-label" for="f">
+            F
+          </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-3 col-lg-2">
+        <div class="form-group">
+          <div class="input-group">
+            <label class="sr-only" for="dataNascita">Data di nascita</label>
+            <input class="form-control" placeholder="Data di nascita"
+                    name="riferimentoDataA" ngbDatepicker #d_dataNascita="ngbDatepicker" id="dataNascita">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary calendar" (click)="d_dataNascita.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="codComuneNa">Codice comune di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="codComuneNa">
+    </div>
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="descComuneNa">Descrizione comune di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="descComuneNa">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <button class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="codStatoEstNa">Codice stato estero di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="codStatoEstNa">
+    </div>
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="descStatoEstNa">Descrizione stato estero di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="descStatoEstNa">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <button class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-2">
+        <label for="percentDisab">Percentuale di disabilità  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="number" class="form-control" id="percentDisab">
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-3 col-lg-2">
+        <div class="form-group">
+          <div class="input-group">
+            <label class="sr-only" for="dataInizioR">Data inizio rapporto</label>
+            <input class="form-control" placeholder="Data inizio rapporto"
+                    name="riferimentoDataA" ngbDatepicker #d_dataInizioR="ngbDatepicker" id="dataInizioR">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary calendar" (click)="d_dataInizioR.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-12">
+        <label for="tipologiaContr">Tipologia contrattuale  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <select id="tipologiaContr"
+        name="tipologiaContr" class="form-select">
+          <option>option1</option>
+          <option>option2</option>
+          <option>option3</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-12">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="tipoContr" id="ind">
+          <label class="form-check-label" for="ind">
+            Indeterminato
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="tipoContr" id="det" checked>
+          <label class="form-check-label" for="det">
+            Determinato
+          </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-3 col-lg-2">
+        <div class="form-group">
+          <div class="input-group">
+            <label class="sr-only" for="dataInizioR">Data fine rapporto</label>
+            <input class="form-control" placeholder="Data fine rapporto"
+                    ngbDatepicker #d_dataFineR="ngbDatepicker" id="dataFineR">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary calendar" (click)="d_dataFineR.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="codQualIstat">Codice qualifica professionale ISTAT <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="codQualIstat">
+    </div>
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="descQualIstat">Descrizione qualifica professionale ISTAT <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" class="form-control" id="descQualIstat">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+        <button class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="tipoAssP">Tipo Assunzione protetta  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <select id="tipoAssP"
+        name="tipoAssP" class="form-select">
+          <option>option1</option>
+          <option>option2</option>
+          <option>option3</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="orarioSett">Orario settimanale (ore:minuti)  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="time" class="form-control" id="orarioSett">
+    </div>
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="orarioSettPartT">Orario settimanale part-time (ore:minuti)  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="time" class="form-control" id="orarioSettPartT">
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="catSogg">Categoria soggetto  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <select id="catSogg"
+            class="form-select">
+            <option>option1</option>
+            <option>option2</option>
+            <option>option3</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-12 col-md-5">
+        <label for="catAssunz">Categoria Assunzione  <span class="oblg" title="campo obbligatorio">*</span></label>
+        <select id="catAssunz"
+            class="form-select">
+            <option>option1</option>
+            <option>option2</option>
+            <option>option3</option>
+        </select>
+    </div>
+</div>
+<div  class="mb-3 text-right"><button class="btn btn-sm btn-outline-primary">Annulla</button></div>
+<div class="row mt-5">
+    <div class="col">
+      <div class="scrollbar-table scrollbar-primary">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Codice fiscale</th>
+              <th scope="col">Cognome</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Completato</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GMBGPP61E02B429K</td>
+              <td>GIAMBARRES</td>
+              <td>Giuseppe</td>
+              <td>Si</td>
+              <td class="azioni"><a cpassTooltip="Visualizza"><i clickable class="fas fa-eye"></i></a></td>
+            </tr>
+            <tr>
+              <td>GMBGPP61E02B429K</td>
+              <td>GIAMBARRES</td>
+              <td>Giuseppe</td>
+              <td>Si</td>
+              <td class="azioni"><a cpassTooltip="Visualizza"><i clickable class="fas fa-eye"></i></a></td>
+            </tr>
+            <tr>
+              <td>GMBGPP61E02B429K</td>
+              <td>GIAMBARRES</td>
+              <td>Giuseppe</td>
+              <td>Si</td>
+              <td class="azioni"><a cpassTooltip="Visualizza"><i clickable class="fas fa-eye"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> -->

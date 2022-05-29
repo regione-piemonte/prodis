@@ -1,0 +1,21 @@
+DecodificaGenerica:
+  type: object
+  properties:
+    codDecodifica:
+      type: string
+    dsDecodifica:
+      type: string
+    idDecodifica:
+      type: number
+    ambitoDecodifica:
+      type: string
+    flgAncheNonValidi:
+      type: boolean
+    idFiltroFacoltativo:
+      type: number
+    flgForma:
+      type: string
+    flgStatiUe:
+      type: string
+    siglaNazione:
+      type: string

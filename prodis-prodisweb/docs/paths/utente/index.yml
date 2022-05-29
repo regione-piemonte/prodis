@@ -1,0 +1,17 @@
+/utente/self:
+  get:
+    operationId: getUtenteSelf
+    description: Restituisce l'utente che effettua la chiamata.
+    produces:
+      - application/json
+    tags:
+      - utente
+    responses:
+      '200':
+        description: L'utente registrato su sistema.
+        schema:
+          $ref: '#/definitions/Utente'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'

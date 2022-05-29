@@ -1,0 +1,24 @@
+PdfSilp:
+  type: object
+  properties:
+    annoProt:
+      type: number
+    cfAzienda:
+      type: string
+    codiceRegionale:
+      type: string
+    dataProt:
+      type: string
+      format: date-time
+    dataRiferimentoProspetto:
+      type: string
+      format: date-time
+    denominazioneDatoreLavoro:
+      type: string
+    id:
+      type: integer
+    numProt:
+      type: number
+    provincia:
+      type: object
+      $ref: '#/definitions/Provincia'

@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<div *ngIf="listaRuoli" class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Elenco Ruoli Disponibili</h3>
+    <prodis-paginated-array-table [columnNumber]="4" [pagedResponse]="listaRuoli" [limit]="10">
+      <ng-template prodisPaginationHead>
+        <tr>
+          <th scope="col">Sel.</th>
+          <th scope="col">Denominazione azienda</th>
+          <th scope="col">Ruolo</th>
+          <th scope="col">Codice fiscale</th>
+        </tr>
+      </ng-template>
+      <ng-template prodisPaginationBody let-item>
+        <tr>
+          <td>
+            <input (change)="onClickChange(item)" type="radio" name="ilRadio">
+          </td>
+          <td>{{item.denominazioneAzienda}} </td>
+          <td>{{item.ruolo}} </td>
+          <td>{{item.codiceFiscale}}</td>
+        </tr>
+      </ng-template>
+    </prodis-paginated-array-table>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+PostiLavoroDisp:
+  type: object
+  properties:
+    categoriaAssunzione:
+      type: string
+    categoriaSoggetto:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    comune:
+      type: object
+      $ref: '#/definitions/Comune'
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    descCapacitaRichiesteContr:
+      type: string
+    descMansione:
+      type: string
+    flgPresenzaBarriereArchite:
+      type: string
+    flgRaggiungibMezziPubblici:
+      type: string
+    flgTurniNotturni:
+      type: string
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    istat2001livello5:
+      type: object
+      $ref: '#/definitions/Istat2001livello5'
+    nPosti:
+      type: number
+    statiEsteri:
+      type: object
+      $ref: '#/definitions/StatiEsteri'

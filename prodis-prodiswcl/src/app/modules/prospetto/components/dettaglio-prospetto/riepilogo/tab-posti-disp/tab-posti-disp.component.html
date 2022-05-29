@@ -1,0 +1,65 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div *ngIf="selectedItem !== undefined && selectedItem !== null && selectedItem.id > 0" class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Dettaglio Posti Disponibili</h3>
+    <div class="lettura">
+      <div class="row">
+        <div class="col-sm-12 col-md-3">Provincia <span class="valore">{{selectedItem?.dsProvincia}}</span></div>
+        <div class="col-sm-12 col-md-3">Qualifica professionale Istat <span
+            class="valore">{{selectedItem?.qualifica}}</span></div>
+        <div class="col-sm-12 col-md-3">Mansione/descrizione compiti <span
+            class="valore">{{selectedItem?.mansione}}</span></div>
+        <div class="col-sm-12 col-md-3">N° posti<span class="valore">{{selectedItem?.nPosti}}</span></div>
+        <div class="col-sm-12 col-md-3">Categoria soggetto <span
+            class="valore">{{selectedItem?.categoriaSoggetto}}</span></div>
+        <div class="col-sm-12 col-md-3">Comune di assunzione <span class="valore">{{selectedItem?.dsComune}}</span>
+        </div>
+        <div class="col-sm-12 col-md-3">Capacita richieste/controindicazioni <span
+            class="valore">{{selectedItem?.dsCapacita}}</span></div>
+        <div class="col-sm-12 col-md-3">Presenze di barriere architettoniche <span
+            class="valore">{{selectedItem?.flgBarriere | siNo}}</span></div>
+        <div class="col-sm-12 col-md-3">Turni notturni <span class="valore">{{selectedItem?.flgTurni | siNo}}</span>
+        </div>
+        <div class="col-sm-12 col-md-3">Raggiungibilita mezzi pubblici <span
+            class="valore">{{selectedItem?.flgMezziPubblici | siNo}}</span></div>
+        <div class="col-sm-12 col-md-3">Categoria assunzione <span
+            class="valore">{{selectedItem?.categoriaAssunzione}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Elenco Posti Disponibili</h3>
+    <prodis-paginated-array-table [columnNumber]="16" [pagedResponse]="elencoTab" [limit]="10">
+      <ng-template prodisPaginationHead>
+        <tr>
+          <th scope="col">Sel.</th>
+          <th scope="col">Provincia</th>
+          <th scope="col">Qualifica professionale ISTAT</th>
+          <th scope="col">Numero posti</th>
+          <th scope="col">Categoria soggetto</th>
+          <th scope="col">Comune assunzione</th>
+        </tr>
+      </ng-template>
+      <ng-template prodisPaginationBody let-item>
+        <tr>
+          <td>
+            <input (change)="onClickChange(item)" type="radio" name="ilRadio">
+          </td>
+          <td>{{item?.targa}}</td>
+          <td>{{item?.qualifica}}</td>
+          <td>{{item?.nPosti}}</td>
+          <td>{{item?.categoriaSoggetto}}</td>
+          <td>{{item?.dsComune}}</td>
+        </tr>
+      </ng-template>
+    </prodis-paginated-array-table>
+
+  </div><!-- /card-body-->
+</div><!-- /card-->

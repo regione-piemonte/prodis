@@ -1,0 +1,82 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="btn-group btn-group-toggle" data-toggle="buttons"></div>
+
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<ngb-tabset #ts="ngbTabset" activeId="tabDatiGenerali">
+
+  <ngb-tab id="tabDatiGenerali">
+    <ng-template ngbTabTitle>
+      <span>Dati Generali</span>
+    </ng-template>
+
+    <ng-template ngbTabContent>
+
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-dati-generali *ngIf="READ_MODE"  [inputProspetto]="prospetto"></prodis-tab-dati-generali>
+          <prodis-form-tab-dati-generali
+            *ngIf="!READ_MODE"
+            [inputProspetto]="prospetto"
+            [inputNewProspetto]="newProspetto"
+            (newDatiGenerali)="onNewDatiGenerali($event)"
+            (salvaInBozzaDatiGenerali)="onSalvaInBozzaDatiGenerali($event)"
+            (erroriInPagina)="onRicaricaErrori($event)"
+            ></prodis-form-tab-dati-generali>
+        </div>
+      </div>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tabDatiProspetto">
+    <ng-template ngbTabTitle>
+      <span>Dati prospetto</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <!-- Dati prospetto -->
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-dati-prospetto *ngIf="READ_MODE"  [inputProspetto]="prospetto"></prodis-tab-dati-prospetto>
+          <prodis-form-tab-dati-prospetto
+            *ngIf="!READ_MODE"
+            [inputProspetto]="prospetto"
+            [inputNewProspetto]="newProspetto"
+            (newDatiProspetto)="onNewDatiProspetto($event)"
+            (erroriInPagina)="onRicaricaErrori($event)"
+            (salvaInBozzaDatiProspetto)="onSalvaInBozzaDatiProspetto($event)"
+            ></prodis-form-tab-dati-prospetto>
+        </div>
+      </div>
+      <!-- / Dati prospetto -->
+
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabAssunzioni">
+    <ng-template ngbTabTitle>
+      <span>Assunzioni tramite pubblica selezione</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <!-- Assunzioni tramite pubblica selezione -->
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-assunzioni-pubbl-sel *ngIf="READ_MODE"></prodis-tab-assunzioni-pubbl-sel>
+          <prodis-form-tab-assunzioni-pubbl-sel *ngIf="!READ_MODE"
+          (newElencoAssunzioni)="onNewElencoAssunzioni($event)"
+          [inputElencoAssunzioni]="elencoAssunzioni"
+          (salvaInBozzaAssunzioniPubbliche)="onSalvaInBozzaAssunzioniPubbliche($event)"
+          ></prodis-form-tab-assunzioni-pubbl-sel>
+        </div>
+      </div>
+      <!-- / Assunzioni tramite pubblica selezione  -->
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

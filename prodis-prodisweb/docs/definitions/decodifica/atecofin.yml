@@ -1,0 +1,24 @@
+Atecofin:
+  type: object
+  properties:
+    codAtecofinMin:
+      type: string
+    datiAziendas:
+      type: array
+      items:  
+        $ref: '#/definitions/DatiAzienda'
+    dsProTAtecofin:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idNewAtecofin:
+      type: number

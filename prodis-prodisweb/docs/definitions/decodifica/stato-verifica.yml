@@ -1,0 +1,11 @@
+StatoVerifica:
+  type: object
+  properties:
+    descrizione:
+      type: string
+    id:
+      type: integer
+    prospettos:
+      type: array
+      items:  
+        $ref: '#/definitions/Prospetto'

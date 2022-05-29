@@ -1,0 +1,245 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>Dettaglio Posti Disponibili</h3>
+<form *ngIf="form" [formGroup]="form">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="prov">Provincia</label>
+            <select id="prov"
+                formControlName="prospettoProv"
+                name="prov" class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let prosProv of ilProspettoProvincia" [ngValue]="prosProv">{{prosProv?.provincia?.dsTarga}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="istat2001livello5">
+            <label for="codIstat">Qualifica professionale istat codice</label>
+            <input type="text" (change)="onChangeQistat()" formControlName="codIstat2001livello5Min" class="form-control" id="codIstat">
+            <div *ngIf="f?.istat2001livello5?.controls?.codIstat2001livello5Min?.touched && f?.istat2001livello5?.controls?.codIstat2001livello5Min?.errors" class="text-danger">
+              <div *ngIf="f?.istat2001livello5?.controls?.codIstat2001livello5Min?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="istat2001livello5">
+            <label for="descrIstat">Qualifica professionale istat descrizione</label>
+            <input type="text" (change)="onChangeQistat()" formControlName="dsComIstat2001livello5" class="form-control" id="descrIstat" maxlength="100">
+            <div *ngIf="f?.istat2001livello5?.controls?.dsComIstat2001livello5?.touched && f?.istat2001livello5?.controls?.dsComIstat2001livello5?.errors" class="text-danger">
+              <div *ngIf="f?.istat2001livello5?.controls?.dsComIstat2001livello5?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button [disabled]="
+                !(f?.istat2001livello5?.controls?.codIstat2001livello5Min?.value?.length > 2
+                || f?.istat2001livello5?.controls?.dsComIstat2001livello5?.value?.length > 2)"
+                (click)="onClickFindQualificaIstat()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-8">
+            <label for="mansione">Mansione/descrizione compiti</label>
+            <input type="text"  prodisHasValueClass formControlName="descMansione" class="form-control" id="mansione">
+            <!-- <div *ngIf="f?.codiceFiscale?.touched && f?.codiceFiscale?.errors" class="text-danger">
+                <div *ngIf="f?.codiceFiscale?.errors?.pattern">Formato non valido</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="nPosti">Numero posti</label>
+            <input type="text" prodisDigitOnly formControlName="nPosti" class="form-control" id="nPosti" maxlength="5">
+            <!-- <div *ngIf="f?.codiceFiscale?.touched && f?.codiceFiscale?.errors" class="text-danger">
+                <div *ngIf="f?.codiceFiscale?.errors?.pattern">Formato non valido</div>
+            </div> -->
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="catSogg">Categoria soggetto</label>
+            <select id="catSogg"
+                formControlName="categoriaSoggetto"
+                name="catSogg"
+                class="form-select">
+                <option [ngValue]="null"></option>
+                  <option *ngFor="let catSogg of comboCategoriaSogg" [ngValue]="catSogg.codice">{{catSogg?.descrizione}}</option>
+            </select>
+         </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+            <label for="codComune">Codice comune di assunzione </label>
+            <input type="text" (change)="onChangeComune()" formControlName="codComuneMin" class="form-control" id="codComune">
+            <div *ngIf="f?.comune?.controls?.codComuneMin?.touched && f?.comune?.controls?.codComuneMin?.errors" class="text-danger">
+              <div *ngIf="f?.comune?.controls?.codComuneMin?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+            <label for="descrComune">Comune di assunzione </label>
+            <input type="text" (change)="onChangeComune()" formControlName="dsProTComune" class="form-control" id="descrComune" maxlength="100">
+            <div *ngIf="f?.comune?.controls?.dsProTComune?.touched && f?.comune?.controls?.dsProTComune?.errors" class="text-danger">
+              <div *ngIf="f?.comune?.controls?.dsProTComune?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+            [disabled]="!(f?.comune?.controls?.dsProTComune?.value?.length > 2
+                    || f?.comune?.controls?.codComuneMin?.value?.length > 2)"
+            (click)="onClickFindComune()"
+            class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div>
+    <!-- PRODIS 212 togliere il campo Stato estero d'assunzione ( codice e descizione) -->
+    <!-- <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="statiEsteri">
+            <label for="codStatoEst">Codice stato estero di assunzione </label>
+            <input type="text" (change)="onChangeStatiEsteri()" formControlName="codNazioneMin" class="form-control" id="codStatoEst">
+            <div *ngIf="f?.statiEsteri?.controls?.codNazioneMin?.touched && f?.statiEsteri?.controls?.codNazioneMin?.errors" class="text-danger">
+              <div *ngIf="f?.statiEsteri?.controls?.codNazioneMin?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-7" formGroupName="statiEsteri">
+            <label for="descrStatoEstero">Stato estero di assunzione </label>
+            <input type="text" (change)="onChangeStatiEsteri()" formControlName="dsStatiEsteri" class="form-control" id="descrStatoEstero" maxlength="100">
+            <div *ngIf="f?.statiEsteri?.controls?.dsStatiEsteri?.touched && f?.statiEsteri?.controls?.dsStatiEsteri?.errors" class="text-danger">
+              <div *ngIf="f?.statiEsteri?.controls?.dsStatiEsteri?.errors?.minlength">Inserire almeno 3 caratteri</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <button
+            [disabled]="!(f?.statiEsteri?.controls?.dsStatiEsteri?.value?.length > 2
+            || f?.statiEsteri?.controls?.codNazioneMin?.value?.length > 2)"
+                (click)="onClickFindStatoEstero()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-8">
+            <label for="capR">Capacità di richieste/controindicazioni</label>
+            <input type="text" prodisHasValueClass formControlName="descCapacitaRichiesteContr" class="form-control" id="capR">
+            <!-- <div *ngIf="f?.codiceFiscale?.touched && f?.codiceFiscale?.errors" class="text-danger">
+                <div *ngIf="f?.codiceFiscale?.errors?.pattern">Formato non valido</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3 ">
+          Presenza di barriere architettoniche?
+        </div>
+        <div class="form-group col-sm-12 col-md-7">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgPresenzaBarriereArchite" [value]="'S'" type="radio" name="flgPresenzaBarriereArchite" id="si">
+            <label class="form-check-label" for="si">
+              Si
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgPresenzaBarriereArchite" [value]="'N'" type="radio" name="flgPresenzaBarriereArchite" id="no">
+            <label class="form-check-label" for="no">
+              No
+            </label>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3 ">
+          Turni notturni?
+        </div>
+        <div class="form-group col-sm-12 col-md-7">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgTurniNotturni" [value]="'S'" type="radio" name="flgTurniNotturni" id="si">
+            <label class="form-check-label" for="si">
+              Si
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgTurniNotturni" [value]="'N'" type="radio" name="flgTurniNotturni" id="no">
+            <label class="form-check-label" for="no">
+              No
+            </label>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3 ">
+          Raggiungibilità mezzi pubblici
+        </div>
+        <div class="form-group col-sm-12 col-md-7">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgRaggiungibMezziPubblici" [value]="'S'" type="radio" name="flgRaggiungibMezziPubblici" id="si">
+            <label class="form-check-label" for="si">
+              Si
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="flgRaggiungibMezziPubblici" [value]="'N'" type="radio" name="flgRaggiungibMezziPubblici" id="no">
+            <label class="form-check-label" for="no">
+              No
+            </label>
+          </div>
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-3">
+        <label for="catSogg">Categoria Assunzione</label>
+        <select id="catSogg"
+            formControlName="categoriaAssunzione"
+            name="catSogg"
+            class="form-select">
+            <option [ngValue]="null"></option>
+              <option *ngFor="let catAss of comboCategoriaAssunzione" [ngValue]="catAss.codice">{{catAss?.descrizione}}</option>
+        </select>
+     </div>
+</form>
+<div class="row">
+    <div class="col">
+      <!-- <button type="button" (click)="resetFiltri()" class="btn btn-link">ANNULLA FILTRI</button>  -->
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickReset()">ANNULLA</button>
+    </div>
+    <div class="col-auto">
+      <button
+      [disabled]="!selectedItem"
+      class="btn btn-primary ml-auto btn-lg"
+      type="button"
+      (click)="deletePostiDisp()"
+      >ELIMINA</button>
+    </div>
+    <div class="col-auto">
+        <button type="button"
+        (click)="conferma()"
+        class="btn btn-outline-secondary btn-sm"
+          >CONFERMA</button>
+    </div>
+</div>
+<div class="card mt-3 mb-3">
+    <div class="card-body">
+      <h3>Elenco Posti Disponibili</h3>
+      <form *ngIf="formElencoPostiDip" [formGroup]="formElencoPostiDip">
+        <prodis-paginated-array-table *ngIf="elencoTab && (elencoTab && elencoTab.length > 0)" [columnNumber]="16" [pagedResponse]="elencoTab" [limit]="10">
+            <ng-template prodisPaginationHead>
+              <tr>
+                <th scope="col">Sel.</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Qualifica professionale ISTAT</th>
+                <th scope="col">Numero posti</th>
+                <th scope="col">Categoria soggetto</th>
+                <th scope="col">Comune assunzione</th>
+              </tr>
+            </ng-template>
+            <ng-template prodisPaginationBody let-item>
+              <tr>
+                <td>
+                  <input [value]="item" name="postoDisp" formControlName="postoDisp" (change)="setSelectedItem(item)" type="radio">
+                </td>
+                <td>{{item?.targa}}</td>
+                <td>{{item?.qualifica?.dsComIstat2001livello5}}</td>
+                <td>{{item?.nPosti}}</td>
+                <td>{{item?.categoriaSoggetto}}</td>
+                <td>{{item?.comune?.dsProTComune}}</td>
+              </tr>
+            </ng-template>
+          </prodis-paginated-array-table>
+          <div *ngIf="!elencoTab || (elencoTab && elencoTab.length <= 0)" class="alert alert-warning" role="alert">
+            {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+        </div>
+      </form>
+    </div><!-- /card-body-->
+  </div><!-- /card-->

@@ -1,0 +1,24 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+  <div class="col-sm-12 col-md-3">Quota di riserva disabili <span
+      class="valore">{{prospetto?.riepilogoNazionale?.quotaRiservaDisabili }}</span></div>
+  <div class="col-sm-12 col-md-3">Quota di riserva (Art. 18) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.quotaRiservaArt18 }}</span></div>
+  <div class="col-sm-12 col-md-3">Quota esuberi (Art. 18) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.quotaEsuberiArt18 }}</span></div>
+  <div class="col-sm-12 col-md-3">Sospensione in corso <span
+      class="valore">{{prospetto?.riepilogoNazionale?.flgSospensioniInCorso | siNo}}</span></div>
+  <div class="col-sm-12 col-md-3">N<sup>°</sup> posizione esonerate <span
+      class="valore">{{prospetto?.riepilogoNazionale?.numPosizioniEsonerate }}</span></div>
+  <div class="col-sm-12 col-md-3">N<sup>°</sup> disabili in forza (L.68/99 Art. 1) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.numDisabiliInForza }}</span></div>
+  <div class="col-sm-12 col-md-6">N<sup>°</sup> categorie protette in forza (L.68/99 Art. 18) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.numCatProtInForza }}</span></div>
+  <div class="col-sm-12 col-md-3">N<sup>°</sup> scoperture disabili (L.68/99 Art. 1) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.numScopertDisabili }}</span></div>
+  <div class="col-sm-12 col-md-6">N<sup>°</sup> scoperture categorie protette (L.68/99 Art. 18) <span
+      class="valore">{{prospetto?.riepilogoNazionale?.numScopertCategorieProtette }}</span></div>
+</div>

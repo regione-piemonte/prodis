@@ -1,0 +1,8 @@
+paths:
+  $include: ./utente/index.yml
+  $include: ./decodifica/index.yml
+  $include: ./prospetto/index.yml
+  $include: ./common/index.yml
+  $include: ./system/index.yml
+  $include: ./silp/index.yml
+  

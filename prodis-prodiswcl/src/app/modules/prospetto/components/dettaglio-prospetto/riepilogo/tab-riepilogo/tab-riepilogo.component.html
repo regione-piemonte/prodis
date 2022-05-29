@@ -1,0 +1,67 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- <ngx-spinner name='riepilogo-spinner' [fullScreen]="false" type="ball-spin-clockwise" size="medium">
+  <p style="font-size: 20px; color: white">Il calcolo del profiling è in corso...</p>
+</ngx-spinner> -->
+
+
+<div class="card mt-3 mb-3">
+  <div class="card-body" *ngIf="ilProspettoProvincia">
+    <h3>Riepilogo dati provinciali</h3>
+    <prodis-table-riepilogo-dati-provinciali [ilProspettoProvincia]="ilProspettoProvincia">
+    </prodis-table-riepilogo-dati-provinciali>
+
+    <h3>Riepilogo nazionale</h3>
+    <div class="lettura">
+      <prodis-sezione-riepilogo-nazionale-uno [prospetto]="prospetto">
+      </prodis-sezione-riepilogo-nazionale-uno>
+      <div class="row">
+        <div class="col-sm-12 col-md-3">Data prima assunzione (dpr. 333/2000) <span
+            class="valore">{{prospetto?.dataPrimaAssunzione | date: 'dd/MM/yyyy' }}</span></div>
+        <div class="col-sm-12 col-md-3">Data seconda assunzione (dpr. 333/2000) <span
+            class="valore">{{prospetto?.dataSecondaAssunzione | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-3">Nessuna assunzione aggiuntiva <span
+            class="valore">{{prospetto?.flgNessunaAssunzioneAggiun ? (prospetto?.flgNessunaAssunzioneAggiun | siNo) : ''}}</span></div>
+      </div>
+      <prodis-sezione-riepilogo-nazionale-due [prospetto]="prospetto">
+      </prodis-sezione-riepilogo-nazionale-due>
+
+      <div class="row">
+        <div class="form-group col-sm-12 col-md-12">
+          <label for="note">Note</label>
+          <span class="valore">{{prospetto.note}}</span>
+        </div>
+      </div>
+
+      <h3>Altri dati di riepilogo</h3>
+      <div class="row">
+        <div class="col-sm-12 col-md-3">Comunicazione a seguito di provvedimento dell'ispettorato <span
+            class="valore">{{prospetto?.flgVisitaIspettiva | siNo }}</span></div>
+        <div class="col-sm-12 col-md-3">Email per la notifica dell'invio comunicazione <span
+            class="valore">{{prospetto?.emailNotifica}}</span></div>
+        <!-- QUESTI DATI VENGONO VISUALIZZATI SOLAMENTE DA RUOLO AMMINISTRATORE E CPI  -->
+        <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Si effettua la comunicazione per il datore di
+          lavoro? <span class="valore"></span></div>
+        <!-- si abilitano se seleziono il NO -->
+        <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Altro soggetto <span
+            class="valore">{{prospetto?.soggetti?.descSoggetti}}</span>
+        </div>
+        <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Codice fiscale del soggetto <span
+            class="valore">{{prospetto?.cfStudioProfessionale}}</span></div>
+
+        <!-- Campo sempre obbligatorio e non dipende da si/no -->
+        <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Email del soggetto <span
+            class="valore">{{prospetto?.emailSoggettoComunicazione
+            }}</span></div>
+        <!-- data timbro postale sempre obbligatoria -->
+        <div *ngIf="SONO_AMMINISTRATORE" class="col-sm-12 col-md-3">Data timbro postale <span
+            class="valore">{{prospetto?.dataTimbroPostale
+            |date:"dd/MM/yyyy" }}</span></div>
+        <!-- QUESTI DATI VENGONO VISUALIZZATI SOLAMENTE DA RUOLO AMMINISTRATORE -->
+      </div>
+    </div><!-- /card-body-->
+  </div><!-- /card-->
+
+

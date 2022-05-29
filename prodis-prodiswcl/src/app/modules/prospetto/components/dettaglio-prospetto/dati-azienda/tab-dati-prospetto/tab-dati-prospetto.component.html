@@ -1,0 +1,49 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+
+<h3>{{ 'PROSPETTO.TAB_DATI_PROSP.TITLE' | translate}}</h3>
+
+<!-- Dati prospetto lettura -->
+
+<div class="lettura">
+    <div class="row">
+        <div class="col-sm-12 col-md-3">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_REF_PROS' | translate}}<span class="valore">{{prospetto?.dataRiferimentoProspetto |date:"dd/MM/yyyy" }}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.TAB_DATI_PROSP.SUB_TIT.GRAD' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_ACT' | translate}}<span class="valore">{{ prospetto?.prospettoGradualita?.dataAtto ? (prospetto?.prospettoGradualita?.dataAtto |date:"dd/MM/yyyy") : ('APP.NO_DATA' | translate) }}</span>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.EXTREME_ACT' | translate}}<span class="valore">{{prospetto?.prospettoGradualita?.estremiAtto ? prospetto?.prospettoGradualita?.estremiAtto : ('APP.NO_DATA' | translate)}}</span>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.TRANSFORM_DATE' | translate}}<span class="valore">{{prospetto?.prospettoGradualita?.dataTrasformazione ? (prospetto?.prospettoGradualita?.dataTrasformazione|date:"dd/MM/yyyy") : ('APP.NO_DATA' | translate) }}</span>
+        </div>
+        <div class="col-sm-12 col-md-2">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.PERCENT' | translate}}<span class="valore">{{prospetto?.prospettoGradualita?.percentuale ? prospetto?.prospettoGradualita?.percentuale : 0 }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.NUMB_AVAILABLE_HIRES' | translate}}<span class="valore">{{prospetto?.prospettoGradualita?.nAssunzioniLavPreTrasf ? prospetto?.prospettoGradualita?.nAssunzioniLavPreTrasf : 0 }}</span>
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.TAB_DATI_PROSP.SUB_TIT.SOSP_NAT' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-3">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.SOSP_MOB' | translate}} <span class="valore">
+                {{prospetto?.flgSospensionePerMobilita === "S" ? "SI" : "NO"}}
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.END_DATE_SOSP' | translate}}<span class="valore">{{prospetto?.dFineSospensioneQ1 ? (prospetto?.dFineSospensioneQ1 | date:"dd/MM/yyyy") : ('APP.NO_DATA' | translate)}}</span>
+        </div>
+    </div>
+</div>
+

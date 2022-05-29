@@ -1,0 +1,57 @@
+VistaElencoProvQ2:
+  type: object
+  properties:
+    id:
+      type: integer
+    convenzione:
+      type: string
+    dsProTProvincia:
+      type: string
+    dsTarga:
+      type: string
+    idProspetto:
+      type: number
+    idTProvincia:
+      type: number
+    numAssunzioniEffDopoTrasf:
+      type: number
+    numCateProtForza:
+      type: number
+    numCateProtForzaA17012000:
+      type: number
+    numCentralTelefoNonvedenti:
+      type: number
+    numConvenzioni12bis14Ft:
+      type: number
+    numDisabiliInForza:
+      type: number
+    numIntermittenti:
+      type: number
+    numLavAppartartCategArt18:
+      type: number
+    numLavAppartartCategoria:
+      type: number
+    numPartTime:
+      type: number
+    numPostiDisp:
+      type: number
+    numSomministratiFt:
+      type: number
+    numTelelavoroFt:
+      type: number
+    numTerariabMassofisNonved:
+      type: number
+    numTotaleLavoratDipendenti:
+      type: number
+    sospInCorso:
+      type: string
+    ptIntermittenti:
+      type: number
+    disabiliTempoPienoFt:
+      type: number
+    teleLavCatEscluseDisab:
+      type: number
+    flgConfermatoQ2:
+      type: string
+    numLavoratoriEsonero:
+      type: number

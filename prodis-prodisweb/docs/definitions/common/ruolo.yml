@@ -1,0 +1,40 @@
+Ruolo:
+  type: object
+  properties:
+    amministratore:
+      type: boolean
+    codiceFiscale:
+      type: string
+    consulenteRespo:
+      type: boolean
+    delegatoRespo:
+      type: boolean
+    denominazioneAzienda:
+      type: string
+    id:
+      type: integer
+    legaleRappresentante:
+      type: boolean
+    listaCasiUso:
+      type: array
+      items:  
+        type: string
+    monitoraggio:
+      type: boolean
+    operatoreProvinciale:
+      type: boolean
+    personaAutorizzata:
+      type: boolean
+    personaAutorizzataScuola:
+      type: boolean
+    personaCaricaAziendale:
+      type: boolean
+    ruolo:
+      type: string
+    codMinSoggettoAbilitato:
+      type: string
+    idSoggetti:
+      type: number
+    cfUtente:
+      type: string
+      

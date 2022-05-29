@@ -1,0 +1,18 @@
+UserAccessLog:
+  type: object
+  properties:
+    cfUtente:
+      type: string
+    dsCognome:
+      type: string
+    dsNome:
+      type: string
+    dsRuolo:
+      type: string
+    dtEvento:
+      type: string
+      format: date-time
+    flgTrovatoSuAaep:
+      type: string
+    id:
+      type: integer

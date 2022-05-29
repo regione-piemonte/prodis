@@ -1,0 +1,29 @@
+ProvSospensione:
+  type: object
+  properties:
+    causaSospensione:
+      type: object
+      $ref: '#/definitions/CausaSospensione'
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dataFineSospensioneQ2:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    id:
+      type: integer
+    nLavoratori:
+      type: number
+    statoConcessione:
+      type: object
+      $ref: '#/definitions/StatoConcessione'

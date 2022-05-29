@@ -1,0 +1,23 @@
+TipoRipropPt:
+  type: object
+  properties:
+    ambitoRiprop:
+      type: string
+    ambitoRipropBc:
+      type: string
+    dsMin:
+      type: string
+    dsTipoRipropPt:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    partTimes:
+      type: array
+      items:  
+        $ref: '#/definitions/PartTime'

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  PRODIS BackEnd - EJB submodule
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="primary">
+    <jta-data-source>${jpa.dataSource}</jta-data-source>
+    
+    
+    <!-- 
+	<class>it.csi.prodis.prodisweb.ejb.entity.VistaElencoProvQ2</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProspetto</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTComune</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTProvincia</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTRegione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTSoggetti</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDAssPubbliche</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDAssPubblichePK</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDCategorieEscluse</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDDatiAzienda</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDDatiProvinciali</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDImportErrori</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDLavoratoriInForza</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDLavoratoriSilp</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDLavoratoriSilpPK</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDParametri</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDPartTime</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDPdfProspetto</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDPdfSilp</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDPostiLavoroDisp</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProspetto</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProspettoGradualita</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProspettoProvSede</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvCompensazioni</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvConvenzione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvEsonero</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvEsoneroAutocert</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvGradualita</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvIntermittenti</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDProvSospensione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDRiepilogoNazionale</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDRiepilogoProvinciale</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDSedeLegale</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProDUserAccessLog</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProRProspettoProvincia</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTAssunzioneProtetta</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTAtecofin</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTCategoriaAzienda</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTCategoriaEscluse</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTCausaSospensione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTCcnl</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTComune</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTComunicazione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTContratti</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTCpi</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTDichiarante</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTImportErroriSpicom</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTIstat2001livello5</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTProvincia</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTRegione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTStatiEsteri</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTStatoConcessione</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTStatoProspetto</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTStatoVerifica</class>
+    <class>it.csi.prodis.prodisweb.ejb.entity.ProTTipoRipropPt</class>
+     -->
+    <properties>
+      <property name="jboss.entity.manager.factory.jndi.name" value="java:comp/env/persistence/prodisPu" />
+      <property name="hibernate.archive.autodetection" value="class"/>
+      <property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+      
+      <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/> -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+      <property name="hibernate.proc.param_null_passing" value="true" />
+      <property name="hibernate.show_sql" value="${jpa.showSql}" />
+      <property name="hibernate.format_sql" value="${jpa.formatSql}" />
+      <property name="hibernate.connection.autocommit" value="false" />
+      <property name="hibernate.id.new_generator_mappings" value="true" />
+      <property name="hibernate.jdbc.use_get_generated_keys" value="false"/>
+      <property name="hibernate.temp.use_jdbc_metadata_defaults" value="true"/>
+      <!-- Add for development checks -->
+<!--       <property name="hibernate.default_schema" value="prodis"/> -->
+<!--       <property name="hibernate.hbm2ddl.auto" value="validate"/> -->
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,31 @@
+Comune:
+  type: object
+  properties:
+    codCap:
+      type: string
+    codComuneMin:
+      type: string
+    codInps:
+      type: string
+    codIstat:
+      type: string
+    codPrefisso:
+      type: string
+    dsProTComune:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idTCpi:
+      type: number
+    provincia:
+      type: object
+      $ref: '#/definitions/Provincia'

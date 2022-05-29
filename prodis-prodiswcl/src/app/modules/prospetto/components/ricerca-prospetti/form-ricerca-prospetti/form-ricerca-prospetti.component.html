@@ -1,0 +1,244 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+<!-- TODO campi form in grassetto -->
+
+<!-- <p>I campi contrassegnati con <span class="oblg">*</span> sono obbligatori</p> -->
+<!-- <form  [formGroup]="form" (ngSubmit)="onSubmit()"> -->
+  <form #ricercaProspettoForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3" [ngClass]="{'error' : flagErrorAnnoProt}">
+      <label for="annoProtocollo">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.YEAR' | translate}}</label>
+      <input type="text"
+      [(ngModel)]="ilFiltroRicercaProspetto.annoProspetto"
+       class="form-control"
+       id="annoProtocollo"
+       prodisDigitOnly
+       maxlength="4"
+       pattern="[0-9]+"
+       name="annoProtocollo"
+       >
+       <span class="highlight"></span>
+            <span class="bar"></span>
+    </div>
+    <div class="form-group col-sm-12 col-md-3" [ngClass]="{'error' : flagErrorAnnoProt}">
+      <label for="numProtocolooRef">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.NUM' | translate}}</label>
+       <input
+        [(ngModel)]="ilFiltroRicercaProspetto.numeroProtocollo"
+        prodisDigitOnly
+        type="text"
+        class="form-control"
+        id="numProtocolooRef"
+        name="numeroProtocollo"
+        maxlength="9"
+        pattern="[0-9]+"
+        >
+    </div>
+</div>
+ <div class="row">
+  <div class="col-sm-12 col-md-2">
+    <label>Protocollo</label>
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-2"  [ngClass]="{'error' : flagErrorProtocolloDataDa}">
+      <div class="form-group">
+        <div class="input-group">
+          <label class="sr-only" for="dataDaP">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.TITLE' | translate}}</label>
+          <input
+            type="text"
+            class="form-control"
+            name="protocolloDataDa" id="protocolloDataDa"
+            placeholder="{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_FROM' | translate}}"
+            [(ngModel)]="ilFiltroRicercaProspetto.dataProtocolloDa"
+            #d_protocolloDataDa="ngModel"
+            ngbDatepicker
+
+            #d_protocolloDataDaDatePicker="ngbDatepicker"
+            maxlength="10"
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-primary calendar"
+              (click)="d_protocolloDataDaDatePicker.toggle()"
+              type="button">
+              <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+          </div>
+        </div>
+        <div *ngIf="d_protocolloDataDa?.status === 'INVALID'" class="text-danger">
+          {{'ERROR.INVALID_DATE' | translate}}
+        </div>
+      </div>
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-2" [ngClass]="{'error' : flagErrorProtocolloDataA}">
+      <div class="form-group">
+        <div class="input-group">
+          <label class="sr-only" for="dataAP">{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_TO' | translate}}</label>
+          <input
+            type="text"
+            class="form-control"
+            name="protocolloDataA" id="protocolloDataA"
+            placeholder="{{ 'PROSPETTO.RICERCA.FIELD.PROTOCOL.DATE_TO' | translate}}"
+            [(ngModel)]="ilFiltroRicercaProspetto.dataProtocolloA"
+            #d_protocolloDataAModel="ngModel"
+            ngbDatepicker
+            #d_protocolloDataADatePicker="ngbDatepicker"
+            maxlength="10"
+
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-primary calendar"
+              (click)="d_protocolloDataADatePicker.toggle()"
+              type="button">
+              <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+          </div>
+        </div>
+        <div *ngIf="d_protocolloDataAModel?.status === 'INVALID'" class="text-danger">
+          {{'ERROR.INVALID_DATE' | translate}}
+        </div>
+      </div>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-sm-12 col-md-2">
+  <label>{{ 'PROSPETTO.RICERCA.FIELD.REFERENCE.TITLE' | translate}}</label>
+  </div>
+  <div class="col-sm-12 col-md-3 col-lg-2" [ngClass]="{'error' : flagErrorRiferimentoDa}">
+    <div class="form-group">
+      <div class="input-group">
+        <label class="sr-only" for="dataDaR">{{ 'PROSPETTO.RICERCA.FIELD.REFERENCE.DATE_FROM' | translate}}</label>
+        <input
+            type="text"
+            class="form-control"
+            name="dataRiferimentoDa" id="dataRiferimentoDa"
+            placeholder="Data da"
+            [(ngModel)]="ilFiltroRicercaProspetto.dataRiferimentoDa"
+            #d_dataRiferimentoDa="ngModel"
+            ngbDatepicker
+            #d_dataRiferimentoDaDatePicker="ngbDatepicker"
+            
+            maxlength="10"
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-primary calendar"
+              (click)="d_dataRiferimentoDaDatePicker.toggle()"
+              type="button">
+              <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+          </div>
+      </div>
+      <div *ngIf="d_dataRiferimentoDa?.status === 'INVALID'" class="text-danger">
+        {{'ERROR.INVALID_DATE' | translate}}
+      </div>
+    </div>
+    </div>
+  <div class="col-sm-12 col-md-3 col-lg-2"  [ngClass]="{'error' : flagErrorRiferimentoA}">
+    <div class="form-group">
+      <div class="input-group">
+        <label class="sr-only" for="dataAR">{{ 'PROSPETTO.RICERCA.FIELD.REFERENCE.DATE_TO' | translate}}</label>
+        <input
+            type="text"
+            class="form-control"
+            name="dataRiferimentoA" id="dataRiferimentoA"
+            placeholder="Data a"
+            [(ngModel)]="ilFiltroRicercaProspetto.dataRiferimentoA"
+            #d_dataRiferimentoA="ngModel"
+            ngbDatepicker
+            #d_dataRiferimentoADatePicker="ngbDatepicker"
+            maxlength="10"
+
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-primary calendar"
+              (click)="d_dataRiferimentoADatePicker.toggle()"
+              type="button">
+              <span class="sr-only">apri calendario</span><i class="far fa-calendar-alt fa-lg"></i></button>
+          </div>
+      </div>
+      <div *ngIf="d_dataRiferimentoA?.status === 'INVALID'" class="text-danger">
+        {{'ERROR.INVALID_DATE' | translate}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3" [ngClass]="{'error' : flagErrorCodiceFiscale}">
+        <label for="cfiAzienda">{{ 'PROSPETTO.RICERCA.FIELD.CF_CORP' | translate}}</label>
+        <input type="text"
+            [(ngModel)]="ilFiltroRicercaProspetto.codiceFiscaleAzienda"
+            class="form-control"
+            id="codiceFiscaleAzienda"
+            name="codiceFiscaleAzienda"
+            maxlength="16"
+
+            [disabled]="readOnlyCFAzienda"
+       >
+    </div>
+    <div class="form-group col-sm-12 col-md-9">
+      <label for="denomAzienda">{{ 'PROSPETTO.RICERCA.FIELD.NAME_CORP' | translate}}</label>
+      <input type="text"
+        [(ngModel)]="ilFiltroRicercaProspetto.denominazioneAzienda"
+        class="form-control"
+        id="denominazioneAzienda"
+        name="denominazioneAzienda"
+        maxlength="100"
+        minlength="3">
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+      <label for="cReg">{{ 'PROSPETTO.RICERCA.FIELD.CODE_REG' | translate}}</label>
+      <input type="text"
+      [(ngModel)]="ilFiltroRicercaProspetto.codiceRegionale"
+      class="form-control"
+      id="codiceRegionale"
+      name="codiceRegionale"
+      maxlength="16"
+    >
+    </div>
+    <div class="form-group col-sm-12 col-md-6">
+      <label for="statoProspetto">{{ 'PROSPETTO.RICERCA.FIELD.STATE_PROSP' | translate}}</label>
+        <ul *ngIf="!flagReset" class="list-inline">
+          <li *ngFor="let statoP of elencoStatiProspetto; index as i" class="list-inline-item">
+            <input type="checkbox"
+            #checkBoxStateProsp
+            name="statoProspetto"
+            [checked]="checkSelectedStates(statoP?.id)"
+            (change)="selectRemoveStato(statoP)"
+            class="form-check-input" id="{{'option'+i}}">
+            <label for="{{'option'+i}}">{{statoP?.descrizione}}</label></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-sm-12 col-md-6">
+        <label for="provSedeAzienda">{{ 'PROSPETTO.RICERCA.FIELD.PROVINCE_COMPANY' | translate}}</label>
+        <select
+          id="provSedeAzienda"
+          name="provSedeAzienda"
+          class="form-select"
+          [(ngModel)]="idProvinciaSelezionato"
+          #provSedeAzienda="ngModel">
+              <option [ngValue]="null"></option>
+              <option *ngFor="let provincia of elencoProvince" [value]="provincia.codProvinciaMin">{{provincia?.dsTarga + '-' + provincia?.dsProTProvincia}}</option>
+            </select>
+    </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+        (click)="onClickReset()">{{ 'APP.REMOVE_FILTERS' | translate | uppercase}}</button>
+  </div>
+  <div class="col-auto">
+    <button type="submit"
+      class="btn btn-primary ml-auto btn-lg"
+      [disabled]="!ricercaProspettoForm.valid"
+      >{{ 'APP.SEARCH' | translate }}</button>
+  </div>
+</div>
+</form>

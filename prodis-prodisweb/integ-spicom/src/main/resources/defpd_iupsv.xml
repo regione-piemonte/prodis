@@ -1,0 +1,121 @@
+<!--
+  ========================LICENSE_START=================================
+  PRODIS BackEnd - INTEGRATION SPICOM submodule
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<porta-delegata name="IupsvSrv">
+  <services>
+    <service name="iupsv" public-interface-class="it.csi.iup.iupsv.interfacecsi.iupsv.IupsvSrv" top-version="1.0.0">
+      <operations>
+        <operation name="getInfoSistemaProtocollazione" type="synch-call" >
+          <param-list>
+            <param name="idProvincia" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.iup.iupsv.dto.iupsv.InfoSistemaProtocollazioneDTO"/>
+        </operation>
+
+        <operation name="getDatiUtenteProtocollo" type="synch-call" >
+          <param-list>
+            <param name="datiLoginProtocollo" type="it.csi.iup.iupsv.dto.iupsv.DatiLoginProtocolloDTO" />
+          </param-list>
+          <ret-val type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO"/>
+        </operation>
+
+        <operation name="creaSoggetto" type="synch-call" >
+          <param-list>
+            <param name="utenteProtocollo" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="soggetto" type="it.csi.iup.iupsv.dto.iupsv.SoggettoDTO" />
+          </param-list>
+          <ret-val type="it.csi.iup.iupsv.dto.iupsv.SoggettoDTO"/>
+        </operation>
+
+        <operation name="ricercaSoggetti" type="synch-call" >
+          <param-list>
+            <param name="utenteProtocollo" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="filtro" type="it.csi.iup.iupsv.dto.iupsv.FiltroRicercaSoggettiDTO" />
+          </param-list>
+          <ret-val type="java.util.List"/>
+        </operation>
+
+        <operation name="protocolla" type="synch-call" >
+          <param-list>
+            <param name="utente" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="datiProtocollazione" type="it.csi.iup.iupsv.dto.iupsv.DatiProtocollazioneDTO" />
+          </param-list>
+          <ret-val type="it.csi.iup.iupsv.dto.iupsv.ProtocolloDTO"/>
+        </operation>
+
+        <operation name="ricercaProtocolli" type="synch-call" >
+          <param-list>
+            <param name="utente" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="filtro" type="it.csi.iup.iupsv.dto.iupsv.FiltroRicercaProtocolliDTO" />
+          </param-list>
+          <ret-val type="java.util.List"/>
+        </operation>
+
+        <operation name="modificaProtocollo" type="synch-call" >
+          <param-list>
+            <param name="utente" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="protocollo" type="it.csi.iup.iupsv.dto.iupsv.DatiVariazioneProtocolloDTO" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+
+        <operation name="annullaProtocollo" type="synch-call" >
+          <param-list>
+            <param name="utente" type="it.csi.iup.iupsv.dto.iupsv.UtenteProtocolloDTO" />
+            <param name="datiAnnullo" type="it.csi.iup.iupsv.dto.iupsv.DatiAnnulloProtocolloDTO" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+
+        <!-- operazione per monitoraggio -->
+        <operation name="testResources" type="synch-call">
+          <param-list>
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+      
+      
+        <!-- operazioni per diagnostica -->
+        <operation name="selfCheck" type="synch-call">
+          <param-list>
+            <param name="alreadyCalled" type="it.csi.coopdiag.api.CalledResource[]"/>
+          </param-list>
+          <ret-val type="it.csi.coopdiag.api.InvocationNode"/>
+        </operation>
+        <operation name="hasSelfCheck" type="synch-call">
+          <param-list>
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+      </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <pluggable-pd
+        name="iupsv"
+        class="it.csi.csi.porte.ejb20.PortaDelegataEJB"
+        url-pa="iupsv.ejb.IupsvPA"
+        url-qm="iupsv.ejb.IupsvQMGR">
+        <properties>
+          <!--property name="java.naming.provider.url" value="@be.pa.url@"/-->
+          <property name="java.naming.provider.url" value="@url.pa.iupsv@" />
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+          <property name="csi.auth.jaas.client.class" value="it.csi.csi.porte.ejb.jaas.weblogic.WeblogicJAASNativeClient"/>
+  	  <property name="csi.auth.basic" value="****"/>
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+	@coopTrace
+    <queue-manager url=""/>
+  </config>
+</porta-delegata>

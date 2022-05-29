@@ -1,0 +1,1453 @@
+/prospetto/ricerca:
+  post:
+    operationId: getRicercaProspetti
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - $ref: '#/parameters/offsetParam'
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/sortParam'
+      - $ref: '#/parameters/directionParam'
+      - in: body
+        name: ricercaProspetto
+        required: true
+        schema:
+          $ref: '#/definitions/RicercaProspetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PagedResponseProspetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/{flagBozza}:
+  post:
+    operationId: postProspetto
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: flagBozza
+        required: true
+        type: boolean
+        description: flag che indica il tipo di salvataggio.
+      - in: body
+        name: prospetto
+        required: true
+        schema:
+          $ref: '#/definitions/Prospetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/PostPutProspettoResponse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/{id}:
+  get:
+    operationId: getProspettoById
+    description: Restituisce il prospetto per id.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+        description: L'id del prospetto.
+    responses:
+      '200':
+        description: Il Prospetto registrato su sistema per dato id.
+        schema:
+          $ref: '#/definitions/Prospetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/update/{id}/{flagBozza}:
+  put:
+    operationId: putProspettoUpdate
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+        description: id prospetto da modificare.
+      - in: path
+        name: flagBozza
+        required: true
+        type: boolean
+      - in: body
+        name: prospetto
+        required: true
+        schema:
+          $ref: '#/definitions/Prospetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PostPutProspettoResponse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/reinvia:
+  put:
+    operationId: reinviaProspetto
+    description: Restituisce l'esito dell'operazione come stringa.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: body
+        name: reinviaProspetto
+        required: true
+        schema:
+          $ref: '#/definitions/ReinviaProspetto'
+    responses:
+      '200':
+        description: stringa come esito dell'operazione.
+        schema:
+          type: string
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/assunzioniPubbliche/{id}:
+  get:
+    operationId: getAssunzioniPubblicheByIdProspetto
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+        description: L'id del prospetto.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/AssPubbliche'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/{idProspettoProv}:
+  get:
+    operationId: getDatiProvincialiByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/DatiProvinciali'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+  delete:
+    operationId: deleteDatiProvinciali
+    description: Elimina DatiProvinciali con l'idProspettoProv passato come parametro.
+    produces:
+      - text/plain
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: true se l'eliminazione è andata a buon fine.
+        schema:
+          type: boolean
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/checkPassaggioQ3/{idProspetto}:
+  get:
+    operationId: checkPassaggioQ3
+    description: Restituisce true se le procedure di passaggio dal Q2 al Q3 sono andate a buon fine.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'id del prospetto.
+    responses:
+      '200':
+        description: Il booleano indicante l'esito delle operazioni.
+        schema:
+          type: boolean
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/conferma/{idProspetto}:
+  get:
+    operationId: getConfermaProvince
+    description: Restituisce true se il passaggio dal Q2 al Q3.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'id del prospetto.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/RitornoPassaggioQ3'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali:
+  post:
+    operationId: postDatiProvinciali
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: body
+        name: prospettoProvincia
+        required: true
+        schema:
+          $ref: '#/definitions/ProspettoProvincia'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/ProspettoProvincia'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/categorie-escluse/prospetto-prov/{idProspettoProv}:
+  get:
+    operationId: getCategorieEsclusePagByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - categorieEscluse
+    parameters:
+      - $ref: '#/parameters/offsetParam'
+      - $ref: '#/parameters/limitParam'
+      - $ref: '#/parameters/sortParam'
+      - $ref: '#/parameters/directionParam'
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PagedResponseCategorieEscluse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/elenco-province-by-prospetto/{idProspetto}:
+  get:
+    operationId: getElencoProvinceQ2ByIdProspetto
+    description: Restituisce la lista di VistaElencoProvQ2 registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'idProspetto.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/VistaElencoProvQ2'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/riepilogo/{idProspetto}:
+  get:
+    operationId: getRiepilogoByIdProspetto
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'idProspetto.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/ProspettoProvincia'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/checkCodiceFiscale/{codiceFiscale}:
+  get:
+    operationId: getCheckCodiceFiscale
+    description: Restituisce il resultCheck.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: codiceFiscale
+        required: true
+        type: string
+        description: Codice fiscale.
+    responses:
+      '200':
+        description: verifica codice fiscale.
+        schema:
+          type: string
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/elenco-scoperture/{idProspetto}:
+  get:
+    operationId: getElencoScopertureByIdProspetto
+    description: Restituisce elenco scoperture provinciali
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'idProspetto.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/ElencoProvScoperture'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/categorie-escluse/{idDatiProvinciali}:
+  post:
+    operationId: postCategorieEscluse
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'id DatiProvinciali.
+      - in: body
+        name: categorieEscluse
+        required: true
+        schema:
+          $ref: '#/definitions/CategorieEscluse'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/CategorieEscluse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/categorie-escluse/{idCategorieEscluse}:
+  delete:
+    operationId: deleteCategorieEscluse
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idCategorieEscluse
+        required: true
+        type: number
+        description: L'id della CategoriaEsclusa da eliminare.
+    responses:
+      '200':
+        description: La CategoriaEsclusa eliminata.
+        items:
+          $ref: '#/definitions/CategorieEscluse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/categorie-escluse/{idDatiProvinciali}/{idCategorieEscluse}:
+  put:
+    operationId: putCategorieEscluse
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'id DatiProvinciali.
+      - in: path
+        name: idCategorieEscluse
+        required: true
+        type: number
+        description: L'id CategorieEscluse.
+      - in: body
+        name: categorieEscluse
+        required: true
+        schema:
+          $ref: '#/definitions/CategorieEscluse'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/CategorieEscluse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/part-time/{idDatiProvinciali}:
+  post:
+    operationId: postPartTime
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'idDatiProvinciali.
+      - in: query
+        name: idIntermittenti
+        type: number
+        description: L'idIntermittenti valorizzato se e solo se si sta modificando un intermittente in un part time.
+      - in: body
+        name: PartTime
+        required: true
+        schema:
+          $ref: '#/definitions/PartTime'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/PartTime'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/part-time/{idDatiProvinciali}/{idPartTime}:
+  put:
+    operationId: putPartTime
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: id DatiProvinciali.
+      - in: path
+        name: idPartTime
+        required: true
+        type: number
+        description: id idPartTime da modificare.
+      - in: body
+        name: PartTime
+        required: true
+        schema:
+          $ref: '#/definitions/PartTime'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PartTime'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/part-time/{idPartTime}:
+  delete:
+    operationId: deletePartTime
+    description: Elimina dato registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idPartTime
+        required: true
+        type: number
+        description: id idPartTime da eliminare sul db.
+    responses:
+      '200':
+        description: il PartTime eliminato da db.
+        schema:
+          $ref: '#/definitions/PartTime'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'  
+/dati-provinciali/elenco-categorie-escluse/{idProspettoProv}:
+  get:
+    operationId: getCategorieEscluseByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/CategorieEscluse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'  
+/dati-provinciali/elenco-prov-intermittenti/{idProspettoProv}:
+  get:
+    operationId: getProvIntermittentiByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/ProvIntermittenti'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError' 
+/dati-provinciali/elenco-part-time/{idProspettoProv}:
+  get:
+    operationId: getPartTimeByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/PartTime'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError' 
+/dati-provinciali/elenco-lavoratori-in-forza/{idProspettoProv}:
+  get:
+    operationId: getLavoratoriInForzaByIdProspettoProv
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: L'idProspettoProv.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/LavoratoriInForza'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/intermittenti/{idDatiProvinciali}:
+  post:
+    operationId: postIntermittenti
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'idDatiProvinciali.
+      - in: query
+        name: idPartTime
+        type: number
+        description: L'idPartTime se e solo se si sta modificando un part time in un intermittente.
+      - in: body
+        name: intermittenti
+        required: true
+        schema:
+          $ref: '#/definitions/ProvIntermittenti'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/ProvIntermittenti'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/intermittenti/{idIntermittenti}:
+  delete:
+    operationId: deleteIntermittenti
+    description: Elimina intermittente su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idIntermittenti
+        required: true
+        type: number
+        description: L'idIntermittenti.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/ProvIntermittenti'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/intermittenti/{idDatiProvinciali}/{idIntermittenti}:
+  put:
+    operationId: putIntermittenti
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: id DatiProvinciali.
+      - in: path
+        name: idIntermittenti
+        required: true
+        type: number
+        description: id ProvIntermittenti da modificare.
+      - in: body
+        name: intermittenti
+        required: true
+        schema:
+          $ref: '#/definitions/ProvIntermittenti'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/ProvIntermittenti'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/dati-provinciali/{idProspettoProv}/{flagBozza}:
+  put:
+    operationId: putDatiProvinciali
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+        description: idProspettoProv da modificare.
+      - in: path
+        name: flagBozza
+        required: true
+        type: boolean
+      - in: body
+        name: datiProvinciali
+        required: true
+        schema:
+          $ref: '#/definitions/DatiProvinciali'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/DatiProvinciali'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/compensazioni/confermaTornaRiepilogo/{idProspetto}:
+  get:
+    operationId: confermaTornaRiepilogo
+    description: Conferma le compensazioni.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'idProspetto.
+    responses:
+      '200':
+        description: True se la conferma delle compensazioni è andata a buon fine.
+        schema:
+          type: boolean
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/compensazioni/{idDatiProvinciali}:
+  post:
+    operationId: postCompensazioni
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'idDatiProvinciali.
+      - in: body
+        name: compensazioni
+        required: true
+        schema:
+          $ref: '#/definitions/ProvCompensazioni'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/ProvCompensazioni'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/compensazioni/{idDatiProvinciali}/{idCompensazioni}:
+  put:
+    operationId: putCompensazioni
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: id DatiProvinciali.
+      - in: path
+        name: idCompensazioni
+        required: true
+        type: number
+        description: id di ProvCompensazioni da modificare.
+      - in: body
+        name: compensazioni
+        required: true
+        schema:
+          $ref: '#/definitions/ProvCompensazioni'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/ProvCompensazioni'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/compensazioni/{idCompensazioni}:
+  delete:
+    operationId: deleteCompensazioni
+    description: Restituisce La ProvCompensazioni eliminata corrispondente a idCompensazioni.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idCompensazioni
+        required: true
+        type: number
+        description: id ProvCompensazioni.
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/ProvCompensazioni'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/posti-lavoro-disp/{idDatiProvinciali}:
+  post:
+    operationId: postPostiLavoroDisp
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: L'idDatiProvinciali.
+      - in: body
+        name: postiLavoroDisp
+        required: true
+        schema:
+          $ref: '#/definitions/PostiLavoroDisp'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        items:
+          $ref: '#/definitions/PostiLavoroDisp'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/posti-lavoro-disp/{idDatiProvinciali}/{idPostiLavoroDisp}:
+  put:
+    operationId: putPostiLavoroDisp
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: id DatiProvinciali.
+      - in: path
+        name: idPostiLavoroDisp
+        required: true
+        type: number
+        description: id del PostoDiLavoroDisp da modificare.
+      - in: body
+        name: postiLavoroDisp
+        required: true
+        schema:
+          $ref: '#/definitions/PostiLavoroDisp'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PostiLavoroDisp'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/posti-lavoro-disp/{idPostiLavoroDisp}:
+  delete:
+    operationId: deletePostiLavoroDisp
+    description: Elimina dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idPostiLavoroDisp
+        required: true
+        type: number
+        description: idPostiLavoroDisp del PostiLavoroDisp da eliminare.
+    responses:
+      '200':
+        description: PostiLavoroDisp eliminato.
+        schema:
+          $ref: '#/definitions/PostiLavoroDisp'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'          
+/lavoratori-in-forza/insert/{idDatiProvinciali}/{flagWarning}:
+  post:
+    operationId: postLavoratoriInForza
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: flag per continuare col salvataggio in caso di warning.
+      - in: path
+        name: flagWarning
+        required: true
+        type: boolean
+        description: idDatiProvinciali di cui il LavoratoreInForza da salvare è associato.
+      - in: body
+        name: lavoratoriInForza
+        required: true
+        schema:
+          $ref: '#/definitions/LavoratoriInForza'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/LavoratoriInForza'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/lavoratori-in-forza/{idDatiProvinciali}/{idLavoratoriInForza}/{flagWarning}:
+  put:
+    operationId: putLavoratoriInForza
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: flagWarning
+        required: true
+        type: boolean
+        description: flag per continuare col salvataggio in caso di warning.
+      - in: path
+        name: idDatiProvinciali
+        required: true
+        type: number
+        description: idDatiProvinciali di cui il LavoratoreInForza da salvare è associato.
+      - in: path
+        name: idLavoratoriInForza
+        required: true
+        type: number
+        description: idLavoratoriInForza del LavoratoreInForza da salvare è associato.
+      - in: body
+        name: lavoratoriInForza
+        required: true
+        schema:
+          $ref: '#/definitions/LavoratoriInForza'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/LavoratoriInForza'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/lavoratori-in-forza/excel/download/provincia/{idProspettoProv}:
+  get:
+    operationId: downloadProvinciaLavoratoriInForza
+    description: download xls dei lavoratori in forza per una specifica provincia.
+    produces:
+      - application/vnd.ms-excel
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspettoProv
+        required: true
+        type: number
+    responses:
+      '200':
+        description: excel dei lavoratori in forza
+        schema:
+          type: file
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/lavoratori-in-forza/excel/download/prospetto/{idProspetto}:
+  get:
+    operationId: downloadProspettoLavoratoriInForza
+    description: download xls dei lavoratori in forza di tutte le province di del prospetto con idProspetto.
+    produces:
+      - application/vnd.ms-excel
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+    responses:
+      '200':
+        description: excel dei lavoratori in forza
+        schema:
+          type: file
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/lavoratori-in-forza/excel/upload/provincia/{idProspettoProv}:
+  post:
+    operationId: uploadProvinciaLavoratoriInForza
+    description: inserisce lavoratori da file per la provincia con idProspettoProv
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/vnd.ms-excel
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: formData
+        name: idProspettoProv
+        type: string
+      - in: formData
+        name: attachment
+        type: file
+    responses:
+      '200':
+        description: excel dei lavoratori in forza
+        schema:
+          type: file
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/lavoratori-in-forza/excel/upload/prospetto/{idProspetto}:
+  post:
+    operationId: uploadProspettoLavoratoriInForza
+    description: inserisce lavoratori da file per il prospetto con idProspetto
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/vnd.ms-excel
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: formData
+        name: idProspetto
+        type: string
+      - in: formData
+        name: attachment
+        type: file
+    responses:
+      '200':
+        description: excel dei lavoratori in forza
+        schema:
+          type: file
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+          
+/lavoratori-in-forza/{idLavoratoriInForza}:
+  delete:
+    operationId: deleteLavoratoriInForza
+    description: Elimina dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - datiProvinciali
+    parameters:
+      - in: path
+        name: idLavoratoriInForza
+        required: true
+        type: number
+        description: idLavoratoriInForza del LavoratoreInForza da eliminare.
+    responses:
+      '200':
+        description: LavoratoreInForza eliminato.
+        schema:
+          $ref: '#/definitions/LavoratoriInForza'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/stato-prospetto/{idStatoProspetto}:
+  put:
+    operationId: putStatoProspettoUpdate
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: idStatoProspetto
+        required: true
+        type: number
+      - in: body
+        name: prospetto
+        required: true
+        schema:
+          $ref: '#/definitions/Prospetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/Prospetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/annulla/{id}:
+  put:
+    operationId: annullaProspetto
+    description: Annulla il prospetto registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PostPutProspettoResponse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/genera-pdf/{idProspetto}:
+  put:
+    operationId: generaPdf
+    description: Genera pdf del prospetto registrato su sistema.
+    produces:
+      - application/pdf
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+    responses:
+      '200':
+        description: Pdf del prospetto
+        schema:
+          type: file
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/rettifica/{id}:
+  put:
+    operationId: rettificaProspetto
+    description: Rettifica il prospetto registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PostPutProspettoResponse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/duplica/{id}:
+  put:
+    operationId: duplicaProspetto
+    description: Duplica il prospetto registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/PostPutProspettoResponse'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/confermaRiepilogo/{idProspetto}:
+  post:
+    operationId: confermaRiepilogo
+    description: Conferma il riepilogo del prospetto registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+      - in: body
+        name: confermaRiepilogoProspetto
+        required: true
+        schema:
+          $ref: '#/definitions/ConfermaRiepilogoProspetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/ConfermaRiepilogo'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/salvaBozzaRiepilogo/{idProspetto}:
+  post:
+    operationId: salvaBozzaRiepilogo
+    description: Salva in bozza il riepilogo del prospetto registrato su sistema.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+      - in: body
+        name: prospetto
+        required: true
+        schema:
+          $ref: '#/definitions/Prospetto'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/Prospetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/delete/{id}:
+  delete:
+    operationId: deleteProspetto
+    description: Elimina dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: id
+        required: true
+        type: number
+        description: id del Prospetto da eliminare.
+    responses:
+      '200':
+        description: Prospetto eliminato.
+        schema:
+          $ref: '#/definitions/Prospetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/storeProcedure/{idProspetto}/{cfUenteAggiornamento}/{soloScoperture}:
+  get:
+    operationId: storeProcedureEseguiCalcoli
+    description: Restituisce l'esito dei calcoli eseguiti dalla store procedure.
+    produces:
+      - application/json
+    tags:
+      - riepilogo
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'id del prospetto.
+      - in: path
+        name: cfUenteAggiornamento
+        required: true
+        type: string
+        description: codice fiscale utente.
+      - in: path
+        name: soloScoperture
+        required: true
+        type: boolean
+        description: flg solo scoperture.
+    responses:
+      '200':
+        description: L'esito della store procedure.
+        schema:
+          $ref: '#/definitions/EsitoStoreProcedure'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/checkScopertureDatoriLavoriPubblici/{idProspetto}:
+  get:
+    operationId: getCheckScopertureDatoriLavoriPubblici
+    description: Restituisce il resultCheck.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: path
+        name: idProspetto
+        required: true
+        type: number
+        description: L'id del prospetto.
+    responses:
+      '200':
+        description: eventuale messaggio di warning
+        schema:
+          type: string
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/prospetto/salva-pdf:
+  put:
+    operationId: salvaPdf
+    description: salva i pdf dei prospetti registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - prospetto
+    parameters:
+      - in: body
+        name: idProspettos
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+    responses:
+      '200':
+        description: esito dell'operazione'
+        schema:
+          type: string
+          format: byte
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+          

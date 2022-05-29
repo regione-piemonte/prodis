@@ -1,0 +1,15 @@
+ApiError:
+  type: object
+  properties:
+    code:
+      type: string
+    type:
+      type: string
+    group:
+      type: string
+    errorMessage:
+      type: string
+    params:
+      type: object
+    groupParams:
+      type: object

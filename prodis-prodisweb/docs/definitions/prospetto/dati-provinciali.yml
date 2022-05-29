@@ -1,0 +1,114 @@
+DatiProvinciali:
+  type: object
+  properties:
+    baseComputo:
+      type: number
+    categorieEscluses:
+      type: array
+      items:  
+        $ref: '#/definitions/CategorieEscluse'
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    flgAziConConvenzione:
+      type: string
+    flgAziEsoneroParziale:
+      type: string
+    flgAziGradu:
+      type: string
+    flgAziSosp:
+      type: string
+    flgCategorieEscluseCompute:
+      type: string
+    flgCompensazioniTerritorial:
+      type: string
+    flgDettaglioIntermittenti:
+      type: string
+    flgDettaglioPartime:
+      type: string
+    flgLavoratoriInForza:
+      type: string
+    flgPostiLavoroDisponibili:
+      type: string
+    id:
+      type: integer
+    lavoratoriInForzas:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriInForza'
+    nCateProtForza:
+      type: number
+    nCateProtForzaA17012000:
+      type: number
+    nCateProtForzaCntDis:
+      type: string
+    nCateProtForzaEsubero:
+      type: string
+    nCentralTelefoNonvedenti:
+      type: number
+    nConvenzioni12bis14Ft:
+      type: number
+    nDisabiliInForza:
+      type: number
+    nIntermittentiRiproporziona:
+      type: number
+    nPartimeRiproporzionati:
+      type: number
+    nPostiPrevCentraliNonved:
+      type: number
+    nPostiPrevMassofisNonved:
+      type: number
+    nSomministratiFt:
+      type: number
+    nTelelavoroFt:
+      type: number
+    nTerariabMassofisNonved:
+      type: number
+    nTotaleLavoratDipendenti:
+      type: number
+    note:
+      type: string
+    partTimes:
+      type: array
+      items:  
+        $ref: '#/definitions/PartTime'
+    postiLavoroDisps:
+      type: array
+      items:  
+        $ref: '#/definitions/PostiLavoroDisp'
+    prospettoProvSede:
+      type: object
+      $ref: '#/definitions/ProspettoProvSede'
+    prospettoProvincia:
+      type: object
+      $ref: '#/definitions/ProspettoProvincia'
+    provCompensazionis:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvCompensazioni'
+    provConvenzione:
+      type: object
+      $ref: '#/definitions/ProvConvenzione'
+    provEsonero:
+      type: object
+      $ref: '#/definitions/ProvEsonero'
+    provEsoneroAutocert:
+      type: object
+      $ref: '#/definitions/ProvEsoneroAutocert'
+    provGradualita:
+      type: object
+      $ref: '#/definitions/ProvGradualita'
+    provIntermittentis:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvIntermittenti'
+    provSospensione:
+      type: object
+      $ref: '#/definitions/ProvSospensione'

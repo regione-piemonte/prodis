@@ -1,0 +1,92 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons"></div>
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<ngb-tabset #ts="ngbTabset" (tabChange)="disableTab($event)" activeId="tabRiepilogo">
+
+  <ngb-tab id="tabPostiDisp" [disabled]="disableT">
+    <ng-template ngbTabTitle>
+      <span>Posti Disponibili</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <!-- Posti Disponibili -->
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-posti-disp 
+            *ngIf="READ_MODE"
+            [ilProspettoProvincia]="ilProspettoProvincia"></prodis-tab-posti-disp>
+          <prodis-form-tab-posti-disp 
+          *ngIf="!READ_MODE"
+          [inputProspetto]="prospetto"
+          [InputilProspettoProvincia]="ilProspettoProvincia"
+          (erroriInPagina)="onRicaricaErrori($event)"
+          (setPostoLavoroDisp)="loadilProspettoProvincia($event)"
+          ></prodis-form-tab-posti-disp>
+        </div>
+      </div>
+      <!-- / Posti Disponibili -->
+
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabCompensazioni">
+    <ng-template ngbTabTitle>
+      <span>Compensazioni</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <!-- Compensazioni -->
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-compensazioni 
+          *ngIf="READ_MODE"
+          [ilProspettoProvincia]="ilProspettoProvincia"></prodis-tab-compensazioni>
+          <prodis-form-tab-compensazioni
+          *ngIf="!READ_MODE"
+          [inputProspetto]="prospetto"
+          [inputIlProspettoProvincia]="ilProspettoProvincia"
+          (erroriInPagina)="onRicaricaErrori($event)"
+          (loadCompensazioni)="loadilProspettoProvincia($event)"
+          (saveCompensazioni)="saveCompensazione($event)">
+          </prodis-form-tab-compensazioni>
+        </div>
+      </div>
+      <!-- / Compensazioni  -->
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tabRiepilogo" [disabled]="disableT">
+    <ng-template ngbTabTitle>
+      <span>Riepilogo</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <prodis-tab-riepilogo
+            *ngIf="READ_MODE"
+            [ilProspettoProvincia]="ilProspettoProvincia">
+          </prodis-tab-riepilogo>
+          <prodis-form-tab-riepilogo
+            *ngIf="!READ_MODE"
+            [inputProspetto]="prospetto"
+            [inputNewProspetto]="newProspetto"
+            [ilProspettoProvincia]="ilProspettoProvincia"
+            (salvaBozzaRiepilogo)="salvaBozzaRiepilogo($event)"
+            (erroriInPagina)="onRicaricaErrori($event)"
+            ></prodis-form-tab-riepilogo>
+        </div>
+      </div>
+
+    </ng-template>
+  </ngb-tab>
+
+</ngb-tabset>

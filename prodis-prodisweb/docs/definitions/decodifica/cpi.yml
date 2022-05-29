@@ -1,0 +1,21 @@
+Cpi:
+  type: object
+  properties:
+    cUtente:
+      type: string
+    codCpi:
+      type: string
+    comunes:
+      type: array
+      items:  
+        $ref: '#/definitions/Comune'
+    dsProTCpi:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    id:
+      type: integer

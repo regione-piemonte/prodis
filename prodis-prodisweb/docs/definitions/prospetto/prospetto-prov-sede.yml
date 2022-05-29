@@ -1,0 +1,35 @@
+ProspettoProvSede:
+  type: object
+  properties:
+    cap:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    cognomeReferente:
+      type: string
+    comune:
+      type: object
+      $ref: '#/definitions/Comune'
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    email:
+      type: string
+    fax:
+      type: string
+    id:
+      type: integer
+    indirizzo:
+      type: string
+    nomeReferente:
+      type: string
+    telefono:
+      type: string

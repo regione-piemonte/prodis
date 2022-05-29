@@ -1,0 +1,21 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="top"></em>
+<br>
+<br>
+<br>
+<br>
+<h3>{{ 'PROSPETTO.ESITO_INVIO.TITLE' | translate}}</h3>
+<prodis-alert-msg
+  [typeMsg]="'W'"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<div *ngIf="prospetto" class="row">
+    <div class="col-8">{{ "Al prospetto è stato attribuito protocollo(anno/numero): "+prospetto?.annoProtocollo+"/"+prospetto?.numeroProtocollo }}</div>
+</div>
+<div *ngIf="prospetto" class="row">
+    <div class="col-8">{{ "Ed il codice regionale n: "+ codiceComunicazione }}</div>
+</div>

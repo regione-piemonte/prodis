@@ -1,0 +1,32 @@
+{
+  "MESSAGES": {
+    "SYS-SYS-E-0001": "Errore generico: {{error}}",
+    "SYS-SYS-E-0002": "Errore di sistema: {{error}}",
+    "SYS-SYS-E-0003": "Parametro obbligatorio non presente: {{parameter}}",
+    "SYS-SYS-E-0004": "Parametro obbligatorio non presente o vuoto: {{parameter}}",
+    "SYS-SYS-E-0005": "{{fieldname}} deve essere {{operator}} {{value}}",
+    "SYS-SYS-E-0006": "{{entity}} non presente su sistema",
+    "SYS-SYS-E-0007": "Accesso non permesso",
+    "SYS-SYS-E-0008": "Non è possibile salvare: un altro utente ha modificato il dato. Ritornare alla consultazione e ricaricarlo",
+    "SYS-SYS-E-0009": "Sono stati riscontrati i seguenti errori: {{errori}}",
+    "SYS-SYS-E-0010": "Sono stati riscontrati degli errori durante l'elaborazione {{elaborazione_id}}",
+    "SYS-SYS-E-0011": "{{entity}} cancellato: puoi reinserirlo con lo stesso codice o contattare l’assistenza per ripristinarlo",
+
+    "INT-INT-E-0000": "Esiste già un intervento con questo codice.",
+    "INT-INT-P-0001": "Intervento inserito con successo!",
+    "INT-INT-P-0002": "Intervento aggiornato con successo!",
+    "INT-INT-P-0003": "Intervento eliminato con successo!",
+    "INT-INT-A-0004": "Si desidera eliminare l'intervento?",
+    "INT-INT-E-0005": "Non sono presenti risultati per i criteri di ricerca impostati",
+    "INT-INT-A-0006": "Stai uscendo senza salvare le modifiche.",
+    "INT-INT-A-0006-02": "Vuoi salvare le modifiche?",
+    "INT-INT-A-0007": "Non sono presenti risultati per i criteri di ricerca impostati, procedere con l’inserimento del nuovo attuatore",
+    "INT-INT-A-0008": "Il codice fiscale inserito esiste già e corrisponde alla ragione sociale ‘{{ descrizione }}’. Procedere con l’inserimento di questo attuatore?"
+
+  },
+  "DATEPICKER": {
+    "WEEKDAYS": ["Lu", "Ma", "Me", "Gi", "Ve", "Sa", "Do"],
+    "MONTHS_SHORT": ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+    "MONTHS_LONG": ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+  }
+}

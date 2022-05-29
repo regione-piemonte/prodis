@@ -1,0 +1,68 @@
+DatiAzienda:
+  type: object
+  properties:
+    atecofin:
+      type: object
+      $ref: '#/definitions/Atecofin'
+    capReferente:
+      type: string
+    ccnl:
+      type: object
+      $ref: '#/definitions/Ccnl'
+    cfAzienda:
+      type: string
+    cfCapogruppo:
+      type: string
+    cfReferente:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    cognomeReferente:
+      type: string
+    comune:
+      type: object
+      $ref: '#/definitions/Comune'
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    denominazioneDatoreLavoro:
+      type: string
+    dichiarante:
+      type: object
+      $ref: '#/definitions/Dichiarante'
+    elencoSedi:
+      type: array
+      items:  
+        $ref: '#/definitions/SedeLegale'
+    emailReferente:
+      type: string
+    faxReferente:
+      type: string
+    flgCapogruppoEstero:
+      type: string
+    flgProspettoDaCapogruppo:
+      type: string
+    id:
+      type: integer
+    idAziendaSilp:
+      type: string
+    indirizzoReferente:
+      type: string
+    nomeReferente:
+      type: string
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'
+    sedeLegale:
+      type: object
+      $ref: '#/definitions/SedeLegale'
+    statiEsteri:
+      type: object
+      $ref: '#/definitions/StatiEsteri'
+    telefonoReferente:
+      type: string

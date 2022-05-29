@@ -1,0 +1,38 @@
+ProvCompensazioni:
+  type: object
+  properties:
+    categoriaCompensazione:
+      type: string
+    categoriaSoggetto:
+      type: string
+    cfAziendaAppartenAlGruppo:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataAtto:
+      type: string
+      format: date-time
+    estremiAtto:
+      type: string
+    flgAutocompensazione:
+      type: string
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    nLavoratori:
+      type: number
+    provincia:
+      type: object
+      $ref: '#/definitions/Provincia'
+    statoConcessione:
+      type: object
+      $ref: '#/definitions/StatoConcessione'

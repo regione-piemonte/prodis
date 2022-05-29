@@ -1,0 +1,89 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.TELE_LAV_FULL_TIME' | translate}}</h4>
+  <form *ngIf="formLav" [formGroup]="formLav">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="nLav">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_EMPLOYED' | translate}}</label>
+            <input type="text" (change)="onChange()" length="5" formControlName="nTelelavoroFt" prodisHasValueClass prodisDigitOnly class="form-control"  id="nLav">
+        </div>
+    </div>
+  </form>
+    <h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.CAT_ESCL' | translate}}</h4>
+    <form *ngIf="form" [formGroup]="form">
+      <div class="row">
+          <div class="form-group col-sm-12 col-md-5">
+              <label for="regione">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.TYPE_CAT_ESCL' | translate}}</label>
+              <select id="regione"
+                  formControlName="categoriaEscluse"
+                  name="regione" class="form-select">
+                  <option [ngValue]="null"></option>
+                  <option *ngFor="let catEs of comboCategorieEscluse" [disabled]="catEs?.disable" [ngValue]="catEs?.item">{{catEs?.item.desCategoriaEscluse}}</option>
+              </select>
+              <!-- div *ngIf="f?.categoriaEscluse?.errors" class="text-danger">
+                <div *ngIf="f?.categoriaEscluse?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+              </div -->
+          </div>
+          <div class="form-group col-sm-12 col-md-3">
+              <label for="nLav">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_IN_CAT' | translate}}</label>
+              <input type="text"prodisDigitOnly formControlName="nLavAppartartCategoria" length="5" class="form-control"  id="nLav">
+              <!-- div *ngIf="f?.nLavAppartartCategoria?.errors" class="text-danger">
+                <div *ngIf="f?.nLavAppartartCategoria?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+              </div -->
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <!-- <button type="button" (click)="resetFiltri()" class="btn btn-link">ANNULLA FILTRI</button>  -->
+          <button type="button" class="btn btn-outline-secondary btn-sm"
+              (click)="onClickReset()">ANNULLA</button>
+        </div>
+        <div class="col-auto">
+          <button type="button"
+            [disabled]="!selectedItem"
+            (click)="deleteCatEscl()"
+            class="btn btn-outline-secondary btn-sm">ELIMINA</button>
+      </div>
+        <div class="col-auto">
+            <button type="button"
+            (click)="conferma()"
+            class="btn btn-outline-secondary btn-sm"
+              >CONFERMA</button>
+        </div>
+      </div>
+</form>
+<h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.LIST_CAT_ESCL' | translate}}</h4>
+<form *ngIf="formSelectedItem" [formGroup]="formSelectedItem">
+  <prodis-paginated-array-table *ngIf="categorieEscluse && categorieEscluse.length > 0" [columnNumber]="3" [pagedResponse]="categorieEscluse" [limit]="5">
+    <ng-template prodisPaginationHead>
+      <tr>
+        <th></th>
+        <th>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.TYPE_CAT_ESCL' | translate}}</th>
+        <th>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_IN_CAT' | translate}}</th>
+      </tr>
+    </ng-template>
+    <ng-template prodisPaginationBody let-item>
+      <tr>
+        <td>
+          <input [value]="item" formControlName="categoriaEsclusa" (change)="onClickChange(item)" type="radio">
+        </td>
+        <td>{{item?.categoriaEscluse?.desCategoriaEscluse}}</td>
+        <td>{{item?.nLavAppartartCategoria}}</td>
+      </tr>
+    </ng-template>
+    </prodis-paginated-array-table>
+    <div *ngIf="!categorieEscluse || (categorieEscluse && categorieEscluse.length <= 0)" class="alert alert-warning" role="alert">
+      {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+    </div>
+</form>
+<div class="row">
+  <div class="col"></div>
+  <div class="col-auto">
+    <button type="button"
+      (click)="salvaInBozza()"
+      class="btn btn-primary ml-auto btn-lg"
+      >{{'APP.SAVE_DRAFT' | translate }}</button>
+  </div>
+</div>

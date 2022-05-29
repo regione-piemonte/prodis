@@ -1,0 +1,95 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- Assunzione pubblica selezione (art. 7 c. 3 L. 68/99 - riservato alla Banca d'Italia) inserimento -->
+<h3>Assunzione pubblica selezione (art. 7 c. 3 L. 68/99 - riservato alla Banca d'Italia)</h3>
+<form *ngIf="flagForm" [formGroup]="formAssPubbliche">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="regione">Regione</label>
+            <select id="regione"
+                name="regione" formControlName="regione" class="form-select">
+                <option [ngValue]="null" disabled>Seleziona una Regione</option>
+                <option *ngFor="let regione of elencoRegioni" [ngValue]="regione">{{regione.dsProTRegione}}</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="saldoDisab">Saldo disabili</label>
+          <input type="text" prodisDigitOnly formControlName="saldoDisabili" class="form-control"  id="saldoDisab" maxlength="6" pattern="[0-9]+">
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="saldoEx">Saldo ex. Art 18</label>
+          <input type="text" prodisDigitOnly formControlName="saldoExArt18" class="form-control"  id="saldoEx" maxlength="6" pattern="[0-9]+">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-12">
+            <label for="note">Note</label>
+            <textarea class="form-control" formControlName="dsNote" id="note" rows="3" maxlength="2000"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <button type="button"  class="btn btn-outline-secondary btn-sm"
+              (click)="onClickReset()">ANNULLA</button>
+        </div>
+        <div class="col-auto">
+          <button type="button"
+          [disabled]="!selectedItem"
+          (click)="onClickCancella()"
+          class="btn btn-outline-secondary btn-sm"
+            >ELIMINA</button>
+      </div>
+          <div class="col-auto">
+              <button type="button"
+              [disabled]="!formAssPubbliche.valid"
+              (click)="conferma()"
+              class="btn btn-outline-secondary btn-sm"
+                >CONFERMA</button>
+          </div>
+      </div>
+</form>
+<h4>Elenco Assunzioni mediante pubblica selezione</h4>
+<div class="row">
+    <div class="col">
+      <form *ngIf="formElencoAssPubb" [formGroup]="formElencoAssPubb">
+        <div *ngIf="elencoAssunzioni && elencoAssunzioni.length > 0" class="scrollbar-table scrollbar-primary">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th></th>
+                <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.REG' | translate}}</th>
+                <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.DISABLED_BALANCE' | translate}}</th>
+                <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.DISABLED_EX_ART_18' | translate}}</th>
+                <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.NOTE' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let el of elencoAssunzioni">
+                  <td><input [value]="el" formControlName="item" (change)="setItemInForm(el)" type="radio"></td>
+                  <td>{{el?.regione?.dsProTRegione}}</td>
+                  <td>{{el?.saldoDisabili}}</td>
+                  <td>{{el?.saldoExArt18}}</td>
+                  <td>{{el?.dsNote}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div><!-- /scrollbar-table-->
+      </form>
+      <div *ngIf="!elencoAssunzioni || (elencoAssunzioni && elencoAssunzioni.length <= 0)" class="alert alert-warning" role="alert">
+        {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+      </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col">
+  </div>
+  <div class="col-auto">
+    <button type="submit"
+    (click)="onClickSalvaInBozza()"
+    class="btn btn-primary ml-auto btn-lg"
+    [disabled]="cfDisabled"
+    >{{'APP.SAVE_DRAFT' | translate }}</button>
+  </div>
+</div>

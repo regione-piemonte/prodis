@@ -1,0 +1,13 @@
+Utente:
+  type: object
+  properties:
+    codiceFiscale:
+      type: string
+    cognome:
+      type: string
+    email:
+      type: string
+    id:
+      type: integer
+    nome:
+      type: string

@@ -1,0 +1,28 @@
+AssPubbliche:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dsNote:
+      type: string
+    id:
+      type: object
+      $ref: '#/definitions/AssPubblichePK'
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'
+    regione:
+      type: object
+      $ref: '#/definitions/Regione'
+    saldoDisabili:
+      type: number
+    saldoExArt18:
+      type: number

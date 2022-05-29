@@ -1,0 +1,128 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- Dati prospetto insrimento -->
+
+<form *ngIf="flagForm" [formGroup]="form">
+    <div class="row">
+        <div class="col-sm-12 col-md-3">
+            <label for="dataRifProsp">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_REF_PROS' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <div class="form-group">
+                <div class="input-group">
+                     <label class="sr-only" for="dataRifP">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_REF_PROS' | translate}}</label>
+                    <input class="form-control"
+                            name="dataRifProsp" (change)="onChange()" maxlength="10" (dateSelect)="datePickerChange($event)" formControlName="dataRiferimentoProspetto" ngbDatepicker #d_dataRifProsp="ngbDatepicker" id="dataRifProsp">
+                    <div class="input-group-append">
+                        <button 
+                            [disabled]="disableDataRifProsp"
+                            class="btn btn-outline-primary calendar" 
+                            (click)="d_dataRifProsp.toggle()" type="button">
+                            <span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="f?.dataRiferimentoProspetto?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.TAB_DATI_PROSP.SUB_TIT.GRAD' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label for="dataAtto">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_ACT' | translate}}</label>
+            <div class="form-group">
+                <div class="input-group" formGroupName="prospettoGradualita">
+                     <label class="sr-only" for="dataAtto">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.DATE_ACT' | translate}}</label>
+                    <input class="form-control"
+                            name="dataAtto" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataAtto" ngbDatepicker #d_dataAtto="ngbDatepicker" id="dataAtto">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dataAtto.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.prospettoGradualita.get('dataAtto')?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-4" formGroupName="prospettoGradualita">
+            <label for="estrAtto">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.EXTREME_ACT' | translate}}</label>
+            <input type="text" (change)="onChange()" formControlName="estremiAtto" class="form-control" id="estrAtto" maxlength="100">
+        </div>
+        <div class="col-sm-12 col-md-2">
+            <label for="dataTrasformazione">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.TRANSFORM_DATE' | translate}}</label>
+            <div class="form-group">
+                <div class="input-group" formGroupName="prospettoGradualita">
+                     <label class="sr-only" for="dataTransform">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.TRANSFORM_DATE' | translate}}</label>
+                     <input class="form-control"
+                            name="dataTrasformazione" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataTrasformazione" ngbDatepicker #d_dataTransform="ngbDatepicker" id="dataTrasformazione">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dataTransform.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.prospettoGradualita?.get('dataTrasformazione')?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+                
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2" formGroupName="prospettoGradualita">
+            <label for="perc">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.PERCENT' | translate}}</label>
+            <input type="text" prodisPercDigitOnly (change)="onChange()" formControlName="percentuale" class="form-control" id="perc"  maxlength="3" pattern="[0-9]+">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3"  formGroupName="prospettoGradualita">
+            <label for="numAss"> {{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.NUMB_AVAILABLE_HIRES' | translate}}</label>
+            <input type="text" prodisDigitOnly (change)="onChange()" formControlName="nAssunzioniLavPreTrasf" class="form-control" id="numAss" maxlength="6" pattern="[0-9]+">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.TAB_DATI_PROSP.SUB_TIT.SOSP_NAT' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="sospmob">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.SOSP_MOB' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" [value]="'S'" (change)="onChangeFlagAssPubbl()" formControlName="flgSospensionePerMobilita" type="radio" name="flgSospensionePerMobilita" id="sospmob_si">
+                <label class="form-check-label" for="sospmob_si">Si</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" [value]="'N'" (change)="onChangeFlagAssPubbl()" type="radio" formControlName="flgSospensionePerMobilita" name="flgSospensionePerMobilita" id="sospmob_no">
+                <label class="form-check-label" for="sospmob_no">No</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2">
+            <label for="datafineSosp">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.END_DATE_SOSP' | translate}}</label>
+            <div class="form-group">
+                <div class="input-group">
+                     <label class="sr-only" for="dataRifP">{{ 'PROSPETTO.TAB_DATI_PROSP.FIELD.END_DATE_SOSP' | translate}}</label>
+                     <input class="form-control"
+                            name="dFineSospensioneQ1" prodisHasValueClass (change)="onChange()" (dateSelect)="datePickerChange($event)" (change)="onChange()" ngbDatepicker formControlName="dFineSospensioneQ1" #d_dfineSosp="ngbDatepicker" id="dFineSospensioneQ1">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary calendar" (click)="d_dfineSosp.toggle()" type="button"><span class="sr-only">{{ 'PROSPETTO.APP.OPEN_CALENDAR' | translate}}</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.dFineSospensioneQ1?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>
+  <div class="row">
+      <div class="col">
+        <button type="button"  class="btn btn-outline-secondary btn-sm"
+            (click)="onClickReset()">ANNULLA</button>
+      </div>
+      <div class="col-auto">
+          <button type="submit"
+          (click)="onClickConferma()"
+          [disabled]="cfDisabled || form.invalid"
+          class="btn btn-primary ml-auto btn-lg"
+          >{{'APP.SAVE_DRAFT' | translate }}</button>
+      </div>
+  </div>

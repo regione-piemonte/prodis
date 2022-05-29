@@ -1,0 +1,61 @@
+LavoratoriInForza:
+  type: object
+  properties:
+    assunzioneProtetta:
+      type: object
+      $ref: '#/definitions/AssunzioneProtetta'
+    categoriaAssunzione:
+      type: string
+    categoriaSoggetto:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    codiceFiscale:
+      type: string
+    cognome:
+      type: string
+    comune:
+      type: object
+      $ref: '#/definitions/Comune'
+    contratti:
+      type: object
+      $ref: '#/definitions/Contratti'
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataFineRapporto:
+      type: string
+      format: date-time
+    dataInizioRapporto:
+      type: string
+      format: date-time
+    dataNascita:
+      type: string
+      format: date-time
+    flgCompletato:
+      type: string
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    istat2001livello5:
+      type: object
+      $ref: '#/definitions/Istat2001livello5'
+    nome:
+      type: string
+    orarioSettContrattualeMin:
+      type: number
+    orarioSettPartTimeMin:
+      type: number
+    percentualeDisabilita:
+      type: number
+    sesso:
+      type: string
+    statiEsteri:
+      type: object
+      $ref: '#/definitions/StatiEsteri'

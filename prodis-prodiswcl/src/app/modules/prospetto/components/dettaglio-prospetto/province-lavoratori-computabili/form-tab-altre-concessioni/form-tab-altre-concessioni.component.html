@@ -1,0 +1,267 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.CONV' | translate}}</h4>
+<form *ngIf="show" [formGroup]="form">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provConvenzione">
+            <label for="statoConcessConvenzione">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.STATO' | translate}}</label>
+            <select id="statoConcessConvenzione"
+                formControlName="statoConcessione"
+                (change)="onChange()"
+                class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let concess of comboStatoConcessione" [ngValue]="concess">{{concess?.descStatoConcessione}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="dataAtto">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_ACT' | translate}}</label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provConvenzione">
+                  <input class="form-control" formControlName="dataAtto" (dateSelect)="datePickerChange($event)" (change)="onChange()"
+                          name="dataAtto" ngbDatepicker #d_atto="ngbDatepicker" id="dataAtto">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_atto.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provConvenzione?.get('dataAtto')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+              </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provConvenzione">
+            <label for="estrAtto">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXTR_ACT' | translate}}</label>
+            <input type="text" (change)="onChange()" formControlName="estremiAtto" prodisHasValueClass class="form-control" id="estrAtto">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3" formGroupName="provConvenzione">
+            <label for="assunzioneProtetta">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.TYPE' | translate}}</label>
+            <select id="assunzioneProtetta"
+                formControlName="assunzioneProtetta"
+                (change)="onChange()"
+                name="assunzioneProtetta" class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let ass of comboTipologiaAssunzione" [ngValue]="ass">{{ass?.descAssunzioneProtetta}}</option>
+            </select>
+            <!-- <div *ngIf="f.categoriaEscluse.touched && f.categoriaEscluse.errors" class="text-danger">
+              <div *ngIf="f.categoriaEscluse.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="dataStipula">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_STIPULATED' | translate }}</label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provConvenzione">
+                  <input class="form-control"(change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataStipula"
+                          name="dataStipula" ngbDatepicker #d_stipula="ngbDatepicker" id="dataStipula">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_stipula.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provConvenzione?.get('dataStipula')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="dataScadenza">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXPIRY_DATE' | translate }}</label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provConvenzione">
+                  <input class="form-control" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataScadenza"
+                          name="dataScadenza" ngbDatepicker #d_scadenza="ngbDatepicker" id="dataScadenza">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_scadenza.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provConvenzione?.get('dataScadenza')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provConvenzione">
+            <label for="numLavPrevConvQ2">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXPECTED_WORKER' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly (change)="onChange()" prodisHasValueClass formControlName="numLavPrevConvQ2" class="form-control" id="numLavPrevConvQ2">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.EXEMPTION' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provEsonero">
+            <label for="statoConcessEsonero">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.STATO' | translate}}</label>
+            <select id="statoConcessEsonero"
+                formControlName="statoConcessione"
+                (change)="onChange()"
+                name="statoConcessEsonero" class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let concess of comboStatoConcessione" [ngValue]="concess">{{concess?.descStatoConcessione}}</option>
+            </select>
+            <!-- <div *ngIf="f.categoriaEscluse.touched && f.categoriaEscluse.errors" class="text-danger">
+              <div *ngIf="f.categoriaEscluse.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="dataAttoEs">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.DATE_ACT' | translate}}</label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provEsonero">
+                                  <input class="form-control" (dateSelect)="datePickerChange($event)" (change)="onChange()" formControlName="dataAtto"
+                          name="dataAttoEs" ngbDatepicker #d_atto_es="ngbDatepicker" id="dataAttoEs">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_atto_es.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provEsonero?.get('dataAtto')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="dataAttoFinoAl">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.UNTIL_THE' | translate}} </label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provEsonero">
+                  <input class="form-control" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataAttoFinoAl"
+                          name="dataAttoFinoAl" ngbDatepicker #d_finoAl="ngbDatepicker" id="dataAttoFinoAl">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_finoAl.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provEsonero?.get('dataAttoFinoAl')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provEsonero">
+            <label for="estrAttoEs">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXTR_ACT' | translate}}</label>
+            <input type="text" (change)="onChange()" formControlName="estremiAtto" prodisHasValueClass class="form-control" id="estrAttoEs">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provEsonero">
+            <label for="percentuale">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.PERCENT' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly formControlName="percentuale" prodisHasValueClass class="form-control" id="percentuale">
+        </div>
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provEsonero">
+            <label for="nLavoratoriEsonero">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP_ESO' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly maxlength="6" formControlName="nLavoratoriEsonero" prodisHasValueClass class="form-control" id="nLavoratoriEsonero">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.EXEMPTION_AUTO_CERT' | translate}}</h4>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <!-- cambiare etichetta -->
+            <label for="dataAutocertProvEsonero">Data autocertificazione</label>
+            <div class="form-group">
+                <div class="input-group" formGroupName="provEsoneroAutocert">
+                    <input class="form-control" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataAutocert"
+                            name="dataAutocertProvEsonero" ngbDatepicker #d_autoCert="ngbDatepicker" id="dataAutocertProvEsonero">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary calendar" (click)="d_autoCert.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                    </div>
+                </div>
+                <div *ngIf="f?.provEsoneroAutocert?.get('dataAutocert')?.invalid " class="text-danger">
+                    {{'ERROR.INVALID_DATE' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provEsoneroAutocert">
+            <label for="nLav60x1000">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.EXEMPTION_AUTO_CERT_NUM_LAV_60' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly (change)="onChange()" formControlName="nLav60x1000" prodisHasValueClass class="form-control" id="nLav60x1000">
+        </div>
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provEsoneroAutocert">
+            <label for="percentualeEsAutocert">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.PERCENT' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly (change)="onChange()" formControlName="percentualeEsAutocert" prodisHasValueClass class="form-control" id="nLav60x1000">
+        </div>
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provEsoneroAutocert">
+            <label for="nLavEsoneroAutocert">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP_ESO' | translate}}</label>
+            <input type="text" (change)="onChange()" prodisDigitOnly (change)="onChange()" formControlName="nLavEsoneroAutocert" prodisHasValueClass class="form-control" id="nLav60x1000">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.SOSP' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provSospensione">
+            <label for="statoConcessSosp">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.STATO' | translate}}</label>
+            <select id="statoConcessSosp"
+                formControlName="statoConcessione"
+                (change)="onChange()"
+                name="statoConcessSosp" class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let concess of comboStatoConcessione" [ngValue]="concess">{{concess?.descStatoConcessione}}</option>
+            </select>
+            <!-- <div *ngIf="f.categoriaEscluse.touched && f.categoriaEscluse.errors" class="text-danger">
+              <div *ngIf="f.categoriaEscluse.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+        <div class="form-group col-sm-12 col-md-6" formGroupName="provSospensione">
+            <label for="causale">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.SOSP_CAUSAL' | translate}}</label>
+            <select id="causale"
+                formControlName="causaSospensione"
+                (change)="onChange()"
+                class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let causale of comboCausaSosp" [ngValue]="causale">{{causale?.desCausaSospensione}}</option>
+            </select>
+            <!-- <div *ngIf="f.categoriaEscluse.touched && f.categoriaEscluse.errors" class="text-danger">
+              <div *ngIf="f.categoriaEscluse.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-2">
+            <label for="finseSosp">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.SOSP_END_DATE' | translate}}</label>
+            <div class="form-group">
+              <div class="input-group" formGroupName="provSospensione">
+                  <input class="form-control" (change)="onChange()" (dateSelect)="datePickerChange($event)" formControlName="dataFineSospensioneQ2"
+                          name="finseSosp" ngbDatepicker #d_finseSosp="ngbDatepicker" id="finseSosp">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-primary calendar" (click)="d_finseSosp.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                  </div>
+              </div>
+              <div *ngIf="f?.provSospensione?.get('dataFineSospensioneQ2')?.invalid " class="text-danger">
+                {{'ERROR.INVALID_DATE' | translate}}
+            </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2" formGroupName="provSospensione">
+            <label for="nLavoratori">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_WORKERS_EXMP' | translate}}</label>
+            <input type="text" prodisDigitOnly (change)="onChange()" formControlName="nLavoratori" prodisHasValueClass class="form-control" id="nLavoratori">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.GRADUALITY' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4" formGroupName="provGradualita">
+            <label for="nAssunzioniEffDopoTrasf">{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.FIELD.NUM_HIRES_AFTER_TRANS' | translate}}</label>
+            <input type="text" prodisDigitOnly (change)="onChange()" formControlName="nAssunzioniEffDopoTrasf" prodisHasValueClass class="form-control" id="nAssunzioniEffDopoTrasf">
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.ALTRE_CONCESSIONI.SUB_TITLE.NOTE' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-12">
+            <label for="note">Note</label>
+            <textarea class="form-control" (change)="onChange()" formControlName="note" id="note" rows="3" maxlength="2000"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          <button type="button" (click)="onClickReset()"  class="btn btn-outline-secondary btn-sm">ANNULLA</button>
+        </div>
+        <div class="col-auto">
+          <button
+            [disabled]="form.invalid"
+            type="button"
+            (click)="salvaBozza()"
+            class="btn btn-primary ml-auto btn-lg"
+            >{{'APP.SAVE_DRAFT' | translate }}</button>
+        </div>
+      </div>
+</form>

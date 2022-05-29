@@ -1,0 +1,38 @@
+StatiEsteri:
+  type: object
+  properties:
+    codNazioneMin:
+      type: string
+    datiAziendas:
+      type: array
+      items:  
+        $ref: '#/definitions/DatiAzienda'
+    dsStatiEsteri:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    flgUe:
+      type: string
+    id:
+      type: integer
+    lavoratoriSilps:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriSilp'
+    postiLavoroDisps:
+      type: array
+      items:  
+        $ref: '#/definitions/PostiLavoroDisp'
+    sedeLegales:
+      type: array
+      items:  
+        $ref: '#/definitions/SedeLegale'
+    siglaNazione:
+      type: string

@@ -1,0 +1,89 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+  <div class="col-12">
+    <h3>{{ 'PROSPETTO.RICERCA_RESULTS.TITLE' | translate}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-2 col-lg-2">
+    <p class="filtri">{{ 'PROSPETTO.RICERCA_RESULTS.FIELD.FILTERS_APPLY' | translate}}</p>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-7 filtri">
+    <label *ngIf="filtriRicercaProspetto.numeroProtocollo"><i class="fas fa-check"></i>N. protocollo:
+      {{filtriRicercaProspetto.numeroProtocollo}}</label>
+    <label *ngIf="filtriRicercaProspetto.annoProspetto"><i class="fas fa-check"></i>Anno:
+      {{filtriRicercaProspetto.annoProspetto}}</label>
+    <label *ngIf="filtriRicercaProspetto.codiceFiscaleAzienda"><i class="fas fa-check"></i>Codice fiscale:
+      {{filtriRicercaProspetto.codiceFiscaleAzienda}}</label>
+    <label *ngIf="filtriRicercaProspetto.codiceRegionale"><i class="fas fa-check"></i>Codice regionale:
+      {{filtriRicercaProspetto.codiceRegionale}}</label>
+    <label *ngIf="filtriRicercaProspetto.dataProtocolloDa"><i class="fas fa-check"></i>Data Prot. Da:
+      {{filtriRicercaProspetto.dataProtocolloDa | date: 'dd/MM/yyyy'}}</label>
+    <label *ngIf="filtriRicercaProspetto.dataProtocolloA"><i class="fas fa-check"></i>Data Prot. A:
+      {{filtriRicercaProspetto.dataProtocolloA | date: 'dd/MM/yyyy'}}</label>
+    <label *ngIf="filtriRicercaProspetto.dataRiferimentoDa"><i class="fas fa-check"></i>Data Rif. Da:
+      {{filtriRicercaProspetto.dataRiferimentoDa | date: 'dd/MM/yyyy'}}</label>
+    <label *ngIf="filtriRicercaProspetto.dataRiferimentoA"><i class="fas fa-check"></i>Data Rif. A:
+      {{filtriRicercaProspetto.dataRiferimentoA | date: 'dd/MM/yyyy'}}</label>
+    <label *ngIf="filtriRicercaProspetto.denominazioneAzienda"><i class="fas fa-check"></i>Denominazione:
+      {{filtriRicercaProspetto.denominazioneAzienda}}</label>
+    <label *ngIf="filtriRicercaProspetto.statoProspettos">
+      <i class="fas fa-check"></i>Stato: <div *ngFor="let item of filtriRicercaProspetto.statoProspettos">
+        {{item.descrizione}}</div>
+    </label>
+    <label *ngIf="filtriRicercaProspetto.provincia"><i class="fas fa-check"></i>Provincia:
+      {{filtriRicercaProspetto.provincia.dsProTProvincia}}</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="scrollbar-table scrollbar-primary">
+      <prodis-paginated-table [pagedResponse]="pagedResponse" (changePaginationData)="onChangePaginationData($event)"
+        #pagedTable [columnNumber]="8" [limit]="currentPaginationData.limit">
+        <ng-template prodisPaginationHead>
+          <tr>
+            <th>Anno/Numero protocollo</th>
+            <th>Codice regionale</th>
+            <th>Codice fiscale</th>
+            <th>Denominazione</th>
+            <th>Data riferimento</th>
+            <th>Tipo</th>
+            <th>Stato</th>
+            <th class="azioni">Azioni</th>
+          </tr>
+        </ng-template>
+        <ng-template prodisPaginationBody let-el>
+          <tr>
+            <td>{{el?.annoProtocollo ? el?.annoProtocollo + '/' + el?.numeroProtocollo : ''}}</td>
+            <td>{{el?.codiceComunicazione}}</td>
+            <td>{{el?.datiAzienda?.cfAzienda}}</td>
+            <td>{{el?.datiAzienda?.denominazioneDatoreLavoro}}</td>
+            <td>{{el?.dataRiferimentoProspetto | date: 'dd/MM/yyyy'}}</td>
+            <td>{{el?.comunicazione.descComunicazione}}</td>
+            <td>{{el?.statoProspetto?.descrizione}}</td>
+            <td class="azioni">
+              <a *ngIf="isBottoneVisualizza(el)" (click)="goToDettaglioProspetto(el)" title="Dettaglio">
+                <i class="fas fa-eye"></i>
+              </a>
+              <a *ngIf="isBottoneDuplica(el) && !ruolo?.operatoreProvinciale" (click)="goToDuplicaProspetto(el,true)" title="Duplica"><i
+                  class="fas fa-copy"></i></a>
+              <a *ngIf="isBottoneRettifica(el) && !ruolo?.operatoreProvinciale" (click)="goToRettificaProspetto(el)" title="Rettifica"><i
+                  class="fas fa-hand-paper"></i></a>
+              <a *ngIf="isBottoneModifica(el)" (click)="goToDettaglioProspetto(el,true)" title="Modifica"><i
+                  class="fas fa-edit"></i></a>
+              <a *ngIf="isBottoneElimina(el) && !ruolo?.operatoreProvinciale" (click)="goToEliminaProspetto(el)" title="Elimina"><i
+                  class="fas fa-trash-alt"></i></a>
+              <a *ngIf="isBottoneAnnulla(el) && !ruolo?.operatoreProvinciale" (click)="goToAnnullaProspetto(el)" title="Annulla"><i
+                  class="fas fa-trash-alt"></i></a>
+              <a *ngIf="isBottoneStampa(el)" (click)="goToStampaProspetto(el)" title="stampa"><i
+                    class="fas fa-file-pdf"></i></a>
+            </td>
+          </tr>
+        </ng-template>
+      </prodis-paginated-table>
+    </div>
+  </div>
+</div>

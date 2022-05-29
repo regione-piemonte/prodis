@@ -1,0 +1,55 @@
+RiepilogoProvinciale:
+  type: object
+  properties:
+    baseComputoArt18:
+      type: number
+    baseComputoArt3:
+      type: number
+    catCompensazioneCateProt:
+      type: string
+    catCompensazioneDisabili:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    flgSospensioniInCorso:
+      type: string
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    numCatProtInForza:
+      type: number
+    numCatProtInForzaContDis:
+      type: number
+    numCompensazioneDisabili:
+      type: number
+    numCompensazioniCateProt:
+      type: number
+    numDisabiliInForza:
+      type: number
+    numLavoratoriBaseComputo:
+      type: number
+    numLavoratoriSospensione:
+      type: number
+    numPosizioniEsonerate:
+      type: number
+    numScopertureCatProt:
+      type: number
+    numScopertureCatProtReali:
+      type: number
+    numScopertureDisabili:
+      type: number
+    numScopertureDisabiliReali:
+      type: number
+    quotaRiservaArt18:
+      type: number
+    quotaRiservaDisabili:
+      type: number

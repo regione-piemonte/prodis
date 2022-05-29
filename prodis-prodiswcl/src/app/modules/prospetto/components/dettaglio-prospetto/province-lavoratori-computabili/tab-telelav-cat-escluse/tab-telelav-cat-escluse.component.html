@@ -1,0 +1,37 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.TELE_LAV_FULL_TIME' | translate}}</h4>
+<div *ngIf="selectedItem" class="lettura">
+  <div class="row">
+      <div class="col-sm-12 col-md-3">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_EMPLOYED' | translate}} <span class="valore">{{datiProvinciali?.nTelelavoroFt }}</span></div>
+  </div>
+  <h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.CAT_ESCL' | translate}}</h4>
+  <div class="row">
+      <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.TYPE_CAT_ESCL' | translate}} <span class="valore">{{selectedItem?.categoriaEscluse?.desCategoriaEscluse }}</span></div>
+      <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_IN_CAT' | translate}} <span class="valore">{{selectedItem?.nLavAppartartCategoria }}</span></div>
+  </div>
+</div>
+<h4>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.SUB_TITLE.LIST_CAT_ESCL' | translate}}</h4>
+<prodis-paginated-array-table *ngIf="categorieEscluse && categorieEscluse.length > 0" [columnNumber]="3" [pagedResponse]="categorieEscluse" [limit]="5">
+  <ng-template prodisPaginationHead>
+    <tr>
+      <th scope="col"></th>
+      <th>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.TYPE_CAT_ESCL' | translate}}</th>
+      <th>{{ 'PROSPETTO.PROVINCE.TELELAV_CAT_ESCL.FIELD.NUM_WORKERS_IN_CAT' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template prodisPaginationBody let-item>
+    <tr>
+      <td>
+        <input name="r" [checked]="item?.id === categorieEscluse[0]?.id" (change)="onClickChange(item)" type="radio">
+      </td>
+      <td>{{item?.categoriaEscluse?.desCategoriaEscluse}}</td>
+      <td>{{item?.nLavAppartartCategoria}}</td>
+    </tr>
+  </ng-template>
+  </prodis-paginated-array-table>
+  <div *ngIf="!categorieEscluse || (categorieEscluse && categorieEscluse.length <= 0)" class="alert alert-warning" role="alert">
+    {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+  </div>

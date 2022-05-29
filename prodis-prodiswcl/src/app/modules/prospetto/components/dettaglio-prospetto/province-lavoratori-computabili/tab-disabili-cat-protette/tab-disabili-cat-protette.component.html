@@ -1,0 +1,32 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.DATA_REL_EMPL' | translate}}</h3>
+
+<h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.FULL_TIME_DISABLED' | translate}}</h4>
+
+<!-- Disabili a tempo pieno in sola lettura-->
+<div class="lettura">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.DISABLED_68_9' | translate}} <span class="valore">{{datiProvinciali?.nDisabiliInForza ? datiProvinciali?.nDisabiliInForza : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_CENTRAL_BLIND' | translate}} <span class="valore">{{datiProvinciali?.nCentralTelefoNonvedenti ? datiProvinciali?.nCentralTelefoNonvedenti : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PLACES_CENTRAL_BLIND' | translate}} <span class="valore">{{datiProvinciali?.nPostiPrevCentraliNonved ? datiProvinciali?.nPostiPrevCentraliNonved : 'N.D.'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_THERAPISTS' | translate}} <span class="valore">{{datiProvinciali?.nTerariabMassofisNonved ? datiProvinciali?.nTerariabMassofisNonved : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-4">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PLACES_PHYSIO' | translate}} <span class="valore">{{datiProvinciali?.nPostiPrevMassofisNonved ? datiProvinciali?.nPostiPrevMassofisNonved : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.PROTECTED_CAT_FULL_PART_TIME' | translate}}</h4>
+    <!-- Categorie protette a tempo pieno e part-time lettura-->
+    <div class="row">
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PROTECTED_CAT_FORCE' | translate}} <span class="valore">{{datiProvinciali?.nCateProtForza ? datiProvinciali?.nCateProtForza : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PROTECTED_CAT_FORCE_UNDER_DATE' | translate}} <span class="valore">{{datiProvinciali?.nCateProtForzaA17012000 ? datiProvinciali?.nCateProtForzaA17012000 : 'N.D.'}}</span></div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.DATA_NON_EMPLOYEE_PERSONNEL' | translate}}</h4>
+    <!-- LETTURA -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_DISABLED_WORKER_ART34' | translate}} <span class="valore">{{datiProvinciali?.nSomministratiFt ? datiProvinciali?.nSomministratiFt : 'N.D.'}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_DISABLED_WORKER_AGRREMENT' | translate}} <span class="valore">{{datiProvinciali?.nConvenzioni12bis14Ft ? datiProvinciali?.nConvenzioni12bis14Ft : 'N.D.'}}</span></div>
+    </div>
+</div>

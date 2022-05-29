@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>Dettaglio part-time</h3>
+<div class="lettura">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">Tipologia lavoratore <span class="valore">{{selectedItem?.tipoLav?.dsTipoRipropPt}}</span></div>
+    <div class="col-sm-12 col-md-3">Orario settimanale contrattuale (ore:minuti) <span class="valore">{{ selectedItem?.orarioSettContr }}</span></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-4">Orario settimanale svolto part-time/intermittenti <span class="valore">{{ selectedItem?.orarioSettSv }}</span></div>
+    <div class="col-sm-12 col-md-3">N° lavoratori <span class="valore">{{selectedItem?.nLav}}</span></div>
+  </div>
+</div>
+<h3>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.SUB_TITLE.LIST_WORKERS_PT' | translate}}</h3>
+<prodis-paginated-array-table *ngIf="elencoCustomObj && elencoCustomObj.length > 0" [columnNumber]="5" [pagedResponse]="elencoCustomObj" [limit]="5">
+  <ng-template prodisPaginationHead>
+    <tr>
+        <th></th>
+        <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.TYPE_WORKER' | translate}}</th>
+        <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.NUM_WORKERS' | translate}}</th>
+        <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.WEEK_TIME_C' | translate}}</th>
+        <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.WEEK_TIME_PT' | translate}}</th>
+      </tr>
+  </ng-template>
+  <ng-template prodisPaginationBody let-item>
+    <tr>
+      <td><input name="r" [checked]="item?.id === elencoCustomObj[0]?.id" (change)="selectedItem=item" type="radio"></td>
+      <td>{{item?.tipoLav?.dsTipoRipropPt}}</td>
+        <td>{{item?.nLav}}</td>
+        <td>{{item?.orarioSettContr}}</td>
+        <td>{{item?.orarioSettSv}}</td>
+    </tr>
+  </ng-template>
+</prodis-paginated-array-table>
+<div *ngIf="!elencoCustomObj || (elencoCustomObj && elencoCustomObj.length <= 0)" class="alert alert-warning" role="alert">
+  {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+</div>

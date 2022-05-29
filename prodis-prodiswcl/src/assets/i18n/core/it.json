@@ -1,0 +1,285 @@
+{
+  "APP": {
+    "BACK": "Indietro",
+    "CLOSE": "Chiudi",
+    "CONFIRM": "Conferma",
+    "EXIT": "Esci",
+    "FIND_CANCEL": "Annulla",
+    "LOADING": "Caricamento...",
+    "NO_DATA": "N.D.",
+    "NO_DATA_FOUND": "Non ci sono dati",
+    "REMOVE_FILTERS": "Rimuovi filtri",
+    "SAVE_DRAFT": "Salva in bozza",
+    "SEARCH": "Cerca",
+    "TITLE": "Prospetto disabili"
+  },
+  "ERROR": {
+    "ERROR_TITLE": "Errore",
+    "FIELD": {
+      "FILE": {
+        "EXT_INVALID": "Estensione non valida"
+      },
+      "FISCAL_CODE": {
+        "INVALID": "Codice fiscale non valido",
+        "INVALID_CHAR": "Codice fiscale non valido: deve essere un alfanumerico",
+        "INVALID_LENGTH": "Codice fiscale non valido: deve essere un alfanumerico di 16 caratteri"
+      },
+      "REQUIRED": "Campo obbligatorio"
+    },
+    "INVALID_DATE": "Data non valida",
+    "POPUP_BLOCKED": "Si prega di disabilitare il blocco dei Pop-up e di riprovare.",
+    "VALIDATION_FORM": {
+      "ANNO_AND_NUMERO_PROT": "Il numero protocollo e l'anno devono essere valorizzati contemporaneamente",
+      "DATA_DA_AND_A_PROT": "Per la data protocollo e’ necessaria la compilazione di entrambi i campi insieme.",
+      "DATA_DA_AND_A_RIF": "Per la data riferimento e’ necessaria la compilazione di entrambi i campi insieme.",
+      "DENOM_AZIENDA_MIN_TRE_CARATTERI": "La ricerca può avvenire per denominazione intera oppure in modo parziale (minimo 3 caratteri)."
+    }
+  },
+  "FOOTER": {
+    "ACCESSIBILITY": "Dichiarazione di accessibilità",
+    "COOKIE_POLICY": "Cookie policy",
+    "PRIVACY": "Note legali e privacy"
+  },
+  "HEADER": {
+    "ROLE": "Ruolo",
+    "SETTORE": {
+      "DEFAULT_DESCRIPTION": "Selezionare un settore"
+    }
+  },
+  "LANGUAGE": {
+    "ENGLISH": "ENG",
+    "ITALIAN": "ITA"
+  },
+  "MESSAGES": {
+    "SYS-SYS-E-0007": null
+  },
+  "PAGINATION": {
+    "FIRST": "Inizio",
+    "INFO_FOOTER": "{{first}} - {{last}} di {{total}}",
+    "INFO_FOOTER_DESC": "Righe per pagina",
+    "INFO_HEADER": "{{total}}",
+    "LAST": "Fine",
+    "NEXT": "Succ.",
+    "PREV": "Prec."
+  },
+  "PROSPETTO": {
+    "APP": {
+      "OPEN_CALENDAR": "Apri calendario"
+    },
+    "ASS_PUB_SEL": {
+      "TABLE": {
+        "FIELD": {
+          "DISABLED_BALANCE": "Saldo disabili",
+          "DISABLED_EX_ART_18": "Saldo ex Art.18",
+          "NOTE": "Note",
+          "REG": "Regione"
+        }
+      },
+      "TITLE": "Assunzione pubblica selezione (art. 7 c. 3 L. 68/99 - riservato alla Banca d'Italia)",
+      "WARN_MSG": "Non ci sono elementi da segnalare"
+    },
+    "ESITO_INVIO": {
+      "TITLE": "Notifica invio prospetto"
+    },
+    "PROV": {
+      "BUTTON": {
+        "ADD_DATA_PROV": "AGGIUNGI DATI PROVINCIALI",
+        "DOWNLOAD_WORKER": "Download lavoratori",
+        "UPLOAD_WORKER": "Upload lavoratori"
+      },
+      "FIELD": {
+        "PROV_LIST": "Elenco province",
+        "SELECT_PROV": "Seleziona provincia"
+      },
+      "TABLE": {
+        "FIELD": {
+          "CAT_EXCLUDE_ART_18": "Cat. escluse art.18",
+          "CONFIRMED": "Confermato",
+          "CONVENTIONS": "Convenz.",
+          "FULL_T_DISABLED": "Disabili a tempo pieno",
+          "NUMB_PLACES_AVAIBLE": "N. posti disponibili",
+          "NUMB_WORKER_EMPL": "N. lav. dipendenti",
+          "NUMB_WORKER_GRADUALITY": "N. lav. gradualità",
+          "NUMB_WORKER_NO_EXEMPTION": "N. lav. in esonero",
+          "PROTECTED_CAT": "Cat.protette",
+          "PROTECTED_CAT_IN_FORCE_FROM": "Cat.protette in forza al 17/01/2000",
+          "PROV": "Provincia",
+          "PT": "PT e interm.(no telelav.)",
+          "SOSP_IN_PROGRESS": "Sosp. in corso",
+          "TELEWORKIN_EX_CAT_DISABLE": "Telelavoro cat.escluse disabili"
+        }
+      }
+    },
+    "PROVINCE": {
+      "ALTRE_CONCESSIONI": {
+        "FIELD": {
+          "DATE_ACT": "Data atto",
+          "DATE_STIPULATED": "Data stipula",
+          "EXEMPTION_AUTO_CERT_DATE": "Data autocertificazione",
+          "EXEMPTION_AUTO_CERT_NUM_LAV_60": "N° lavoratori 60 per mille",
+          "EXPECTED_WORKER": "Numero lavoratori previsti",
+          "EXPIRY_DATE": "Data scadenza",
+          "EXTR_ACT": "Estremi atto",
+          "NUM_HIRES_AFTER_TRANS": "Num. Assunzioni effettuate dopo la trasformazione",
+          "NUM_WORKERS_EXMP": "N.lavoratori",
+          "NUM_WORKERS_EXMP_ESO": "N.lavoratori esonero",
+          "PERCENT": "Percentuale",
+          "SOSP_CAUSAL": "Causale",
+          "SOSP_END_DATE": "Data fine sospensione",
+          "SOSP_STATUS": "Stato",
+          "STATO": "Stato",
+          "TYPE": "Tipologia",
+          "UNTIL_THE": "Fino al"
+        },
+        "SUB_TITLE": {
+          "CONV": "Convenzione",
+          "EXEMPTION": "Esonero parziale autorizzato art 5, co3 L.68/99",
+          "EXEMPTION_AUTO_CERT": "Esonero parziale autocertificato 60 per mille art. 5, co3-bis L.68/99",
+          "GRADUALITY": "Gradualità",
+          "NOTE": "Note",
+          "SOSP": "Sospensione"
+        }
+      },
+      "DETTAGLIO_PROV": {
+        "FIELD": {
+          "ADDRESS": "Indirizzo",
+          "CAP": "CAP",
+          "COD_COMUNE": "Codice comune",
+          "COMUNE": "Comune",
+          "FAX": "Fax",
+          "MAIL": "Email",
+          "NAME": "Nome",
+          "SURNAME": "Cognome",
+          "TEL": "Telefono",
+          "TOTAL_NUMB_EMPL": "Numero totale lavoratori dipendenti"
+        },
+        "SUB_TITLE": {
+          "REF_DATAS": "Dati referente",
+          "REF_OFFICE": "Sede di riferimento"
+        }
+      },
+      "DISABLED_CAT_PROTECTED": {
+        "FIELD": {
+          "DISABLED_68_9": "N° disabili in forza L68/99",
+          "NUM_CENTRAL_BLIND": "N° centralinisti telefonici non vedenti",
+          "NUM_DISABLED_WORKER_AGRREMENT": "N° lavoratori disabili in convenzione art.12-bis e 14",
+          "NUM_DISABLED_WORKER_ART34": "N° lavoratori disabili somministrati art.34,co.3,D.Lgs 81/2015",
+          "NUM_PLACES_CENTRAL_BLIND": "N° posti previsti per centralinisti non vedenti (113/85)",
+          "NUM_PLACES_PHYSIO": "N° posti previsti per i massiofisioterapisti non vedenti(403/71 - I.29/94)",
+          "NUM_PROTECTED_CAT_FORCE": "N° Categorie protette in forza(L.68/99 art.18)",
+          "NUM_PROTECTED_CAT_FORCE_UNDER_DATE": "Di cui N° Categorie protette in forza al 17/01/2000",
+          "NUM_THERAPISTS": "N° terapisti della riabilitazione e massiofisioterapisti non vedenti(403/71 - I.29/94)"
+        },
+        "SUB_TITLE": {
+          "DATA_NON_EMPLOYEE_PERSONNEL": "Dati relativi al personale non dipendente computabile nella quota di riserva a tempo pieno",
+          "DATA_REL_EMPL": "Dati relativi al personale dipendente",
+          "FULL_TIME_DISABLED": "Disabili a tempo pieno",
+          "PROTECTED_CAT_FULL_PART_TIME": "Categorie protette a tempo pieno e part-time"
+        }
+      },
+      "PART_TIME_INTERM": {
+        "FIELD": {
+          "NUM_WORKERS": "N° lavoratori",
+          "TYPE_WORKER": "Tipologia Lavoratore",
+          "WEEK_TIME_C": "orario settimanale contrattuale (ore:minuti)",
+          "WEEK_TIME_PT": "orario settimanale svolto part-time/intermittenti"
+        },
+        "SUB_TITLE": {
+          "LIST_WORKERS_PT": "Elenco lavoratori part time"
+        }
+      },
+      "TELELAV_CAT_ESCL": {
+        "FIELD": {
+          "NUM_WORKERS_EMPLOYED": "N° lavoratori impiegati in azienda",
+          "NUM_WORKERS_IN_CAT": "N° di lavoratori appartenenti alla categoria",
+          "TYPE_CAT_ESCL": "Tipo categoria esclusa dal computo"
+        },
+        "SUB_TITLE": {
+          "CAT_ESCL": "Categorie escluse",
+          "LIST_CAT_ESCL": "Elenco categorie escluse dal computo",
+          "TELE_LAV_FULL_TIME": "Telelavoro a tempo pieno"
+        }
+      }
+    },
+    "RICERCA": {
+      "FIELD": {
+        "CF_CORP": "Codice fiscale azienda",
+        "CODE_REG": "Codice regionale",
+        "NAME_CORP": "Denominazione azienda",
+        "PROTOCOL": {
+          "DATE_FROM": "Data da",
+          "DATE_TO": "Data a",
+          "NUM": "N° protocollo",
+          "TITLE": "Protocollo",
+          "YEAR": "Anno riferimento protocollo"
+        },
+        "PROVINCE_COMPANY": "Provincia sede azienda",
+        "REFERENCE": {
+          "DATE_FROM": "Data da",
+          "DATE_TO": "Data a",
+          "TITLE": "Riferimento"
+        },
+        "STATE_PROSP": "Stato prospetto"
+      }
+    },
+    "RICERCA_RESULTS": {
+      "FIELD": {
+        "FILTERS_APPLY": "Filtri applicati"
+      },
+      "TITLE": "Prospetti"
+    },
+    "SUNTO": {
+      "FIELD": {
+        "CFI": "Codice fiscale",
+        "COD_REG": "Codice regionale",
+        "DATE_REF": "Data riferimento",
+        "DENOM_CORP": "Denominazione azienda",
+        "SEND_DATE": "Data invio",
+        "STATE_PROSP": "Stato prospetto",
+        "TYPE_COMMUN": "Tipo comunicazione",
+        "YEAR_PROT": "Anno / protocollo"
+      }
+    },
+    "TAB_DATI_PROSP": {
+      "FIELD": {
+        "DATE_ACT": "Data atto",
+        "DATE_REF_PROS": "Data riferimento prospetto",
+        "END_DATE_SOSP": "Data fine sospensione",
+        "EXTREME_ACT": "Estremi atto",
+        "NUMB_AVAILABLE_HIRES": "N° assunzioni di lavoratori non disabili effettuate prima della trasformazione",
+        "PERCENT": "Percentuale",
+        "SOSP_MOB": "Sospensione per mobilità",
+        "TRANSFORM_DATE": "Data trasformazione"
+      },
+      "SUB_TIT": {
+        "GRAD": "Gradualità",
+        "SOSP_NAT": "Sospensione a carattere nazionale"
+      },
+      "TITLE": "Dati prospetto"
+    }
+  },
+  "RICERCA_COOD_REG": {
+    "FIELD": {
+      "ID_LIST": "Elenco ID (separati da virgola)",
+      "MAX_NUMB": "Numero massimo",
+      "PROTOCOL": "Protocollo"
+    },
+    "INSTRUCTIONS": "Per recuperare i prospetti non inviati inserire un valore numerico che indica quanti recuperarne.\nIn alternativa è possibille effettuare un recupero puntuale indicando gli identificativi dei prospetti, oppure un range di protocollazione",
+    "TITLE": "Prospetto disabili web - recupero codice regionale"
+  },
+  "SIDEBAR": {
+    "HOME": "Home",
+    "INT": {
+      "INTERVENTION": {
+        "INSERT": null,
+        "SEARCH": null
+      },
+      "TITLE": null
+    }
+  },
+  "UPLOAD": {
+    "FIELD": {
+      "FILE_XLS": "Selezionare il file xls"
+    }
+  }
+}

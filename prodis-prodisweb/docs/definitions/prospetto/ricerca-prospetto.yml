@@ -1,0 +1,34 @@
+RicercaProspetto:
+  type: object
+  properties:
+    annoProspetto:
+      type: number
+    codiceFiscaleAzienda:
+      type: string
+    codiceFiscaleStudioProf:
+      type: string
+    codiceRegionale:
+      type: string
+    dataProtocolloA:
+      type: string
+      format: date-time
+    dataProtocolloDa:
+      type: string
+      format: date-time
+    dataRiferimentoA:
+      type: string
+      format: date-time
+    dataRiferimentoDa:
+      type: string
+      format: date-time
+    denominazioneAzienda:
+      type: string
+    numeroProtocollo:
+      type: number
+    provincia:
+      type: object
+      $ref: '#/definitions/Provincia'
+    statoProspettos:
+      type: array
+      items:  
+        $ref: '#/definitions/StatoProspetto'

@@ -1,0 +1,7 @@
+RiepilogoDatiProvinciali:
+  type: object
+  properties:
+    riepilogoProvinciales:
+      type: array
+      items:  
+        $ref: '#/definitions/RiepilogoProvinciale'

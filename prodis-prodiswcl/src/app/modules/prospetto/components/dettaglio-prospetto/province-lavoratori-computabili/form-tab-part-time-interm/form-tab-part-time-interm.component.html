@@ -1,0 +1,102 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>Dettaglio part-time</h3>
+<form *ngIf="form" [formGroup]="form" (submit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-6">
+            <label for="tipoLav">Tipologia lavoratore</label>
+            <select id="tipoLav"
+
+                formControlName="tipoLav"
+                name="tipoLav" class="form-select">
+                <option [ngValue]="null"></option>
+                <option *ngFor="let item of comboTipologiaLav" [ngValue]="item">{{item.dsTipoRipropPt}}</option>
+            </select>
+            <!-- <div *ngIf="f.categoriaEscluse.touched && f.categoriaEscluse.errors" class="text-danger">
+              <div *ngIf="f.categoriaEscluse.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="orarioContr">Orario settimanale contrattuale (ore:minuti)</label>
+            <input type="text"  formControlName="orarioSettContr" maxlength="5" class="form-control"  id="orarioContr">
+            <!-- <div *ngIf="f.nLavAppartartCategoria.touched && f.nLavAppartartCategoria.errors" class="text-danger">
+              <div *ngIf="f.nLavAppartartCategoria.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="orarioSettSv">Orario settimanale svolto part-time/intermittenti (ore:minuti)</label>
+            <input type="text"  formControlName="orarioSettSv" maxlength="5" class="form-control"  id="orarioSettSv">
+            <!-- <input type="text"    length="5" class="form-control"  id="orarioSettSv"> -->
+            <!-- <div *ngIf="f.nLavAppartartCategoria.touched && f.nLavAppartartCategoria.errors" class="text-danger">
+              <div *ngIf="f.nLavAppartartCategoria.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="nLav">N° lavoratori</label>
+            <input type="text" prodisDigitOnly  formControlName="nLav" length="5" class="form-control"  id="nLav">
+            <!-- <div *ngIf="f.nLavAppartartCategoria.touched && f.nLavAppartartCategoria.errors" class="text-danger">
+              <div *ngIf="f.nLavAppartartCategoria.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+          <!-- <button type="button" (click)="resetFiltri()" class="btn btn-link">ANNULLA FILTRI</button>  -->
+        <button type="button" class="btn btn-outline-secondary btn-sm"
+              (click)="onClickReset()">ANNULLA</button>
+        </div>
+        <div class="col-auto">
+          <button
+          [disabled]="!selectedItem"
+          class="btn btn-primary ml-auto btn-lg"
+          type="button"
+          (click)="deletePtInterm()"
+          >ELIMINA</button>
+        </div>
+          <div class="col-auto">
+              <button
+              class="btn btn-primary ml-auto btn-lg"
+              [disabled]="!form.valid"
+                >CONFERMA</button>
+          </div>
+      </div>
+</form>
+<h3>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.SUB_TITLE.LIST_WORKERS_PT' | translate}}</h3>
+<form *ngIf="formElenco" [formGroup]="formElenco">
+<prodis-paginated-array-table *ngIf="form && elencoCustomObj && elencoCustomObj.length > 0" [columnNumber]="5" [pagedResponse]="elencoCustomObj" [limit]="5">
+    <ng-template prodisPaginationHead>
+      <tr>
+          <th></th>
+          <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.TYPE_WORKER' | translate}}</th>
+          <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.NUM_WORKERS' | translate}}</th>
+          <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.WEEK_TIME_C' | translate}}</th>
+          <th>{{ 'PROSPETTO.PROVINCE.PART_TIME_INTERM.FIELD.WEEK_TIME_PT' | translate}}</th>
+        </tr>
+    </ng-template>
+    <ng-template prodisPaginationBody let-item>
+      <tr>
+        <td><input [value]="item" name="item" (change)="onClickChange(item)"  formControlName="item" type="radio"></td>
+        <td>{{item?.tipoLav?.dsTipoRipropPt}}</td>
+        <td>{{item?.nLav}}</td>
+        <td>{{item?.orarioSettContr}}</td>
+        <td>{{item?.orarioSettSv}}</td>
+      </tr>
+    </ng-template>
+  </prodis-paginated-array-table>
+</form>
+  <div *ngIf="!elencoCustomObj || (elencoCustomObj && elencoCustomObj.length <= 0)" class="alert alert-warning" role="alert">
+    {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-auto">
+      <button type="button"
+        (click)="salvaInBozza()"
+        class="btn btn-primary ml-auto btn-lg"
+        >{{'APP.SAVE_DRAFT' | translate }}</button>
+    </div>
+  </div>

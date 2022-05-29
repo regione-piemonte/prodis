@@ -1,0 +1,23 @@
+ElencoProvScoperture:
+  type: object
+  properties:    
+    idProspettoProv:
+      type: number
+    idTProvincia:
+      type: number
+    dsProTProvincia:
+      type: string
+    dsTarga:
+      type: string
+    numScopertDisab:
+      type: number
+    catCompensDisab:
+      type: string
+    numScopertCatprot:
+      type: number
+    numCompenDisab:
+      type: number
+    catCompensCatprot:
+      type: string
+    numCompenCatprot:
+      type: number

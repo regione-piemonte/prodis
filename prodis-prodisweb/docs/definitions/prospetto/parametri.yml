@@ -1,0 +1,11 @@
+Parametri:
+  type: object
+  properties:
+    dsDescrizione:
+      type: string
+    dsNome:
+      type: string
+    dsValore:
+      type: string
+    id:
+      type: integer

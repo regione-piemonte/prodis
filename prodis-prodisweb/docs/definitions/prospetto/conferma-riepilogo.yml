@@ -1,0 +1,10 @@
+ConfermaRiepilogo:
+  type: object
+  properties:
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'
+    warnings:
+      type: array
+      items:  
+        $ref: '#/definitions/ApiError'

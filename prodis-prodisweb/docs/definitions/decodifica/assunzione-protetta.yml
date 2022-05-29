@@ -1,0 +1,32 @@
+AssunzioneProtetta:
+  type: object
+  properties:
+    codAssunzioneProtetta:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    descAssunzioneProtetta:
+      type: string
+    flgConvensione:
+      type: string
+    id:
+      type: integer
+    lavoratoriInForzas:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriInForza'
+    lavoratoriSilps:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriSilp'
+    provConvenziones:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvConvenzione'

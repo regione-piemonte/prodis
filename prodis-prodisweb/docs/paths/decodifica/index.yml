@@ -1,0 +1,472 @@
+/decodifica/comune:
+  get:
+    operationId: getComune
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: query
+        name: idProvincia
+        required: false
+        type: integer
+        description: idProvincia
+      - in: query
+        name: codComuneMin
+        required: false
+        type: string
+        description: codComuneMin
+      - in: query
+        name: dsProTComune
+        required: false
+        type: string
+        description: dsProTComune
+      - in: query
+        name: data
+        required: false
+        type: string
+        format: date-time
+        description: data
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Comune'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+
+/decodifica/provincia:
+  get:
+    operationId: getProvincia
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Provincia'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/stato-prospetto:
+  get:
+    operationId: getStatoProspetto
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/StatoProspetto'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/ccnl:
+  get:
+    operationId: getCcnl
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Ccnl'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/atecofin:
+  get:
+    operationId: getAtecofin
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/Atecofin'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/ccnlDecodifica:
+  post:
+    operationId: postCcnlDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/atecofinDecodifica:
+  post:
+    operationId: postAtecofinDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/statiEsteriDecodifica:
+  post:
+    operationId: postStatiEsteriDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/contrattiDecodifica:
+  post:
+    operationId: postContrattiDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/assunzioneProtettaDecodifica:
+  post:
+    operationId: postAssunzioneProtettaDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/dichiaranteDecodifica:
+  post:
+    operationId: postDichiaranteDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/categoriaEscluseDecodifica:
+  post:
+    operationId: postCategoriaEscluseDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/causaSospensioneDecodifica:
+  post:
+    operationId: postCausaSospensioneDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/qualificaDecodifica:
+  post:
+    operationId: postQualificaDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/tipologiaLavoratoreDecodifica:
+  post:
+    operationId: postTipologiaLavoratoreDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/comuneDecodifica:
+  post:
+    operationId: postComuneDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/regioneDecodifica:
+  post:
+    operationId: postRegioneDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/soggettiDecodifica:
+  post:
+    operationId: postSoggettiDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+/decodifica/statoConcessioneDecodifica:
+  post:
+    operationId: postStatoConcessioneDecodifica
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - decodifica
+    parameters:
+      - in: body
+        name: filtro
+        required: true
+        schema:
+          $ref: '#/definitions/DecodificaGenerica'
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          type: array
+          items:
+            $ref: '#/definitions/DecodificaGenerica'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'

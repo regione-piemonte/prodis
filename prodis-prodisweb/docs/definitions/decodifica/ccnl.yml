@@ -1,0 +1,33 @@
+Ccnl:
+  type: object
+  properties:
+    ccnl:
+      type: object
+      $ref: '#/definitions/Ccnl'
+    ccnls:
+      type: array
+      items:  
+        $ref: '#/definitions/Ccnl'
+    codCcnlMin:
+      type: string
+    datiAziendas:
+      type: array
+      items:  
+        $ref: '#/definitions/DatiAzienda'
+    dsCcnl:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idNewCcnl:
+      type: number
+    settore:
+      type: string

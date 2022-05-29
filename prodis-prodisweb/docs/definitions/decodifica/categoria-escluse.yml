@@ -1,0 +1,24 @@
+CategoriaEscluse:
+  type: object
+  properties:
+    ambitoCategoria:
+      type: string
+    categorieEscluses:
+      type: array
+      items:  
+        $ref: '#/definitions/CategorieEscluse'
+    codCategoriaEscluse:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    desCategoriaEscluse:
+      type: string
+    id:
+      type: integer

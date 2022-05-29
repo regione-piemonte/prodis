@@ -1,0 +1,9 @@
+ConfermaRiepilogoProspetto:
+  type: object
+  properties:
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'
+    ruolo:
+      type: object
+      $ref: '#/definitions/Ruolo'

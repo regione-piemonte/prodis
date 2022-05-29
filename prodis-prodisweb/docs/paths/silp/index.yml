@@ -1,0 +1,72 @@
+/silp/azienda/{codiceFiscale}:
+  get:
+    operationId: getAzienda
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - silp
+    parameters:
+      - in: path
+        name: codiceFiscale
+        required: true
+        type: string
+        description: codiceFiscale
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/DatiAzienda'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+          
+/silp/lavoratore/{codiceFiscale}:
+  get:
+    operationId: getLavoratore
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - silp
+    parameters:
+      - in: path
+        name: codiceFiscale
+        required: true
+        type: string
+        description: codiceFiscale
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/LavoratoriSilp'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+
+/silp/sedi/{idAzienda}:
+  get:
+    operationId: getSedi
+    description: Restituisce dati registrati su sistema.
+    produces:
+      - application/json
+    tags:
+      - silp
+    parameters:
+      - in: path
+        name: idAzienda
+        required: true
+        type: string
+        description: idAzienda
+    responses:
+      '200':
+        description: Dati registrati su sistema.
+        schema:
+          $ref: '#/definitions/SedeLegale'
+      default:
+        description: Errore generico.
+        schema:
+          $ref: '#/definitions/ApiError'
+

@@ -1,0 +1,8 @@
+PdfProspetto:
+  type: object
+  properties:
+    id:
+      type: integer
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'

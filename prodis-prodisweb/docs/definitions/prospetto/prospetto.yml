@@ -1,0 +1,106 @@
+Prospetto:
+  type: object
+  properties:
+    annoProtocollo:
+      type: number
+    assPubbliche:
+      type: array
+      items:  
+        $ref: '#/definitions/AssPubbliche'
+    categoriaAzienda:
+      type: object
+      $ref: '#/definitions/CategoriaAzienda'
+    cfComunicazione:
+      type: string
+    cfStudioProfessionale:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    codiceComunicazione:
+      type: string
+    codiceComunicazionePreced:
+      type: string
+    comunicazione:
+      type: object
+      $ref: '#/definitions/Comunicazione'
+    dAggiorn:
+      type: string
+      format: date-time
+    dFineSospensioneQ1:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataInvio:
+      type: string
+      format: date-time
+    dataPrimaAssunzione:
+      type: string
+      format: date-time
+    dataProtocollo:
+      type: string
+      format: date-time
+    dataRiferimentoProspetto:
+      type: string
+      format: date-time
+    dataSecondaAssunzione:
+      type: string
+      format: date-time
+    dataTimbroPostale:
+      type: string
+      format: date-time
+    datiAzienda:
+      type: object
+      $ref: '#/definitions/DatiAzienda'
+    emailNotifica:
+      type: string
+    emailSoggettoComunicazione:
+      type: string
+    flgAssunzioniPubbSelezione:
+      type: string
+    flgConfermatoQ1:
+      type: string
+    flgGradualita:
+      type: string
+    flgInvioMinistero:
+      type: string
+    flgNessunaAssunzioneAggiun:
+      type: string
+    flgSospensionePerMobilita:
+      type: string
+    flgVisitaIspettiva:
+      type: string
+    id:
+      type: integer
+    note:
+      type: string
+    numLavorInForzaNazionale:
+      type: number
+    numeroProtocollo:
+      type: number
+    idProspettoPrecedente:
+      type: number
+    prospettoGradualita:
+      type: object
+      $ref: '#/definitions/ProspettoGradualita'
+    prospettoProvincias:
+      type: array
+      items:  
+        $ref: '#/definitions/ProspettoProvincia'
+    riepilogoNazionale:
+      type: object
+      $ref: '#/definitions/RiepilogoNazionale'
+    soggetti:
+      type: object
+      $ref: '#/definitions/Soggetti'
+    statoProspetto:
+      type: object
+      $ref: '#/definitions/StatoProspetto'
+    statoVerifica:
+      type: object
+      $ref: '#/definitions/StatoVerifica'
+    tipoProvenienza:
+      type: string

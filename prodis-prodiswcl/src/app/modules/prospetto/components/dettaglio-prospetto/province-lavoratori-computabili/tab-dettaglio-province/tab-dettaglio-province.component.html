@@ -1,0 +1,128 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="btn-group btn-group-toggle" data-toggle="buttons"></div>
+<em data-scroll-marker="notifiche"></em>
+<prodis-alert-msg
+[typeMsg]="typeMsg"
+[show]="hide"
+[listMsg]="listMsg"
+></prodis-alert-msg>
+<ngb-tabset *ngIf="datiProvincialiToSave" #ts="ngbTabset" activeId="taDettaglioProvince">
+  <ngb-tab id="taDettaglioProvince">
+    <ng-template ngbTabTitle>
+      <span>Dettaglio provinciale</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+
+      <prodis-tab-dettaglio-provinciale *ngIf="READ_MODE" [datiProvinciali]="datiProvinciali"></prodis-tab-dettaglio-provinciale>
+      <prodis-form-tab-dettaglio-provinciale *ngIf="!READ_MODE"
+        [idProvincia]="idProvincia"
+        [datiProvinciali]="datiProvinciali"
+        [inputDsProvincia]="dsProvincia"
+        [inputNewDatiProvinciali]="datiProvincialiToSave"
+        (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+        (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+        (erroriInPagina)="onRicaricaErrori($event)">
+      </prodis-form-tab-dettaglio-provinciale>
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tabDisabili">
+    <ng-template ngbTabTitle>
+      <span>Disabili e cat. protette</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <prodis-tab-disabili-cat-protette *ngIf="READ_MODE"
+        [datiProvinciali]="datiProvinciali"></prodis-tab-disabili-cat-protette>
+      <prodis-form-tab-disabili-cat-protette
+        *ngIf="!READ_MODE"
+        [datiProvinciali]="datiProvinciali"
+        [inputNewDatiProvinciali]="datiProvincialiToSave"
+        (erroriInPagina)="onRicaricaErrori($event)"
+        (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+        (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+        ></prodis-form-tab-disabili-cat-protette>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabTelelavoro">
+    <ng-template ngbTabTitle>
+      <span>Telelavoro e cat. escluse</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+        <prodis-tab-telelav-cat-escluse *ngIf="READ_MODE" [datiProvinciali]="datiProvinciali"></prodis-tab-telelav-cat-escluse>
+        <prodis-form-tab-telelav-cat-escluse
+        *ngIf="!READ_MODE"
+        [datiProvinciali]="datiProvinciali"
+        [inputNewDatiProvinciali]="datiProvincialiToSave"
+        (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+        (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+        (erroriInPagina)="onRicaricaErrori($event)">
+      </prodis-form-tab-telelav-cat-escluse>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabPartTime">
+    <ng-template ngbTabTitle>
+      <span>Part-time e intermittenti</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <prodis-tab-part-time-interm *ngIf="READ_MODE" [datiProvinciali]="datiProvinciali"></prodis-tab-part-time-interm>
+        <prodis-form-tab-part-time-interm
+        *ngIf="!READ_MODE"
+        [datiProvinciali]="datiProvinciali"
+        [inputNewDatiProvinciali]="datiProvincialiToSave"
+        (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+        (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+        (erroriInPagina)="onRicaricaErrori($event)">
+      </prodis-form-tab-part-time-interm>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabLavoratori">
+    <ng-template ngbTabTitle>
+      <span>Lavoratori computabili</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <prodis-tab-elenco-lavoratori-comp *ngIf="READ_MODE" [datiProvinciali]="datiProvinciali"></prodis-tab-elenco-lavoratori-comp>
+      <prodis-form-tab-elenco-lavoratori-comp
+          *ngIf="!READ_MODE"
+          [datiProvinciali]="datiProvinciali"
+          [inputNewDatiProvinciali]="datiProvincialiToSave"
+          (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+          (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+          (msgInPagina)="onRicaricaErrori($event)">
+     </prodis-form-tab-elenco-lavoratori-comp>
+    </ng-template>
+  </ngb-tab>
+
+  <ngb-tab id="tabConcessioni">
+    <ng-template ngbTabTitle>
+      <span>Altre concessioni</span>
+    </ng-template>
+    <ng-template ngbTabContent>
+        <prodis-tab-altre-concessioni *ngIf="READ_MODE" [datiProvinciali]="datiProvinciali"></prodis-tab-altre-concessioni>
+        <prodis-form-tab-altre-concessioni
+          *ngIf="!READ_MODE"
+          [datiProvinciali]="datiProvinciali"
+          [inputNewDatiProvinciali]="datiProvincialiToSave"
+          (saveDatiProvinciali)="setDatiProvincialiToSave($event)"
+          (saveDatiProvincialiBozza)="saveDatiProvincialiBozza($event)"
+          (erroriInPagina)="onRicaricaErrori($event)"
+        ></prodis-form-tab-altre-concessioni>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+<div class="row">
+  <div class="col">
+  </div>
+  <div *ngIf="!READ_MODE" class="col-auto">
+    <button type="button"
+    [disabled]="flgDisableConfermaDatiProvBtn"
+    (click)="onClickConferma()"
+    class="btn btn-primary ml-auto btn-lg margin-top-conferma-dati-provinciali"
+    >CONFERMA DATI PROVINCIALI</button>
+  </div>
+</div>

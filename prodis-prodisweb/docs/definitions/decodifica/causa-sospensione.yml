@@ -1,0 +1,22 @@
+CausaSospensione:
+  type: object
+  properties:
+    codCausaSospensione:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    desCausaSospensione:
+      type: string
+    id:
+      type: integer
+    provSospensiones:
+      type: array
+      items:  
+        $ref: '#/definitions/ProvSospensione'

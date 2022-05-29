@@ -1,0 +1,22 @@
+CategoriaAzienda:
+  type: object
+  properties:
+    codCategoriaAzienda:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    desCategoriaAzienda:
+      type: string
+    id:
+      type: integer
+    prospettos:
+      type: array
+      items:  
+        $ref: '#/definitions/Prospetto'

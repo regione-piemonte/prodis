@@ -1,0 +1,35 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="callback(modal)">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="form-group col-8" >
+      <label>Selezionare il file dei lavoratori<span class="oblg" title="campo obbligatorio">*</span></label>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-1"></div>
+      <div class="form-group col-8">
+          <input type="file" class="custom-file-input" id="validatedFile"  #validatedXlsFile (change)="chooseFile($event)"/>
+          <label class="custom-file-label" for="validatedFile">{{fileLav ? fileLav.name : 'UPLOAD.FIELD.FILE_XLS' | translate}}</label>
+          <span *ngIf="validateFile('fileXls')" style="color: red">{{ 'ERROR.FIELD.FILE.EXT_INVALID' | translate }}</span>
+      </div>
+  </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="emptyFile()">{{ 'APP.FIND_CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onClickConferma(modal)" [disabled]="fileLav == null ||  validateFile('fileXls')" class="btn btn-primary ml-auto">{{ 'APP.CONFIRM' | translate }}</button>
+</div>

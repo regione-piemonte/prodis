@@ -1,0 +1,33 @@
+ProvEsonero:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    dataAtto:
+      type: string
+      format: date-time
+    dataAttoFinoAl:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    estremiAtto:
+      type: string
+    id:
+      type: integer
+    nLavoratoriEsonero:
+      type: number
+    percentuale:
+      type: number
+    statoConcessione:
+      type: object
+      $ref: '#/definitions/StatoConcessione'

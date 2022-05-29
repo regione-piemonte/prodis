@@ -1,0 +1,28 @@
+Regione:
+  type: object
+  properties:
+    codAmbitoDiffusione:
+      type: string
+    codMobilitageog:
+      type: string
+    codRegioneMin:
+      type: string
+    dsAmbitoDiffusione:
+      type: string
+    dsProTRegione:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    provincias:
+      type: array
+      items:  
+        $ref: '#/definitions/Provincia'

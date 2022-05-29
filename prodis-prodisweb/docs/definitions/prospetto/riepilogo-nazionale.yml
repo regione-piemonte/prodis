@@ -1,0 +1,49 @@
+RiepilogoNazionale:
+  type: object
+  properties:
+    baseComputoArt18:
+      type: number
+    baseComputoArt3:
+      type: number
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    flgSospensioniInCorso:
+      type: string
+    id:
+      type: integer
+    idProspetto:
+      type: number
+    numCatProtInForza:
+      type: number
+    numCatProtInForzaCntDis:
+      type: number
+    numDisabiliInForza:
+      type: number
+    numLavoratoriBaseComputo:
+      type: number
+    numLavoratoriSospensione:
+      type: number
+    numPosizioniEsonerate:
+      type: number
+    numScopertCatProtReali:
+      type: number
+    numScopertCategorieProtette:
+      type: number
+    numScopertDisabili:
+      type: number
+    numScopertDisabiliReali:
+      type: number
+    quotaEsuberiArt18:
+      type: number
+    quotaRiservaArt18:
+      type: number
+    quotaRiservaDisabili:
+      type: number

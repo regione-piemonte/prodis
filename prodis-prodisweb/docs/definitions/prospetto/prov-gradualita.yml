@@ -1,0 +1,20 @@
+ProvGradualita:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    id:
+      type: integer
+    nAssunzioniEffDopoTrasf:
+      type: number

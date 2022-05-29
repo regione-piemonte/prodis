@@ -1,0 +1,271 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- Dati generali  IN MODIFICA -->
+
+<h3>Inserimento dati aziendali</h3>
+<p>I campi contrassegnati con <span class="oblg">*</span> sono obbligatori</p>
+<form [formGroup]="form" *ngIf="prospetto && flagForm" >
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="datiAzienda">
+      <label for="cfiAzienda">Codice fiscale azienda  <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" oninput="this.value = this.value.toUpperCase().trim()" (change)="onChange()" formControlName="cfAzienda" class="form-control" id="cfiAzienda" maxlength="16">
+      <!-- div *ngIf="fDatiAzienda.controls.cfAzienda.touched && fDatiAzienda.controls.cfAzienda.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.cfAzienda.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <button
+        [disabled]="!(fDatiAzienda?.controls?.cfAzienda?.value?.length == 11 || fDatiAzienda?.controls?.cfAzienda?.value?.length == 16)"
+        (click)="onClickFindCFAzienda()"
+        class="btn btn-outline-primary mt-lg-btn-form"
+        >Cerca</button>
+    </div>
+    <div class="form-group col-sm-12 col-md-5" formGroupName="datiAzienda">
+      <label for="denomAzienda">Denominazione azienda <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChange()" formControlName="denominazioneDatoreLavoro" class="form-control" id="denomAzienda" maxlength="98">
+    </div>
+  </div>
+  <div class="row" formGroupName="datiAzienda">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="atecofin">
+      <label for="codAteco">Codice ATECO  <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChangeAteco()" formControlName="codAtecofinMin" class="form-control" id="codAteco">
+      <!-- div *ngIf="fDatiAzienda.controls.atecofin.controls.codAtecofinMin.touched && fDatiAzienda.controls.atecofin.controls.codAtecofinMin.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.atecofin.controls.codAtecofinMin.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+      <div *ngIf="fDatiAzienda.controls.atecofin.controls.codAtecofinMin.touched && fDatiAzienda.controls.atecofin.controls.codAtecofinMin.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.atecofin.controls.codAtecofinMin.errors?.minlength">Inserire almeno 3 caratteri</div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="atecofin">
+      <label for="descrAteco">Descrizione ATECO  <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChangeAteco()" formControlName="dsProTAtecofin" class="form-control" id="descrAteco" maxlength="100">
+      <!-- div *ngIf="fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.touched && fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+      <div *ngIf="fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.touched && fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.atecofin.controls.dsProTAtecofin.errors?.minlength">Inserire almeno 3 caratteri</div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <button
+        [disabled]="!(fDatiAzienda?.controls?.atecofin?.controls?.dsProTAtecofin?.value?.length > 2
+        || fDatiAzienda?.controls?.atecofin?.controls?.codAtecofinMin?.value?.length > 2)"
+        (click)="onClickFindSettoreAteco()"
+        class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+  </div>
+  <div class="row" formGroupName="datiAzienda">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="ccnl">
+      <label for="codCcnl">Codice CCNL <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" maxlength="4" (change)="onChangeCcnl()" formControlName="codCcnlMin" class="form-control" id="codCcnl">
+        <!-- <div *ngIf="fDatiAzienda.controls.ccnl.controls.codCcnlMin.touched && fDatiAzienda.controls.ccnl.controls.codCcnlMin.errors" class="text-danger">
+          <div *ngIf="fDatiAzienda.controls.ccnl.controls.codCcnlMin.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+        </div> -->
+        <div *ngIf="fDatiAzienda.controls.ccnl.controls.codCcnlMin.touched && fDatiAzienda.controls.ccnl.controls.codCcnlMin.errors" class="text-danger">
+          <div *ngIf="fDatiAzienda.controls.ccnl.controls.codCcnlMin.errors?.minlength">Inserire almeno 2 caratteri</div>
+        </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="ccnl">
+      <label for="descrCcnl">Descrizione CCNL <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text"  (change)="onChangeCcnl()" formControlName="dsCcnl" class="form-control" id="descrCcnl" maxlength="100">
+      <!-- <div *ngIf="fDatiAzienda.controls.ccnl.controls.dsCcnl.touched && fDatiAzienda.controls.ccnl.controls.dsCcnl.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.ccnl.controls.dsCcnl.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div> -->
+      <div *ngIf="fDatiAzienda.controls.ccnl.controls.dsCcnl.touched && fDatiAzienda.controls.ccnl.controls.dsCcnl.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.ccnl.controls.dsCcnl.errors?.minlength">Inserire almeno 3 caratteri</div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <button  [disabled]="!(fDatiAzienda?.controls?.ccnl?.controls?.dsCcnl?.value?.length > 2
+        || fDatiAzienda?.controls?.ccnl?.controls?.codCcnlMin?.value?.length > 1)"
+      (click)="onClikFindCcnl()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3" >
+      <label for="tipologiaDichiarante">Selezionare la tipologia dichiarante <span class="oblg" title="campo obbligatorio">*</span></label>
+    </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="datiAzienda">
+      <select id="tipologiaDichiarante" (change)="onChangeTipologiaDichiarente()" formControlName="dichiarante"
+              name="tipologiaDichiarante" class="form-select">
+        <option [ngValue]="null"></option>
+        <option *ngFor="let item of elencoDichiarante" [ngValue]="item">{{item?.descDichiarante}}</option>
+      </select>
+      <!-- div *ngIf="fDatiAzienda.controls.dichiarante.touched && fDatiAzienda.controls.dichiarante.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.dichiarante.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+    </div>
+  </div>
+</form>
+<h4>Sede legale</h4>
+<form [formGroup]="formSedeLegale" *ngIf="prospetto && flagForm">
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+      <label for="codcomune">Codice Comune <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text"  (change)="onChangeComuneSedeLegale()" formControlName="codComuneMin" class="form-control" id="codcomune">
+      <!-- div *ngIf="formSedeLegale.controls.comune.get('codComuneMin').touched && fSedeLegale.comune.get('codComuneMin').errors" class="text-danger">
+        <div *ngIf="formSedeLegale.controls.comune.get('codComuneMin').errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+      <div *ngIf="formSedeLegale.controls.comune.get('codComuneMin').touched && formSedeLegale.controls.comune.get('codComuneMin').errors" class="text-danger">
+        <div *ngIf="fSedeLegale.comune.controls.codComuneMin.errors?.minlength">Inserire almeno 3 caratteri</div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+      <label for="dscomune">Comune <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text"  (change)="onChangeComuneSedeLegale()" formControlName="dsProTComune" class="form-control" id="dscomune" maxlength="100">
+      <!-- div *ngIf="formSedeLegale.controls.comune.get('dsProTComune').touched && fSedeLegale.comune.get('dsProTComune').errors" class="text-danger">
+        <div *ngIf="formSedeLegale.controls.comune.get('dsProTComune').errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+      <div *ngIf="formSedeLegale.controls.comune.get('dsProTComune').touched && formSedeLegale.controls.comune.get('codComuneMin').errors" class="text-danger">
+        <div *ngIf="fSedeLegale.comune.controls.codComuneMin.errors?.minlength">Inserire almeno 3 caratteri</div>
+      </div>
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <button
+        [disabled]="!(fSedeLegale?.comune?.controls?.dsProTComune?.value?.length > 2
+        || fSedeLegale?.comune?.controls?.codComuneMin?.value?.length > 2)"
+        (click)="onClickFindComuneSedeLegale()"
+        class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-7">
+        <label for="indirizzo">Indirizzo <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" (change)="onChange()" formControlName="indirizzo" class="form-control" id="indirizzo" maxlength="100">
+    </div>
+    <div class="form-group col-sm-12 col-md-3">
+      <label for="cap">CAP <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChange()" formControlName="capSede" class="form-control" id="cap" maxlength="5">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-2">
+        <label for="telefono">Telefono <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" (change)="onChange()" formControlName="telefono" class="form-control" id="telefono" maxlength="15">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <label for="fax">FAX <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChange()" formControlName="fax" class="form-control" id="fax" maxlength="15">
+    </div>
+    <div class="form-group col-sm-12 col-md-6">
+      <label for="pec">PEC sede legale <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChange()" formControlName="email" class="form-control" id="pec" maxlength="80">
+    </div>
+  </div>
+</form>
+<h4>Dati referente</h4>
+<form [formGroup]="form" *ngIf="prospetto && flagForm">
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="datiAzienda">
+        <label for="cf">Codice fiscale <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" oninput="this.value = this.value.toUpperCase().trim()" (change)="onChange()" formControlName="cfReferente" class="form-control" id="cf" maxlength="16">
+    </div>
+    <div class="form-group col-sm-12 col-md-4" formGroupName="datiAzienda">
+      <label for="cognome">Cognome <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" length="50" (change)="onChange()" formControlName="cognomeReferente" class="form-control" id="cognome" maxlength="50">
+    </div>
+    <div class="form-group col-sm-12 col-md-4" formGroupName="datiAzienda">
+      <label for="nome">Nome <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" length="50" (change)="onChange()" formControlName="nomeReferente" class="form-control" id="nome" maxlength="50">
+   </div>
+  </div>
+  <div class="row" formGroupName="datiAzienda">
+    <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+        <label for="codcomuneR">Codice Comune <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" (change)="onChangeComuneDatiAzienda()" formControlName="codComuneMin" class="form-control" id="codcomuneR">
+    </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+      <label for="comuneR">Comune <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" (change)="onChangeComuneDatiAzienda()" formControlName="dsProTComune" class="form-control" id="comuneR"  maxlength="100">
+    </div>
+    <div class="form-group col-sm-12 col-md-2">
+      <button
+      [disabled]="!(fDatiAzienda?.controls?.comune?.controls?.dsProTComune?.value?.length > 2
+      || fDatiAzienda?.controls?.comune?.controls?.codComuneMin?.value?.length > 2)"
+      (click)="onClickFindComuneDatiAzienda()"
+      class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+   </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-7" formGroupName="datiAzienda">
+        <label for="indirizzoR">Indirizzo <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" length="50" (change)="onChange()" formControlName="indirizzoReferente" class="form-control" id="indirizzoR"  maxlength="100">
+    </div>
+    <div class="form-group col-sm-12 col-md-3" formGroupName="datiAzienda">
+      <label for="capR">CAP <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input formControlName="capReferente" maxlength="5" prodisDigitOnly type="text" (change)="onChange()" class="form-control" id="capR">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-2" formGroupName="datiAzienda">
+        <label for="telefonoR">Telefono <span class="oblg" title="campo obbligatorio">*</span></label>
+        <input type="text" length="15" (change)="onChange()" formControlName="telefonoReferente" class="form-control" id="telefonoR"  maxlength="15">
+    </div>
+    <div class="form-group col-sm-12 col-md-2" formGroupName="datiAzienda">
+      <label for="faxR">FAX <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" length="15" (change)="onChange()" formControlName="faxReferente" class="form-control" id="faxR" maxlength="15">
+    </div>
+    <div class="form-group col-sm-12 col-md-6" formGroupName="datiAzienda">
+      <label for="pecR">Email  <span class="oblg" title="campo obbligatorio">*</span></label>
+      <input type="text" length="80" (change)="onChange()" formControlName="emailReferente" class="form-control" id="pecR" maxlength="80">
+    </div>
+  </div>
+  <h4>Gruppi di imprese - Azienda capogruppo</h4>
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-7" formGroupName="datiAzienda">
+      <label for="codcomuneI">Seleziona sigla internazionale</label>
+      <select id="dsStatiEsteri" prodisHasValueClass  (change)="onChange()" formControlName="statiEsteri"
+        name="dsStatiEsteri" class="form-select">
+        <option [ngValue]="null"></option>
+        <option *ngFor="let item of elencoStatiEsteri" [ngValue]="item">{{item?.siglaNazione}} - {{item?.dsStatiEsteri}}</option>
+      </select>
+      <!-- div *ngIf="fDatiAzienda.controls.statiEsteri.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.statiEsteri.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+    </div>
+    <div class="form-group col-sm-12 col-md-3" formGroupName="datiAzienda">
+      <label for="codFisc">Codice fiscale</label>
+      <input type="text" oninput="this.value = this.value.toUpperCase().trim()" (change)="onChange()" formControlName="cfCapogruppo" class="form-control" id="codFisc" maxlength="98">
+      <!-- <div *ngIf="fDatiAzienda.controls.cfCapogruppo.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.cfCapogruppo.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div> -->
+    </div>
+  </div>
+    <div class="row">
+      <div class="form-group col-sm-12 col-md-3">
+        <label for="flgProspettoDaCapogruppo">Presenta il prospetto come capogruppo </label>
+     </div>
+    <div class="form-group col-sm-12 col-md-7" formGroupName="datiAzienda">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" (change)="onChange()" formControlName="flgProspettoDaCapogruppo" [value]="'S'" type="radio" name="flgProspettoDaCapogruppo" id="si">
+        <label class="form-check-label" for="si">
+          Si
+        </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" (change)="onChange()" formControlName="flgProspettoDaCapogruppo" [value]="'N'" type="radio" name="flgProspettoDaCapogruppo" id="no">
+        <label class="form-check-label" for="no">
+          No
+        </label>
+      </div>
+      <!-- div *ngIf="fDatiAzienda.controls.flgProspettoDaCapogruppo.errors" class="text-danger">
+        <div *ngIf="fDatiAzienda.controls.flgProspettoDaCapogruppo.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+      </div -->
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col">
+    <button type="button"  class="btn btn-outline-secondary btn-sm"
+        (click)="onClickReset()">ANNULLA</button>
+  </div>
+  <div class="col-auto">
+    <button (click)="onClickConferma()" type="submit"
+      class="btn btn-primary ml-auto btn-lg"
+      [disabled]="cfDisabled"
+      >{{'APP.SAVE_DRAFT' | translate }}</button>
+  </div>
+</div>
+<!-- <div  class="mb-3 text-right"><button class="btn btn-sm btn-outline-primary">Annulla</button></div> -->

@@ -1,0 +1,28 @@
+ProspettoProvincia:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    datiProvinciali:
+      type: object
+      $ref: '#/definitions/DatiProvinciali'
+    flgConfermatoQ2:
+      type: string
+    id:
+      type: integer
+    idProspetto:
+      type: number
+    provincia:
+      type: object
+      $ref: '#/definitions/Provincia'
+    riepilogoProvinciale:
+      type: object
+      $ref: '#/definitions/RiepilogoProvinciale'

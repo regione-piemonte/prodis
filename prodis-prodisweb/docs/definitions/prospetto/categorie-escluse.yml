@@ -1,0 +1,22 @@
+CategorieEscluse:
+  type: object
+  properties:
+    categoriaEscluse:
+      type: object
+      $ref: '#/definitions/CategoriaEscluse'
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    nLavAppartartCategoria:
+      type: number

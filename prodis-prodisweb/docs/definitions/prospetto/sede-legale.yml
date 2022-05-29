@@ -1,0 +1,34 @@
+SedeLegale:
+  type: object
+  properties:
+    capSede:
+      type: string
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    comune:
+      type: object
+      $ref: '#/definitions/Comune'
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    datiAzienda:
+      type: object
+      $ref: '#/definitions/DatiAzienda'
+    email:
+      type: string
+    fax:
+      type: string
+    id:
+      type: integer
+    indirizzo:
+      type: string
+    statiEsteri:
+      type: object
+      $ref: '#/definitions/StatiEsteri'
+    telefono:
+      type: string

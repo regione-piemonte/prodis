@@ -1,0 +1,19 @@
+ImportErrori:
+  type: object
+  properties:
+    dataElab:
+      type: string
+      format: date-time
+    datoInput:
+      type: string
+    dsErroreNonGestito:
+      type: string
+    id:
+      type: integer
+    idSpiTrasmissione:
+      type: number
+    importErroriSpicom:
+      type: object
+      $ref: '#/definitions/ImportErroriSpicom'
+    tabellaDestinazione:
+      type: string

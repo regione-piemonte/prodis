@@ -1,0 +1,34 @@
+Contratti:
+  type: object
+  properties:
+    codTipoContrattoMin:
+      type: string
+    dsContratto:
+      type: string
+    dtFine:
+      type: string
+      format: date-time
+    dtInizio:
+      type: string
+      format: date-time
+    dtTmst:
+      type: string
+      format: date-time
+    flgForma:
+      type: string
+    id:
+      type: integer
+    lavoratoriInForzas:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriInForza'
+    lavoratoriSilps:
+      type: array
+      items:  
+        $ref: '#/definitions/LavoratoriSilp'
+    status:
+      type: string
+    tipo:
+      type: string
+    tipologiaRapporto:
+      type: string

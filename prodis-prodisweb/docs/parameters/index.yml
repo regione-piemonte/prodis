@@ -1,0 +1,34 @@
+parameters:
+  offsetParam:
+    in: query
+    name: offset
+    type: integer
+    required: false
+    default: 0
+    minimum: 0
+    description: Il numero di record da ignorare prima di iniziare a raccogliere i risultati.
+  limitParam:
+    in: query
+    name: limit
+    type: integer
+    required: false
+    default: 10
+    minimum: 1
+    maximum: 100
+    description: Il numero di record da restituire.
+  sortParam:
+    in: query
+    name: sort
+    type: string
+    required: false
+    description: Il campo di sort.
+  directionParam:
+    in: query
+    name: direction
+    type: string
+    enum:
+      - asc
+      - desc
+      - ''
+    required: false
+    description: La direzione di sort.

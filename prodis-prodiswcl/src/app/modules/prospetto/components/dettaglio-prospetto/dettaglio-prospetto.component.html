@@ -1,0 +1,64 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="torna">
+  <button type="button" class="btn btn-outline-secondary btn-sm"
+        (click)="onClickTornaAlloElenco()">Torna all'elenco</button>
+  <!-- <a routerLink="/ricerca-prospetti?flgRitornaAdElenco='S'"><i class="fas fa-arrow-left"></i>
+    <span>Torna alla
+      ricerca</span></a> -->
+</div>
+<div class="row">
+  <div class="col-auto">
+    <h2 class="icon-prospetti">Prospetto: {{prospetto?.codiceComunicazione}}</h2>
+  </div>
+  <div class="col-auto">
+    <a class="btn btn-link" clickable (click)="openModalSuntoProspetto()">{{'sunto prospetto' | uppercase}}</a>
+  </div>
+</div>
+
+<prodis-nav-dettaglio-prospetto></prodis-nav-dettaglio-prospetto>
+
+
+<!-- html modale -->
+<ng-template #modalSuntoProspetto let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">Sunto prospetto</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+  </div>
+  <div class="modal-body">
+
+    <div class="lettura">
+
+      <div class="row">
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.CFI' | translate}} <span
+            class="valore">{{prospetto?.datiAzienda?.cfAzienda}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.DENOM_CORP' | translate}} <span
+            class="valore">{{prospetto?.datiAzienda?.denominazioneDatoreLavoro}} </span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.TYPE_COMMUN' | translate}} <span
+            class="valore">{{prospetto?.comunicazione?.descComunicazione}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.STATE_PROSP' | translate}} <span
+            class="valore">{{prospetto?.statoProspetto?.descrizione}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.DATE_REF' | translate}} <span
+            class="valore">{{prospetto?.dataRiferimentoProspetto |date:"dd/MM/yyyy" }}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.YEAR_PROT' | translate}} <span
+            class="valore">{{prospetto?.annoProtocollo}}/{{prospetto?.numeroProtocollo}}
+          </span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.COD_REG' | translate}}<span
+            class="valore">{{prospetto?.codiceComunicazione}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ 'PROSPETTO.SUNTO.FIELD.SEND_DATE' | translate}}<span
+            class="valore">{{prospetto?.dataInvio |date:"dd/MM/yyyy" }}</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.dismiss()">{{ 'APP.CLOSE' | translate |
+      uppercase}}</button>
+  </div>
+</ng-template>

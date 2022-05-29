@@ -1,0 +1,43 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+
+
+<h2 class="icon-prospetti">Ricerca prospetti</h2>
+<prodis-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></prodis-alert-msg>
+<ngb-accordion #accordionRicerca
+  activeIds="panelRicerca"
+  id="accordion-ricerca"
+  [closeOthers]="true"
+  [destroyOnHide]="false">
+  <ngb-panel title="Criteri ricerca" id="panelRicerca">
+      <ng-template ngbPanelContent let-opened="opened">
+        <prodis-form-ricerca-prospetti
+          (datiRicerca)="onCercaProspetto($event)"
+          (ricaricaElenco)="onRicaricaElenco($event)"
+          [filtriRicercaProspetto]="ricercaProspetto"
+          (erroriInPagina)="onRicaricaErrori($event)">
+        </prodis-form-ricerca-prospetti>
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+
+
+
+<div *ngIf="ricercaEffettuata" class="card mb-5">
+  <div class="card-body">
+    <prodis-risultati-ricerca-prospetti
+    (changePaginationData)="onChangePaginationData($event)"
+    (chiamiamoloInAltroModo)="onChangePaginationData($event)"
+    [pagedResponse]="pagedResponse"
+    (erroriInPagina)="onRicaricaErrori($event)"
+    [currentPaginationData]="currentPaginationData"
+    [filtriRicercaProspetto]="ricercaProspetto">
+  </prodis-risultati-ricerca-prospetti>
+  </div>
+</div>

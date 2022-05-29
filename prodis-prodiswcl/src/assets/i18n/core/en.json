@@ -1,0 +1,285 @@
+{
+  "APP": {
+    "BACK": "Back",
+    "CLOSE": null,
+    "CONFIRM": "Confirm",
+    "EXIT": "Exit",
+    "FIND_CANCEL": null,
+    "LOADING": "Loading...",
+    "NO_DATA": null,
+    "NO_DATA_FOUND": "No data found.",
+    "REMOVE_FILTERS": null,
+    "SAVE_DRAFT": null,
+    "SEARCH": "Search",
+    "TITLE": "Monitoring Transversal Intervention - Piemonte"
+  },
+  "ERROR": {
+    "ERROR_TITLE": "Error",
+    "FIELD": {
+      "FILE": {
+        "EXT_INVALID": null
+      },
+      "FISCAL_CODE": {
+        "INVALID": "Fiscal code invalid",
+        "INVALID_CHAR": "Fiscal code contains invalid chars",
+        "INVALID_LENGTH": "Fiscal code length error"
+      },
+      "REQUIRED": null
+    },
+    "INVALID_DATE": null,
+    "POPUP_BLOCKED": "Please disable your Pop-up blocker and try again.",
+    "VALIDATION_FORM": {
+      "ANNO_AND_NUMERO_PROT": "Il numero protocollo e l'anno devono essere valorizzati contemporaneamente.",
+      "DATA_DA_AND_A_PROT": "Per la data protocollo e’ necessaria la compilazione di entrambi i campi insieme.",
+      "DATA_DA_AND_A_RIF": "Per la data riferimento e’ necessaria la compilazione di entrambi i campi insieme.",
+      "DENOM_AZIENDA_MIN_TRE_CARATTERI": null
+    }
+  },
+  "FOOTER": {
+    "ACCESSIBILITY": "Accessibility",
+    "COOKIE_POLICY": "Cookie policy",
+    "PRIVACY": "Privacy"
+  },
+  "HEADER": {
+    "ROLE": "Role",
+    "SETTORE": {
+      "DEFAULT_DESCRIPTION": "Please choose a Sector"
+    }
+  },
+  "LANGUAGE": {
+    "ENGLISH": "ENG",
+    "ITALIAN": "ITA"
+  },
+  "MESSAGES": {
+    "SYS-SYS-E-0007": null
+  },
+  "PAGINATION": {
+    "FIRST": "First",
+    "INFO_FOOTER": null,
+    "INFO_FOOTER_DESC": null,
+    "INFO_HEADER": null,
+    "LAST": "Last",
+    "NEXT": "Next",
+    "PREV": "Prev."
+  },
+  "PROSPETTO": {
+    "APP": {
+      "OPEN_CALENDAR": null
+    },
+    "ASS_PUB_SEL": {
+      "TABLE": {
+        "FIELD": {
+          "DISABLED_BALANCE": null,
+          "DISABLED_EX_ART_18": null,
+          "NOTE": null,
+          "REG": null
+        }
+      },
+      "TITLE": null,
+      "WARN_MSG": null
+    },
+    "ESITO_INVIO": {
+      "TITLE": null
+    },
+    "PROV": {
+      "BUTTON": {
+        "ADD_DATA_PROV": null,
+        "DOWNLOAD_WORKER": null,
+        "UPLOAD_WORKER": null
+      },
+      "FIELD": {
+        "PROV_LIST": null,
+        "SELECT_PROV": null
+      },
+      "TABLE": {
+        "FIELD": {
+          "CAT_EXCLUDE_ART_18": null,
+          "CONFIRMED": null,
+          "CONVENTIONS": null,
+          "FULL_T_DISABLED": null,
+          "NUMB_PLACES_AVAIBLE": null,
+          "NUMB_WORKER_EMPL": null,
+          "NUMB_WORKER_GRADUALITY": null,
+          "NUMB_WORKER_NO_EXEMPTION": null,
+          "PROTECTED_CAT": null,
+          "PROTECTED_CAT_IN_FORCE_FROM": null,
+          "PROV": null,
+          "PT": null,
+          "SOSP_IN_PROGRESS": null,
+          "TELEWORKIN_EX_CAT_DISABLE": null
+        }
+      }
+    },
+    "PROVINCE": {
+      "ALTRE_CONCESSIONI": {
+        "FIELD": {
+          "DATE_ACT": null,
+          "DATE_STIPULATED": null,
+          "EXEMPTION_AUTO_CERT_DATE": null,
+          "EXEMPTION_AUTO_CERT_NUM_LAV_60": null,
+          "EXPECTED_WORKER": null,
+          "EXPIRY_DATE": null,
+          "EXTR_ACT": null,
+          "NUM_HIRES_AFTER_TRANS": null,
+          "NUM_WORKERS_EXMP": null,
+          "NUM_WORKERS_EXMP_ESO": null,
+          "PERCENT": null,
+          "SOSP_CAUSAL": null,
+          "SOSP_END_DATE": null,
+          "SOSP_STATUS": null,
+          "STATO": null,
+          "TYPE": null,
+          "UNTIL_THE": null
+        },
+        "SUB_TITLE": {
+          "CONV": null,
+          "EXEMPTION": null,
+          "EXEMPTION_AUTO_CERT": null,
+          "GRADUALITY": null,
+          "NOTE": null,
+          "SOSP": null
+        }
+      },
+      "DETTAGLIO_PROV": {
+        "FIELD": {
+          "ADDRESS": null,
+          "CAP": null,
+          "COD_COMUNE": null,
+          "COMUNE": null,
+          "FAX": null,
+          "MAIL": null,
+          "NAME": null,
+          "SURNAME": null,
+          "TEL": null,
+          "TOTAL_NUMB_EMPL": null
+        },
+        "SUB_TITLE": {
+          "REF_DATAS": null,
+          "REF_OFFICE": null
+        }
+      },
+      "DISABLED_CAT_PROTECTED": {
+        "FIELD": {
+          "DISABLED_68_9": null,
+          "NUM_CENTRAL_BLIND": null,
+          "NUM_DISABLED_WORKER_AGRREMENT": null,
+          "NUM_DISABLED_WORKER_ART34": null,
+          "NUM_PLACES_CENTRAL_BLIND": null,
+          "NUM_PLACES_PHYSIO": null,
+          "NUM_PROTECTED_CAT_FORCE": null,
+          "NUM_PROTECTED_CAT_FORCE_UNDER_DATE": null,
+          "NUM_THERAPISTS": null
+        },
+        "SUB_TITLE": {
+          "DATA_NON_EMPLOYEE_PERSONNEL": null,
+          "DATA_REL_EMPL": null,
+          "FULL_TIME_DISABLED": null,
+          "PROTECTED_CAT_FULL_PART_TIME": null
+        }
+      },
+      "PART_TIME_INTERM": {
+        "FIELD": {
+          "NUM_WORKERS": null,
+          "TYPE_WORKER": null,
+          "WEEK_TIME_C": null,
+          "WEEK_TIME_PT": null
+        },
+        "SUB_TITLE": {
+          "LIST_WORKERS_PT": null
+        }
+      },
+      "TELELAV_CAT_ESCL": {
+        "FIELD": {
+          "NUM_WORKERS_EMPLOYED": null,
+          "NUM_WORKERS_IN_CAT": null,
+          "TYPE_CAT_ESCL": null
+        },
+        "SUB_TITLE": {
+          "CAT_ESCL": null,
+          "LIST_CAT_ESCL": null,
+          "TELE_LAV_FULL_TIME": null
+        }
+      }
+    },
+    "RICERCA": {
+      "FIELD": {
+        "CF_CORP": null,
+        "CODE_REG": null,
+        "NAME_CORP": null,
+        "PROTOCOL": {
+          "DATE_FROM": null,
+          "DATE_TO": null,
+          "NUM": null,
+          "TITLE": null,
+          "YEAR": null
+        },
+        "PROVINCE_COMPANY": null,
+        "REFERENCE": {
+          "DATE_FROM": null,
+          "DATE_TO": null,
+          "TITLE": null
+        },
+        "STATE_PROSP": null
+      }
+    },
+    "RICERCA_RESULTS": {
+      "FIELD": {
+        "FILTERS_APPLY": null
+      },
+      "TITLE": null
+    },
+    "SUNTO": {
+      "FIELD": {
+        "CFI": null,
+        "COD_REG": null,
+        "DATE_REF": null,
+        "DENOM_CORP": null,
+        "SEND_DATE": null,
+        "STATE_PROSP": null,
+        "TYPE_COMMUN": null,
+        "YEAR_PROT": null
+      }
+    },
+    "TAB_DATI_PROSP": {
+      "FIELD": {
+        "DATE_ACT": null,
+        "DATE_REF_PROS": null,
+        "END_DATE_SOSP": null,
+        "EXTREME_ACT": null,
+        "NUMB_AVAILABLE_HIRES": null,
+        "PERCENT": null,
+        "SOSP_MOB": null,
+        "TRANSFORM_DATE": null
+      },
+      "SUB_TIT": {
+        "GRAD": null,
+        "SOSP_NAT": null
+      },
+      "TITLE": null
+    }
+  },
+  "RICERCA_COOD_REG": {
+    "FIELD": {
+      "ID_LIST": null,
+      "MAX_NUMB": null,
+      "PROTOCOL": null
+    },
+    "INSTRUCTIONS": null,
+    "TITLE": null
+  },
+  "SIDEBAR": {
+    "HOME": "Home",
+    "INT": {
+      "INTERVENTION": {
+        "INSERT": null,
+        "SEARCH": null
+      },
+      "TITLE": null
+    }
+  },
+  "UPLOAD": {
+    "FIELD": {
+      "FILE_XLS": null
+    }
+  }
+}

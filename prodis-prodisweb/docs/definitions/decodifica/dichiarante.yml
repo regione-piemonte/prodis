@@ -1,0 +1,22 @@
+Dichiarante:
+  type: object
+  properties:
+    codDichiarante:
+      type: string
+    dataFine:
+      type: string
+      format: date-time
+    dataInizio:
+      type: string
+      format: date-time
+    dataTmst:
+      type: string
+      format: date-time
+    datiAziendas:
+      type: array
+      items:  
+        $ref: '#/definitions/DatiAzienda'
+    descDichiarante:
+      type: string
+    id:
+      type: integer

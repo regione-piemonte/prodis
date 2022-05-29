@@ -1,0 +1,26 @@
+PartTime:
+  type: object
+  properties:
+    codUserAggiorn:
+      type: string
+    codUserInserim:
+      type: string
+    dAggiorn:
+      type: string
+      format: date-time
+    dInserim:
+      type: string
+      format: date-time
+    id:
+      type: integer
+    idProspettoProv:
+      type: number
+    nPartTime:
+      type: number
+    orarioSettContrattualeMin:
+      type: number
+    orarioSettPartTimeMin:
+      type: number
+    tipoRipropPt:
+      type: object
+      $ref: '#/definitions/TipoRipropPt'

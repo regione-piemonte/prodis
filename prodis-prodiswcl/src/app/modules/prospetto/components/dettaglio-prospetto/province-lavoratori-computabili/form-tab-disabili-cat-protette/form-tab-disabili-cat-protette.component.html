@@ -1,0 +1,93 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<h3>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.DATA_REL_EMPL' | translate}}</h3>
+
+<h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.FULL_TIME_DISABLED' | translate}}</h4>
+<form *ngIf="form" [formGroup]="form">
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numDisabili">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.DISABLED_68_9' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nDisabiliInForza" prodisDigitOnly class="form-control" id="numDisabili">
+            <!-- div *ngIf="f?.nDisabiliInForza?.errors" class="text-danger">
+                <div *ngIf="f?.nDisabiliInForza?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numCentralNonV">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_CENTRAL_BLIND' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nCentralTelefoNonvedenti" prodisDigitOnly class="form-control" id="numCentralNonV">
+            <!-- div *ngIf="f?.nCentralTelefoNonvedenti?.errors" class="text-danger">
+                <div *ngIf="f?.nCentralTelefoNonvedenti?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numPostiNonV">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PLACES_CENTRAL_BLIND' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nPostiPrevCentraliNonved" prodisDigitOnly class="form-control" id="numPostiNonV">
+            <!-- div *ngIf="f?.nPostiPrevCentraliNonved?.errors" class="text-danger">
+                <div *ngIf="f?.nPostiPrevCentraliNonved?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numTerap">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_THERAPISTS' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nTerariabMassofisNonved" prodisDigitOnly class="form-control" id="numTerap">
+            <!-- div *ngIf="f?.nTerariabMassofisNonved?.errors" class="text-danger">
+                <div *ngIf="f?.nTerariabMassofisNonved?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numPostiMassio">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PLACES_PHYSIO' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nPostiPrevMassofisNonved" prodisDigitOnly class="form-control" id="numPostiMassio">
+            <!-- div *ngIf="f?.nPostiPrevMassofisNonved?.errors" class="text-danger">
+                <div *ngIf="f?.nPostiPrevMassofisNonved?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.PROTECTED_CAT_FULL_PART_TIME' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numCatProtForza">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PROTECTED_CAT_FORCE' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nCateProtForza" prodisDigitOnly class="form-control" id="numCatProtForza">
+            <!-- div *ngIf="f?.nCateProtForza?.errors" class="text-danger">
+                <div *ngIf="f?.nCateProtForza?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numCatProtForzaA">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_PROTECTED_CAT_FORCE_UNDER_DATE' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nCateProtForzaA17012000" prodisDigitOnly class="form-control" id="numCatProtForzaA">
+            <!-- div *ngIf="f?.nCateProtForzaA17012000?.errors" class="text-danger">
+                <div *ngIf="f?.nCateProtForzaA17012000?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+    </div>
+    <h4>{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.SUB_TITLE.DATA_NON_EMPLOYEE_PERSONNEL' | translate}}</h4>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numSomm">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_DISABLED_WORKER_ART34' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nSomministratiFt" prodisDigitOnly class="form-control" id="numSomm">
+            <!-- div *ngIf="f?.nSomministratiFt?.errors" class="text-danger">
+                <div *ngIf="f?.nSomministratiFt?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="numConv">{{ 'PROSPETTO.PROVINCE.DISABLED_CAT_PROTECTED.FIELD.NUM_DISABLED_WORKER_AGRREMENT' | translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+            <input type="text" (change)="onChange()" maxlength="5" prodisDigitOnly prodisHasValueClass  formControlName="nConvenzioni12bis14Ft" prodisDigitOnly class="form-control" id="numConv">
+            <!-- div *ngIf="f?.nConvenzioni12bis14Ft?.errors" class="text-danger">
+                <div *ngIf="f?.nConvenzioni12bis14Ft?.errors?.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+            </div -->
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col">
+      <button type="button" (click)="onClickReset()"  class="btn btn-outline-secondary btn-sm">ANNULLA</button>
+    </div>
+    <div class="col-auto">
+      <button type="button"
+        (click)="salvaInBozza()"
+        class="btn btn-primary ml-auto btn-lg"
+        >{{'APP.SAVE_DRAFT' | translate }}</button>
+    </div>
+  </div>

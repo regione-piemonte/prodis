@@ -1,0 +1,11 @@
+ImportErroriSpicom:
+  type: object
+  properties:
+    descErrore:
+      type: string
+    id:
+      type: integer
+    importErroris:
+      type: array
+      items:  
+        $ref: '#/definitions/ImportErrori'

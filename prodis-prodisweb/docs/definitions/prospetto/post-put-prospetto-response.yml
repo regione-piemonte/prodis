@@ -1,0 +1,10 @@
+PostPutProspettoResponse:
+  type: object
+  properties:
+    warnings:
+      type: array
+      items:
+        $ref: '#/definitions/ApiError'
+    prospetto:
+      type: object
+      $ref: '#/definitions/Prospetto'

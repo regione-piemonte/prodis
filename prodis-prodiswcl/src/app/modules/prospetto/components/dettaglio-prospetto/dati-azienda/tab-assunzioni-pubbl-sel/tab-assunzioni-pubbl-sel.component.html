@@ -1,0 +1,36 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- Assunzioni tramite pubblica selezione in sola lettura -->
+<h3>{{ 'PROSPETTO.ASS_PUB_SEL.TITLE' | translate}}</h3>
+
+<div class="row">
+  <div class="col">
+    <div *ngIf="elencoAssunzioni.length > 0" class="scrollbar-table scrollbar-primary">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.REG' | translate}}</th>
+            <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.DISABLED_BALANCE' | translate}}</th>
+            <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.DISABLED_EX_ART_18' | translate}}</th>
+            <th>{{ 'PROSPETTO.ASS_PUB_SEL.TABLE.FIELD.NOTE' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let el of elencoAssunzioni">
+              <td>{{el?.regione?.dsProTRegione}}</td>
+              <td>{{el?.saldoDisabili}}</td>
+              <td>{{el?.saldoExArt18}}</td>
+              <td>{{el?.dsNote}}</td>
+            </tr>
+        </tbody>
+      </table>
+    </div><!-- /scrollbar-table-->
+    <div *ngIf="!elencoAssunzioni || (elencoAssunzioni && elencoAssunzioni.length <= 0)" class="alert alert-warning" role="alert">
+      {{ 'PROSPETTO.ASS_PUB_SEL.WARN_MSG' | translate}}
+    </div>
+  </div><!-- /col-->
+</div>
+<!-- /row-->
+
