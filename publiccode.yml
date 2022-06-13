@@ -15,7 +15,7 @@ dependsOn:
       versionMin: '2'
     - name: WildFly
       optional: false
-      version: 17
+      version: '17'
       versionMax: '23'
       versionMin: ''
   proprietary:
@@ -29,7 +29,7 @@ description:
     features:
       - Consultazione, compilazione/duplicazione ed invio prospetto disabili annuale.
     genericName: Prospetto Disabili
-    longDescription: |2
+    longDescription: |
       Il prodotto PRODIS è l’applicativo della Regione Piemonte che permette alle aziende e ai loro intermediari di ottemperare agli
       obblighi inerenti alla comunicazione del prospetto informativo disabili  alla Pubblica Amministrazione, indicando la propria situazione
       occupazionale rispetto agli obblighi di assunzione di personale disabile  e/o appartenente alle altre categorie protette come previsto
@@ -86,7 +86,7 @@ it:
 landingURL: 'https://github.com/regione-piemonte/prodis.git'
 legal:
   authorsFile: |-
-    https://raw.githubusercontent.com/regione-piemonte/prodis/main/Copyrights.txt
+    Copyrights.txt
   license: EUPL-1.2
   mainCopyrightOwner: Regione PIemonte
   repoOwner: Regione Piemonte
