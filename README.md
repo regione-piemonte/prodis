@@ -20,8 +20,8 @@ Il prodotto "Prodis" è stato sviluppato negli anni nel completo rispetto dei Mo
 Il prodotto è strutturato nelle seguenti componenti specifiche:
 - [prodisdb]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodisdb ) : script DDL/DML per la creazione ed il popolamento iniziale del DB (istanza DBMS Oracle), procedure PL/SQL di elaborazione dati;
 - [prodiswcl]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodiswcl ) : Client Web (Angular8), front-end applicativo;
-- [prodisweb]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodisweb ) : Componente SPA con servizi REST per prodiswcl;					;
-- [prodissrv]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodissrv ) : Componente di esposizione servizi (REST API) verso altri applicativi del Sistema Informativo Regionale.				;
+- [prodisweb]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodisweb ) : Componente SPA con servizi REST per prodiswcl;
+- [prodissrv]( https://github.com/regione-piemonte/prodis/tree/main/prodis-prodissrv ) : Componente di esposizione servizi (REST API) verso altri applicativi del Sistema Informativo Regionale.
 
 A ciascuna componente del prodotto elencata sopra corisponde una sotto-directory denominata prodis-<nome_componente>.\
 In ciascuna di queste cartelle di componente si trovano ulteriori informazioni specifiche, incluso il BOM della componente di prodotto.
@@ -31,7 +31,7 @@ Nella directory [csi-lib]( https://github.com/regione-piemonte/prodis/tree/main/
 
 # Prerequisiti di sistema
 
-Una istanza DBMS Oracle (v. 12 o sup. - consigliata la v.19, eventualmente la "Enterprise Edition" per carichi di lavoro elevati) con utenza avente privilegi per la creazione tabelle ed altri oggetti DB (tramite le istruzioni DDL messe a disposizione nella componente prodisdb), ed una ulteriore utenza separata non proprietaria dello schama, per l'esecuzione di istruzioni DML di Create, Readd, Update e Delete sui dati.
+Una istanza DBMS Oracle (v. 12 o sup. - consigliata la v.19, eventualmente la "Enterprise Edition" per carichi di lavoro elevati) con utenza avente privilegi per la creazione tabelle ed altri oggetti DB (tramite le istruzioni DDL messe a disposizione nella componente prodisdb), ed una ulteriore utenza separata non proprietaria dello schema, per l'esecuzione di istruzioni DML di Create, Read, Update e Delete sui dati.
 
 Una istanza di application server J2EE, consigliato WildFly 17 ( https://www.wildfly.org/downloads/ ).\
 Una istanza di web server, consigliato apache web server ( https://httpd.apache.org/ ).\
@@ -72,5 +72,4 @@ Per il versionamento del software si usa la tecnica Semantic Versioning (http://
 SPDX-License-Identifier: EUPL-1.2-or-later .\
 Questo software è distribuito con licenza EUPL-1.2 .\
 Consultare il file LICENSE.txt per i dettagli sulla licenza.
-
 
